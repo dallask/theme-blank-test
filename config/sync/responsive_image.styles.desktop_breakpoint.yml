@@ -1,0 +1,26 @@
+uuid: a1db9670-68a6-49d7-a350-63f441f679e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.large
+    - image.style.wide
+  theme:
+    - design_system_3
+_core:
+  default_config_hash: aUEpbKXThkmDRiYGU6NqpvwNE3DmZKz29NBDAxqxHwI
+id: desktop_breakpoint
+label: 'Desktop breakpoint'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: wide
+    breakpoint_id: design_system_3.large
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: large
+    breakpoint_id: design_system_3.medium
+    multiplier: 1x
+breakpoint_group: design_system_3
+fallback_image_style: wide

@@ -1,0 +1,20 @@
+uuid: 73ff931a-a8c0-49bd-a805-9e5b0b03c38e
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.medium
+  theme:
+    - design_system_3
+_core:
+  default_config_hash: lLTGb8YsZQwiXKzEpOmao124hu7TdSDbUdBSUNwsZH4
+id: mobile_breakpoint
+label: 'Mobile breakpoint'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: medium
+    breakpoint_id: design_system_3.small
+    multiplier: 1x
+breakpoint_group: design_system_3
+fallback_image_style: medium

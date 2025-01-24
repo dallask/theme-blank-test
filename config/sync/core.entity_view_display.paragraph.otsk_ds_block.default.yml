@@ -1,0 +1,24 @@
+uuid: e5023aee-fc1f-4b47-b792-63cd1f1d4a1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_block.field_otsk_ds_block
+    - paragraphs.paragraphs_type.otsk_ds_block
+_core:
+  default_config_hash: pgdPJo6OVMP99gEVhf86LMj_RwteB5TrIXjxl1CmCnw
+id: paragraph.otsk_ds_block.default
+targetEntityType: paragraph
+bundle: otsk_ds_block
+mode: default
+content:
+  field_otsk_ds_block:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

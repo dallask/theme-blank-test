@@ -1,0 +1,29 @@
+uuid: 93fccfcb-160b-4747-8662-cdfbf4047b9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_video_file
+    - media.type.video_background
+  module:
+    - file
+_core:
+  default_config_hash: 6fBErm0Y4VC2Pxky6GaX8LzXCGQcLdHX4-E9veJdBys
+id: media.video_background.field_media_video_file
+field_name: field_media_video_file
+entity_type: media
+bundle: video_background
+label: 'Video file'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp4 webm'
+  max_filesize: ''
+  description_field: false
+field_type: file

@@ -1,0 +1,29 @@
+uuid: 396f3df4-89bd-45db-8c88-8b08000377e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_link.field_otsk_ds_link
+    - paragraphs.paragraphs_type.otsk_ds_link
+  module:
+    - link
+_core:
+  default_config_hash: VNmUDqD0s9NSatQMAMbInQlfimw_E9CxRD-70IIvM8g
+id: paragraph.otsk_ds_link.default
+targetEntityType: paragraph
+bundle: otsk_ds_link
+mode: default
+content:
+  field_otsk_ds_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 256
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

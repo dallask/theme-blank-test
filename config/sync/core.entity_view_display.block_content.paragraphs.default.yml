@@ -1,0 +1,26 @@
+uuid: f8a0d398-c310-4a5d-8423-4350809a1fab
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.paragraphs
+    - field.field.block_content.paragraphs.field_paragraphs
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: 5NzNXTFisumEzqScs2rb_viSC77ukMWUhJ-iF-UcUz8
+id: block_content.paragraphs.default
+targetEntityType: block_content
+bundle: paragraphs
+mode: default
+content:
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

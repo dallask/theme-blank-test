@@ -1,0 +1,18 @@
+uuid: 0e8a89d1-3ee1-4c47-a477-13e1cb15b4c1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DRsPbzDjR0Wd8sK-_ufsabTUg31xjbZ1SaIf21Ijlr0
+id: default
+name: Default
+weight: 10
+close: true
+title: 'You Are Now Leaving This Site'
+body:
+  value: 'Would you like to leave this site?'
+  format: plain_text
+labelyes: OK
+labelno: Cancel
+domains: '*'
+new_tab: false

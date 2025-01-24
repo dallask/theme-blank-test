@@ -1,0 +1,10 @@
+uuid: 56c6c52b-c82e-4d36-b885-0c40e671db70
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: cFY7Zw3S14r2Km4ZFzQtZNziD9zvXQ8-lFY6tMoONhM
+id: paragraphs
+label: Paragraphs
+revision: 0
+description: ''

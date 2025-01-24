@@ -1,0 +1,21 @@
+uuid: a84ed0e8-db26-4fd0-be58-e01cf7567bbc
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: qabW5lRBpevef-dKLjPVQSZkbP4fPCxgiKbxYRGdM_Y
+id: paragraph.field_otsk_ds_text
+field_name: field_otsk_ds_text
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

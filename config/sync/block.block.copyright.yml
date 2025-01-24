@@ -1,0 +1,31 @@
+uuid: 9f48d188-dbe2-48e2-901d-e9b5fa2fa232
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:paragraphs:ecbae7dc-db40-4c5a-b1f6-722f179b4666'
+  module:
+    - block_content
+    - otsuka_ds_block_custom_attributes
+  theme:
+    - design_system_3
+third_party_settings:
+  otsuka_ds_block_custom_attributes:
+    template_path: organisms/copy/copy
+    variant: copy
+    modifier: footer-copyright
+id: copyright
+theme: design_system_3
+region: footer_copyright
+weight: -6
+provider: null
+plugin: 'block_content:ecbae7dc-db40-4c5a-b1f6-722f179b4666'
+settings:
+  id: 'block_content:ecbae7dc-db40-4c5a-b1f6-722f179b4666'
+  label: Copyright
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

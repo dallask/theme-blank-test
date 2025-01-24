@@ -1,0 +1,8 @@
+name: Diffy Check Manual
+on:
+  workflow_dispatch:
+ 
+jobs:
+  diffy_integration:
+    uses: OAPI-Commercial-IT/general-linters/.github/workflows/manual-diffy-check.yml@main
+    secrets: inherit

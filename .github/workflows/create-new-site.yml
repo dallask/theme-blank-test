@@ -1,0 +1,9 @@
+name: Deploy New Site
+
+on:
+  create
+
+jobs:
+  create_new_site:
+    uses: OAPI-Commercial-IT/general-linters/.github/workflows/create-new-site.yml@main
+    secrets: inherit

@@ -1,0 +1,25 @@
+uuid: ab34ea25-5582-43e4-8bc9-cd08435b80c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_otsk_ds_block
+    - paragraphs.paragraphs_type.otsk_ds_block
+_core:
+  default_config_hash: T-4cDz_cGBZb92JL59OzO2Arfxz8pkB1ABrpGII3Fp4
+id: paragraph.otsk_ds_block.field_otsk_ds_block
+field_name: field_otsk_ds_block
+entity_type: paragraph
+bundle: otsk_ds_block
+label: Block
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

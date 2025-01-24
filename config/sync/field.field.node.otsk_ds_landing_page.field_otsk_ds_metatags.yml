@@ -1,0 +1,23 @@
+uuid: 5d107bf0-ad19-4021-8950-cdd410158823
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_otsk_ds_metatags
+    - node.type.otsk_ds_landing_page
+  module:
+    - metatag
+_core:
+  default_config_hash: 7TssoduivnpeNljblkq5q18PFPg8Fu1ETCGfXpkvCpU
+id: node.otsk_ds_landing_page.field_otsk_ds_metatags
+field_name: field_otsk_ds_metatags
+entity_type: node
+bundle: otsk_ds_landing_page
+label: Metatags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

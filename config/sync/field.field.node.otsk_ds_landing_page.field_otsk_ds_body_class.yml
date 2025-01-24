@@ -1,0 +1,21 @@
+uuid: 5ffe8601-d78f-4bb0-b15e-5138f6a643d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_otsk_ds_body_class
+    - node.type.otsk_ds_landing_page
+_core:
+  default_config_hash: 67AoTBP23pDTFX1ETu0RpqXQySp96_dXU8ra40J8D_Y
+id: node.otsk_ds_landing_page.field_otsk_ds_body_class
+field_name: field_otsk_ds_body_class
+entity_type: node
+bundle: otsk_ds_landing_page
+label: 'Body class'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

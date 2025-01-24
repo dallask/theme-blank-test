@@ -1,0 +1,18 @@
+uuid: baf54992-234e-4356-9a0a-4598f9b60a8d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - design_system_3
+id: pagetitle_2
+theme: design_system_3
+region: header_bottom
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,11 @@
+_core:
+  default_config_hash: wj4NAe5eIk4pX98RQcRLbVKvwBkpioYv9RlvYxYM14s
+adobe-launch-enable: false
+target-adobe-launch-environment: staging
+adobe-launch-async: true
+init-js-array: true
+adobe-launch-prod-url: ''
+adobe-launch-staging-url: ''
+adobe-launch-registrant: ''
+paths: "/admin\r\n/admin/*\r\n/node/*/edit"
+paths_negate: '1'

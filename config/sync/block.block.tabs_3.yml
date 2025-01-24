@@ -1,0 +1,20 @@
+uuid: e2e3d901-7f9c-4245-b502-28783a2387f9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - design_system_3
+id: tabs_3
+theme: design_system_3
+region: content
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

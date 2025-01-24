@@ -1,0 +1,9 @@
+name: Site Refresh
+
+on:
+  push
+
+jobs:
+  site_refresh:
+    uses: OAPI-Commercial-IT/general-linters/.github/workflows/site-refresh-theme-build.yml@main
+    secrets: inherit

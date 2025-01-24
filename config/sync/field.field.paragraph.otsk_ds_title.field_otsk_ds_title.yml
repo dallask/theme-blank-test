@@ -1,0 +1,27 @@
+uuid: 203f9afa-c0f1-46ff-865d-8c1c8cd0deb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_otsk_ds_title
+    - paragraphs.paragraphs_type.otsk_ds_title
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+_core:
+  default_config_hash: B-5dGGKKl_sYfMQpi68roDaQYfB4-Y16BpM4FVbnoZE
+id: paragraph.otsk_ds_title.field_otsk_ds_title
+field_name: field_otsk_ds_title
+entity_type: paragraph
+bundle: otsk_ds_title
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

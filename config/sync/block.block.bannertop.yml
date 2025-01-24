@@ -1,0 +1,32 @@
+uuid: fa081984-d7ed-4ae3-a64e-e3057302d670
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:paragraphs:f5a7010a-5251-4b1f-92ff-51e8b55a5679'
+  module:
+    - block_content
+    - otsuka_ds_block_custom_attributes
+  theme:
+    - design_system_3
+third_party_settings:
+  otsuka_ds_block_custom_attributes:
+    id: customTopBannerId
+    template_path: organisms/copy/copy
+    variant: copy
+    modifier: top-banner
+id: bannertop
+theme: design_system_3
+region: header_top
+weight: 0
+provider: null
+plugin: 'block_content:f5a7010a-5251-4b1f-92ff-51e8b55a5679'
+settings:
+  id: 'block_content:f5a7010a-5251-4b1f-92ff-51e8b55a5679'
+  label: 'Banner Top'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: 5338a282-b756-4858-bded-5dcb9db27e7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - otsuka_ds_block_custom_attributes
+    - otsuka_prc_code
+  theme:
+    - design_system_3
+third_party_settings:
+  otsuka_ds_block_custom_attributes:
+    variant: prc
+    modifier: code-date
+id: otsukaupdatedprccodeinfo
+theme: design_system_3
+region: footer_prc
+weight: -5
+provider: null
+plugin: otsuka_updated_prc_code_info_block
+settings:
+  id: otsuka_updated_prc_code_info_block
+  label: 'Otsuka Updated Prc Code Info'
+  label_display: '0'
+  provider: otsuka_prc_code
+visibility: {  }

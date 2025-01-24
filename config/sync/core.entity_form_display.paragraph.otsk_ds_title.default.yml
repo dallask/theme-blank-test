@@ -1,0 +1,31 @@
+uuid: 5bf5bc84-24a1-4adf-b238-e94753d9ca1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_title.field_otsk_ds_title
+    - paragraphs.paragraphs_type.otsk_ds_title
+  module:
+    - allowed_formats
+    - text
+_core:
+  default_config_hash: 3wCjLzl2dzfZIctxDR8dm8q8pAHM-Rvlj8L1ejBG_r0
+id: paragraph.otsk_ds_title.default
+targetEntityType: paragraph
+bundle: otsk_ds_title
+mode: default
+content:
+  field_otsk_ds_title:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 80
+      placeholder: ''
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
+hidden:
+  created: true
+  status: true

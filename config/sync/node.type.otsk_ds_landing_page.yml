@@ -1,0 +1,20 @@
+uuid: be3ee996-67c9-4e11-97c8-dd14591b24b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: z9y3iSdZAF90IHPjsYQqPGLX6LOq3g_vjdP3J_2KtDg
+name: 'Landing Page'
+type: otsk_ds_landing_page
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

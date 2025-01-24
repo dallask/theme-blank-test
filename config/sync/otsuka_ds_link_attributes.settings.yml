@@ -1,0 +1,19 @@
+_core:
+  default_config_hash: 4LBI_Px-fXbd2z2xhl9r2hsrGnmOhdKJaWyCWENi0R0
+attributes:
+  id:
+    title: ID
+  name:
+    title: Name
+  target:
+    title: Target
+    type: select
+    options:
+      _self: 'Same window (_self)'
+      _blank: 'New window (_blank)'
+  rel:
+    title: Rel
+  class:
+    title: Class
+  type:
+    title: type

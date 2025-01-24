@@ -1,0 +1,20 @@
+uuid: 8cc6b02a-a791-4975-b76e-da092a4022ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - design_system_3
+id: messages_2
+theme: design_system_3
+region: content
+weight: -4
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

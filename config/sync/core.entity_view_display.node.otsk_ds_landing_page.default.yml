@@ -1,0 +1,36 @@
+uuid: ab87b668-1ec1-4a7a-976f-f9be213ac938
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.otsk_ds_landing_page.field_otsk_ds_body_class
+    - field.field.node.otsk_ds_landing_page.field_otsk_ds_hero_block
+    - field.field.node.otsk_ds_landing_page.field_otsk_ds_main_body
+    - field.field.node.otsk_ds_landing_page.field_otsk_ds_metatags
+    - field.field.node.otsk_ds_landing_page.field_otsk_ds_sidebar
+    - node.type.otsk_ds_landing_page
+  module:
+    - entity_reference_revisions
+    - user
+_core:
+  default_config_hash: 6Kvq4zjY1N__GkH7yvvm5eYB4Zpamm-cGyRzfqU9UvI
+id: node.otsk_ds_landing_page.default
+targetEntityType: node
+bundle: otsk_ds_landing_page
+mode: default
+content:
+  field_otsk_ds_main_body:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_otsk_ds_body_class: true
+  field_otsk_ds_hero_block: true
+  field_otsk_ds_metatags: true
+  field_otsk_ds_sidebar: true
+  links: true

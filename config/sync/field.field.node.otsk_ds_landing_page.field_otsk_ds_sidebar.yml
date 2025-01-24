@@ -1,0 +1,58 @@
+uuid: 3a5b0aaf-b85e-44f4-807d-98884c5e0b87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_otsk_ds_sidebar
+    - node.type.otsk_ds_landing_page
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: TUbP0bpcMNoDjbrkEe7S4-vPeFaMckXPUC_TWDy6dNY
+id: node.otsk_ds_landing_page.field_otsk_ds_sidebar
+field_name: field_otsk_ds_sidebar
+entity_type: node
+bundle: otsk_ds_landing_page
+label: Sidebar
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 1
+    target_bundles_drag_drop:
+      from_library:
+        weight: 11
+        enabled: false
+      otsk_ds_block:
+        weight: 12
+        enabled: false
+      otsk_ds_card:
+        weight: 13
+        enabled: false
+      otsk_ds_image:
+        weight: 14
+        enabled: false
+      otsk_ds_link:
+        weight: 15
+        enabled: false
+      otsk_ds_media:
+        weight: 16
+        enabled: false
+      otsk_ds_text:
+        weight: 17
+        enabled: false
+      otsk_ds_title:
+        weight: 18
+        enabled: false
+      otsk_ds_video:
+        weight: 19
+        enabled: false
+      otsk_ds_wrapper:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

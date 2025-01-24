@@ -1,0 +1,18 @@
+uuid: 0920596d-7384-459d-958e-96d428216dd5
+langcode: en
+status: true
+dependencies:
+  module:
+    - otsuka_ds_paragraph_behaviors
+_core:
+  default_config_hash: Krd6E-OSvhYYMLl1HY4NpTB1IiHSKnBKjpnM3UmHC-0
+id: otsk_ds_link
+label: Link
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  custom_id_classes_paragraph:
+    enabled: true
+  custom_twig_template_suggestions_paragraph:
+    enabled: true

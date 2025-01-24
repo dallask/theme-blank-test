@@ -1,0 +1,26 @@
+uuid: a9354ed3-a24d-4c54-89b8-9064909ad3c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_wrapper.field_otsk_ds_paragraphs
+    - paragraphs.paragraphs_type.otsk_ds_wrapper
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: Zqnd4tZBkgJBl1noezLp6G58d017Pe9dKXuQdCcB_SI
+id: paragraph.otsk_ds_wrapper.default
+targetEntityType: paragraph
+bundle: otsk_ds_wrapper
+mode: default
+content:
+  field_otsk_ds_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

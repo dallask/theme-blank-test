@@ -1,0 +1,49 @@
+uuid: b906348c-e497-455e-8a08-8c78cf899c56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.responsive_image.field_media_image
+    - field.field.media.responsive_image.field_media_mobile_image
+    - media.type.responsive_image
+    - responsive_image.styles.mobile_breakpoint
+  module:
+    - svg_image_responsive
+_core:
+  default_config_hash: CvxrdY8v_DKoi7XHfgjPyCDgRtqeRNSM7DPiHolmz6A
+id: media.responsive_image.default
+targetEntityType: media
+bundle: responsive_image
+mode: default
+content:
+  field_media_image:
+    type: responsive_image
+    label: visually_hidden
+    settings:
+      responsive_image_style: desktop_breakpoint
+      image_link: ''
+      svg_render_as_image: '1'
+      svg_attributes:
+        width: ''
+        height: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media_mobile_image:
+    type: responsive_image
+    label: visually_hidden
+    settings:
+      responsive_image_style: mobile_breakpoint
+      image_link: ''
+      svg_render_as_image: '1'
+      svg_attributes:
+        width: ''
+        height: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

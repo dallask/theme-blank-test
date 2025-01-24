@@ -1,0 +1,37 @@
+uuid: bf80e958-36a3-4d10-92c7-337d43b16000
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_otsk_ds_hero_block
+    - node.type.otsk_ds_landing_page
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: ueC5AiEM9eEMORlOAKq5EJchGAmUMVO7kHS7341Xelw
+id: node.otsk_ds_landing_page.field_otsk_ds_hero_block
+field_name: field_otsk_ds_hero_block
+entity_type: node
+bundle: otsk_ds_landing_page
+label: 'Hero block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      otsk_ds_text:
+        weight: 4
+        enabled: false
+      otsuka_ds_text:
+        weight: 5
+        enabled: false
+      text:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

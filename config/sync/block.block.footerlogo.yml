@@ -1,0 +1,31 @@
+uuid: 0b54af47-cd2b-4f2c-961b-aa8bec61eaa4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:paragraphs:98c8e82c-7f1d-44d3-b9f5-4d2d4fdd71be'
+  module:
+    - block_content
+    - otsuka_ds_block_custom_attributes
+  theme:
+    - design_system_3
+third_party_settings:
+  otsuka_ds_block_custom_attributes:
+    template_path: organisms/branding/branding
+    variant: branding
+    modifier: footer
+id: footerlogo
+theme: design_system_3
+region: footer_logo
+weight: 0
+provider: null
+plugin: 'block_content:98c8e82c-7f1d-44d3-b9f5-4d2d4fdd71be'
+settings:
+  id: 'block_content:98c8e82c-7f1d-44d3-b9f5-4d2d4fdd71be'
+  label: 'Footer Logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

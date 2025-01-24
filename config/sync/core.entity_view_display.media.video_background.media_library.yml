@@ -1,0 +1,36 @@
+uuid: d243f894-008e-4e8a-a7a7-eb7c664f6404
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.video_background.field_media_video_file
+    - field.field.media.video_background.field_media_video_thumbnail
+    - image.style.medium
+    - media.type.video_background
+  module:
+    - svg_image
+_core:
+  default_config_hash: Y0HZd6EBtxiIv1cxsAcDw--OzgXwOOjyWcgcaASAE1c
+id: media.video_background.media_library
+targetEntityType: media
+bundle: video_background
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_video_file: true
+  field_media_video_thumbnail: true
+  name: true
+  uid: true

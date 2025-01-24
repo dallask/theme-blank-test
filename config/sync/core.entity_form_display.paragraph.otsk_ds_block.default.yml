@@ -1,0 +1,27 @@
+uuid: 2339a261-4f37-4338-a4d2-2eb2af3e1cf0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_block.field_otsk_ds_block
+    - paragraphs.paragraphs_type.otsk_ds_block
+_core:
+  default_config_hash: iA_QbavHo5qLSl9SApeRqi-8VQS37yPiSJna3IqKo7k
+id: paragraph.otsk_ds_block.default
+targetEntityType: paragraph
+bundle: otsk_ds_block
+mode: default
+content:
+  field_otsk_ds_block:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

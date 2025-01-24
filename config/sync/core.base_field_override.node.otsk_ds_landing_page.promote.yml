@@ -1,0 +1,24 @@
+uuid: 31b52502-555a-416e-8eb3-740b53c4fa53
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.otsk_ds_landing_page
+_core:
+  default_config_hash: mDuWG02eDpjzCL3J5CFtDg-RR-sDnkRfBq2RH4zTEUk
+id: node.otsk_ds_landing_page.promote
+field_name: promote
+entity_type: node
+bundle: otsk_ds_landing_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

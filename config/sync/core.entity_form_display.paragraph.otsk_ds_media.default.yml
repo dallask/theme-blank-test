@@ -1,0 +1,26 @@
+uuid: 2816989e-c1ae-4f67-a7f0-18d0ef09a96b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_media.field_otsk_ds_media
+    - paragraphs.paragraphs_type.otsk_ds_media
+  module:
+    - media_library
+_core:
+  default_config_hash: gdLqrpIJRW3bX7AkF0HJbBadsV2tmoP-FlO4JH8ZXaE
+id: paragraph.otsk_ds_media.default
+targetEntityType: paragraph
+bundle: otsk_ds_media
+mode: default
+content:
+  field_otsk_ds_media:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

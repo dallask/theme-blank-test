@@ -1,0 +1,15 @@
+name: Delete Old Site
+
+on:
+  # delete
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name, like: epic/<env>/<collections/<epic_id>/<release>'
+        required: true
+        type: string
+
+jobs:
+  delete_site:
+    uses: OAPI-Commercial-IT/general-linters/.github/workflows/delete-site.yml@main
+    secrets: inherit

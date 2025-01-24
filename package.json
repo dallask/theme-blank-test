@@ -1,0 +1,65 @@
+{
+    "name": "otsk-ds-components8",
+    "version": "1.0.0",
+    "description": "This is a repo for the Design System common repository # Pre-commit checks This theme contains the codestyle checking functionality that implemented by Drupal Code Quality Checker.",
+    "main": "index.js",
+    "scripts": {
+        "stylelint": "stylelint 'themes/custom/**/components/**/*.scss' --config .stylelintrc.json",
+        "stylelint:current": "stylelint $(git diff --name-status | grep '\\.scss$' | grep -v \"^[RD]\" | awk '{ print $2 }') --config .stylelintrc.json",
+        "stylelint:fix": "stylelint 'themes/custom/**/components/**/*.scss' --fix --config .stylelintrc.json",
+        "stylelint:current:fix": "stylelint --fix $(git diff --name-status | grep '\\.scss$' | grep -v \"^[RD]\" | awk '{ print $2 }')",
+        "prettier": "prettier 'themes/custom/**/components/**/(*.scss|*.js)' --check",
+        "prettier:current": "prettier --check $(git diff --name-status | grep '\\.scss$\\|\\.js$' | grep -v \"^[RD]\" | awk '{ print $2 }')",
+        "prettier:fix": "prettier 'themes/custom/**/components/**/(*.scss|*.js)' --write",
+        "prettier:current:fix": "prettier --write $(git diff --name-status | grep '\\.scss$\\|\\.js$' | grep -v \"^[RD]\" | awk '{ print $2 }')",
+        "eslint": "eslint -c .eslintrc.json 'themes/custom/**/components/**/*.js'",
+        "eslint:current": "eslint -c .eslintrc.json $(git diff --name-status | grep '\\.js$' | grep -v \"^[RD]\" | awk '{ printv $2 }')",
+        "eslint:fix": "eslint -c .eslintrc.json 'themes/custom/**/components/**/*.js' --fix",
+        "eslint:current:fix": "eslint -c .eslintrc.json --fix $(git diff --name-status | grep '\\.js$' | grep -v \"^[RD]\" | awk '{ print $2 }')"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/OAPI-Commercial-IT/design_system.git"
+    },
+    "author": "Ievgen Kyvgyla <Ievgen_Kyvgyla@epam.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/OAPI-Commercial-IT/design_system/issues"
+    },
+    "homepage": "https://github.com/OAPI-Commercial-IT/design_system#readme",
+    "devDependencies": {
+        "@babel/eslint-parser": "^7.18.9",
+        "allure-commandline": "^2.18.1",
+        "eslint": "^8.20.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-jest": "^26.6.0",
+        "eslint-plugin-json": "^3.1.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-security": "^1.5.0",
+        "eslint-plugin-yml": "^0.13.0",
+        "npm-add-script": "^1.1.0",
+        "prettier": "^2.7.1",
+        "stylelint": "^14.9.1",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-standard": "^26.0.0",
+        "stylelint-prettier": "^2.0.0"
+    },
+    "cypress-cucumber-preprocessor": {
+        "nonGlobalStepDefinitions": true
+    },
+    "dependencies": {
+        "@badeball/cypress-cucumber-preprocessor": "^13.0.2",
+        "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+        "@cypress-audit/lighthouse": "^1.3.1",
+        "@oapi-commercial-it/otsk-cucumber-common-definitions": "npm:@oapi-commercial-it/otsk-cucumber-common-definitions@^1.0.11",
+        "@shelex/cypress-allure-plugin": "^2.33.1",
+        "cypress": "^10.10.0",
+        "cypress-cucumber-preprocessor": "^4.3.1",
+        "cypress-image-diff-js": "^1.22.0",
+        "cypress-xpath": "^2.0.1"
+    }
+}

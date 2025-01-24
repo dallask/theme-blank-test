@@ -1,0 +1,43 @@
+uuid: 1fb8be43-4bcc-4cf5-b09e-dbf9c2dba5e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_otsk_ds_media
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.responsive_image
+    - media.type.video
+    - media.type.video_background
+    - paragraphs.paragraphs_type.otsk_ds_media
+_core:
+  default_config_hash: U9pz8zY3UnvgkrEYfe_jPTSOPdTfOF4u1XwHrq7XinU
+id: paragraph.otsk_ds_media.field_otsk_ds_media
+field_name: field_otsk_ds_media
+entity_type: paragraph
+bundle: otsk_ds_media
+label: Media
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      audio: audio
+      document: document
+      image: image
+      remote_video: remote_video
+      responsive_image: responsive_image
+      video: video
+      video_background: video_background
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: audio
+field_type: entity_reference

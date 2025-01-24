@@ -1,0 +1,31 @@
+uuid: 8b655982-e0a8-4995-88d8-20cd5d21691e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:paragraphs:f194214f-f1e4-4ee9-8481-2ec82104329f'
+  module:
+    - block_content
+    - otsuka_ds_block_custom_attributes
+  theme:
+    - design_system_3
+third_party_settings:
+  otsuka_ds_block_custom_attributes:
+    template_path: organisms/branding/branding
+    variant: branding
+    modifier: top
+id: headerlogo
+theme: design_system_3
+region: header_logo
+weight: 0
+provider: null
+plugin: 'block_content:f194214f-f1e4-4ee9-8481-2ec82104329f'
+settings:
+  id: 'block_content:f194214f-f1e4-4ee9-8481-2ec82104329f'
+  label: 'Header logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

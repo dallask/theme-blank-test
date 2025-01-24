@@ -1,0 +1,24 @@
+uuid: b2b20df8-ad9d-4f4d-95aa-728f585775bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_title.field_otsk_ds_title
+    - paragraphs.paragraphs_type.otsk_ds_title
+  module:
+    - text
+_core:
+  default_config_hash: je-HN7huVxE7q8uXQ01CzHFREqhjMsUuTQyHQKiHMns
+id: paragraph.otsk_ds_title.default
+targetEntityType: paragraph
+bundle: otsk_ds_title
+mode: default
+content:
+  field_otsk_ds_title:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

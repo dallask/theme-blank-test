@@ -1,0 +1,37 @@
+uuid: 838ac579-7005-49cc-8b50-64e2007075d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.video_background.field_media_video_file
+    - field.field.media.video_background.field_media_video_thumbnail
+    - media.type.video_background
+  module:
+    - file
+_core:
+  default_config_hash: HExBdgKix-nei09-HABPAJoa67Bw2VjdmkmrsxIQ8NU
+id: media.video_background.default
+targetEntityType: media
+bundle: video_background
+mode: default
+content:
+  field_media_video_file:
+    type: file_video
+    label: visually_hidden
+    settings:
+      controls: true
+      autoplay: true
+      loop: true
+      multiple_file_display_type: tags
+      muted: true
+      width: 640
+      height: 480
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_video_thumbnail: true
+  name: true
+  thumbnail: true
+  uid: true

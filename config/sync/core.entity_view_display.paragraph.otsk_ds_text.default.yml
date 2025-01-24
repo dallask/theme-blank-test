@@ -1,0 +1,24 @@
+uuid: 8e951cc7-ddad-423b-b847-517483de3e56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_text.field_otsk_ds_text
+    - paragraphs.paragraphs_type.otsk_ds_text
+  module:
+    - text
+_core:
+  default_config_hash: Hw2GsoAfIGmYUvHeW86yq_XJ_XqZzNOZWRiNGHJA20A
+id: paragraph.otsk_ds_text.default
+targetEntityType: paragraph
+bundle: otsk_ds_text
+mode: default
+content:
+  field_otsk_ds_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

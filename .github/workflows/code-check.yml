@@ -1,0 +1,10 @@
+name: Code checker
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    uses: OAPI-Commercial-IT/general-linters/.github/workflows/code-check.yml@main
+    secrets: inherit

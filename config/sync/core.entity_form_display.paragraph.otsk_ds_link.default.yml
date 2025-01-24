@@ -1,0 +1,35 @@
+uuid: 6aa48f3c-8db8-4e1b-9d40-9113700ee463
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.otsk_ds_link.field_otsk_ds_link
+    - paragraphs.paragraphs_type.otsk_ds_link
+  module:
+    - otsuka_ds_link_attributes
+_core:
+  default_config_hash: aI6Qks8NvOcaGF0vx-ttVz1HjdY5qUfsn3phWFA9Vck
+id: paragraph.otsk_ds_link.default
+targetEntityType: paragraph
+bundle: otsk_ds_link
+mode: default
+content:
+  field_otsk_ds_link:
+    type: otsuka_ds_link_attributes
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      enabled_attributes:
+        id: id
+        name: name
+        target: target
+        rel: rel
+        class: class
+        some_attribute: some_attribute
+        type: 0
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
