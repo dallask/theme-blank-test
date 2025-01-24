@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+{% macro menu_links(items, attributes, menu_level, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics_position, data_analytics_group) %}
+  {% import _self as menus %}
+  {% if items %}
+
+    {# Set classes #}
+    {% set menu_class = menu_class|default('menu') %}
+    {% if not menu_modifiers %}
+      {% set menu_modifiers = [] %}
+    {% endif %}
+    {% if menu_level > 0 %}
+      {% set menu_modifiers = menu_modifiers|merge(['sub', 'sub-' ~ menu_level]) %}
+      {% set menu_extra = ['dropdown-menu'] %}
+      {% set list__addition_classes = ['dropdown-menu'] %}
+      {% set link_extra = link_extra|default([])|merge(['dropdown-item']) %}
+      {% set list__attributes = {} %}
+    {% else %}
+        {% set list__addition_classes = list__addition_classes|default(['nav']) %}
+    {% endif %}
+
+    {% include "@molecules/menus/_menu-list.twig" %}
+  {% endif %}
+{% endmacro %}
+
+{% import _self as menus %}
+
+{{ menus.menu_links(items, attributes, 0, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics_position, data_analytics_group) }}

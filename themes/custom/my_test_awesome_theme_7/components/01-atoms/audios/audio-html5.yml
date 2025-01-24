@@ -1,0 +1,7 @@
+audio__type: 'html5'
+# Add remote or locally hosted MP3, WAV, FLAC or OGG files.
+audio__urls:
+  - url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+    type: "audio/mpeg"
+  - url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg"
+    type: "audio/ogg"

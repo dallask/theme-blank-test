@@ -1,0 +1,108 @@
+{% set element_attributes = element_attributes|default({})|merge({'data-test': 'tabs'}) %}
+{% set tabs_id = custom_attributes.id|default('customBSTabs') %}
+{% set tabs_base_class = custom_attributes.base_class|default('tabs') %}
+{% set tabs_modifiers = custom_attributes.modifier|default([]) %}
+{% set tabs_blockname = custom_attributes.blockname|default('nav') %}
+{% set tabs__data_analytics_group = custom_attributes.data_analytics_group|default('Tabs') %}
+{% set items = tabs.tabs_block_item|default(tabs) %}
+
+{% set tabs_attributes = {
+  class: bem(
+    tabs_base_class,
+    tabs_modifiers,
+    tabs_blockname,
+    [
+      'nav',
+      'nav-' ~ tabs_base_class,
+      tabs_fill ? 'nav-fill' : '',
+      tabs_justified ? 'nav-justified' : '',
+      tabs_justify_content,
+      tabs_direction,
+      tabs_classes|join(' '),
+    ]
+  ),
+}|merge(tabs_attributes|default({
+  id: tabs_id,
+  role: 'tablist',
+  'data-test': 'tab-titles',
+})) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_attributes: {
+    'data-analytics-group': tabs__data_analytics_group is not empty ? tabs__data_analytics_group|striptags : 'Tabs',
+  }
+} %}
+  {% block element_content %}
+    <div class="container">
+      {% set element_attributes = [] %}
+      <ul {{ add_attributes(tabs_attributes|without('id')) }}>
+        {% for item in items %}
+          {% set item_attributes = {
+            id: tabs_attributes.id ~ '-' ~ loop.index0 ~ '-tab',
+            'data-bs-toggle': 'tab',
+            'data-bs-target': '#content-' ~ tabs_attributes.id ~ '-' ~ loop.index0,
+            type: 'button',
+            role: 'tab',
+            'aria-controls': tabs_attributes.id ~ '-' ~ loop.index0,
+            'aria-selected': 'false',
+          } %}
+
+          {% embed "@atoms/lists/_list-item.twig" with {
+            list__item__base_class: 'item',
+            list__item__blockname: 'nav',
+            list__item__extra: [
+              'nav-item'
+            ],
+            list__item__attributes: {
+              'data-test': 'tabs-item',
+            }
+
+          } %}
+            {% block list__item__content %}
+              {% set media = item.title.media %}
+              {% set title = item.title.title %}
+              {% set heading_button_content %}
+                {% if media %}
+                  {% include "@atoms/images/image/responsive-image.twig" with {
+                    responsive_image_blockname: element_base_class,
+                    image_src: media.media.src|default(media.src),
+                    image_alt: media.media.alt|default(media.alt),
+                    output_image_tag: true,
+                  } %}
+                {% endif %}
+                {% if title %}
+                  {% include "@atoms/text/headings/_heading.twig" with {
+                    heading__base_class: config.card__heading__base_class|default('heading'),
+                    heading__modifiers: config.card__heading__modifiers,
+                    heading__blockname: card__base_class,
+                    heading_level: 3,
+                    heading: title.title|default(title),
+                  } %}
+                {% endif %}
+              {% endset %}
+              {% include "@atoms/buttons/button.twig" with {
+                button__content: button_content|default(heading_button_content),
+                button__base_class: 'nav-link',
+                button__additional_classes: item.attributes.active|default(loop.first) ? ['active'] : [],
+                button__attributes: item_attributes|default(item.attributes)|merge({
+                  'data-analytics-name': title.title|default(title)|trim|striptags,
+                }),
+              } %}
+            {% endblock %}
+          {% endembed %}
+        {% endfor %}
+      </ul>
+      <div {{ bem("tab-content") }} {{ add_attributes({id: tabs_attributes.id ~ '_Content', 'data-test': 'tabs-content' }) }}>
+        {% for item in items %}
+          <div
+            class="tab-pane fade {{ item.attributes.active|default(loop.first) ? 'show active' : '' }}"
+            id="{{ item.attributes['aria-controls']|default('content-' ~ tabs_attributes.id ~ '-' ~ loop.index0) }}"
+            role="tabpanel"
+            aria-labelledby="{{ item.attributes.id|default(tabs_attributes.id ~ '_Content') }}" >
+              {{ item.content.text.text|default(item.content)|raw }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,19 @@
+{#
+/**
+ * Available variables:
+ * - audio__urls - array of audio URLs
+ * - audio_object__attributes - <audio> HTML5 specific attributes
+ */
+#}
+
+{% set audio_object__attributes = audio_object__attributes|default({
+  'preload': '',
+  'controls': ''
+}) %}
+
+<audio {{ add_attributes(audio_object__attributes) }}>
+  {% for audio in audio__urls %}
+    <source src="{{ audio.url }}" type="{{ audio.type }}">
+  {% endfor %}
+  {{ "Your browser does not support the video tag."|t }}
+</audio>

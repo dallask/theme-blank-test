@@ -1,0 +1,18 @@
+my_test_awesome_theme_7.xs:
+  label: extra-small
+  mediaQuery: 'all and (min-width: 18.75em)'
+my_test_awesome_theme_7.sm:
+  label: small
+  mediaQuery: 'all and (min-width: 36em)'
+my_test_awesome_theme_7.md:
+  label: medium
+  mediaQuery: 'all and (min-width: 48em)'
+my_test_awesome_theme_7.lg:
+  label: large
+  mediaQuery: 'all and (min-width: 62em)'
+my_test_awesome_theme_7.xl:
+  label: extra-large
+  mediaQuery: 'all and (min-width: 75em)'
+my_test_awesome_theme_7.xxl:
+  label: extra-extra-large
+  mediaQuery: 'all and (min-width: 87.5em)'

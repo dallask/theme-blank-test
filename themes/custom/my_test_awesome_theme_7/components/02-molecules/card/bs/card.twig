@@ -1,0 +1,50 @@
+{% set card__base_class = card__base_class|default('card') %}
+{% set card__modifiers = card__modifiers|default([]) %}
+{% set card__blockname = card__blockname|default('') %}
+{% set card__data_analytics_attributes = card_attributes.data_analytics|default(card.attributes.data_analytics|default({
+  'data-analytics-group': 'Card > Card BS'
+})) %}
+
+{% set card_attributes = {
+  class: bem(
+    card__base_class,
+    card__modifiers,
+    card__blockname,
+    [
+      'card',
+      card_variant ? 'bg-' ~ card_variant : '',
+      text_alignment ? 'text-' ~ text_alignment : '',
+      classes|join(' '),
+    ]
+  ),
+}|merge(card_attributes|default({}))|merge(card__data_analytics_attributes) %}
+
+<div {{ add_attributes(card_attributes) }}>
+  {% block content %}
+    {% if card__header__image %}
+      <div {{ bem('img-top', [], card_base_class, ['card-img-top']) }}>
+        {{ card__header__image__inline }}
+      </div>
+    {% endif %}
+    {% if card__header and not card__header__image %}
+      <div {{ bem('header', [], card_base_class, ['card-header']) }}>
+        {{ card__header }}
+      </div>
+    {% endif %}
+    {% if card__body__text %}
+      <div {{ bem('body', [], card_base_class, ['card-body']) }}>
+        {{ card__body__text }}
+      </div>
+    {% endif %}
+    {% if card__footer and not card__footer__image %}
+      <div {{ bem('footer', [], card_base_class, ['card-footer']) }}>
+        {{ card__footer }}
+      </div>
+    {% endif %}
+    {% if card__footer__image %}
+      <div {{ bem('bottom', [], card_base_class, ['card-bottom']) }}>
+        {{ card__footer__image__inline }}
+      </div>
+    {% endif %}
+  {% endblock %}
+</div>

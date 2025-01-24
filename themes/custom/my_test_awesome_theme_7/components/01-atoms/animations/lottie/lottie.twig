@@ -1,0 +1,25 @@
+{#
+/**
+ * Available variables:
+ * - element_base_class - the base classname
+ * - element_modifiers - array of modifiers to add to the base classname
+ * - element_blockname - blockname prepended to the base classname
+ *
+ * - lottie__src - src of the lottie animation file
+ * - lottie_object__attributes - <lottie-player> specific attributes
+ */
+#}
+{% set lottie_object__attributes = lottie_object__attributes|default({
+  loop: '',
+  autoplay: '',
+})|merge({
+  src: lottie__src|default(''),
+}) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('lottie-player'),
+} %}
+  {% block element_content %}
+    <lottie-player {{ add_attributes(lottie_object__attributes) }}></lottie-player>
+  {% endblock %}
+{% endembed %}

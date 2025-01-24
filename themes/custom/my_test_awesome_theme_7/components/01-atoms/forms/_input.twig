@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+{# {% set additional_attributes = additional_attributes|default({})|merge({ #}
+{#  class: additional_attributes.class|default(['form-control']), #}
+{# }) %} #}
+{# <input {{ add_attributes(additional_attributes) }} />{{ children }} #}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default([])|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [''])|merge([additional_attributes.type|trim in ['radio', 'checkbox'] ? 'form-check-input' : ''])|merge([attributes.type|trim in ['radio', 'checkbox'] ? 'form-check-input' : ''])
+) %}
+<input {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}/>{% block children %}{{ children }}{% endblock %}
+

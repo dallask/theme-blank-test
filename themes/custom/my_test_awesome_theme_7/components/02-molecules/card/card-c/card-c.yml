@@ -1,0 +1,23 @@
+config:
+  base_class: 'card-c'
+  card__image__output_image_tag: true
+  card__heading__link: false
+  card__link__modifiers:
+    - secondary
+    - lg
+card__image:
+  src: 'https://picsum.photos/85/85'
+  attributes:
+    alt: "This is the card image's alt text"
+    loading: "lazy"
+card__heading: 'Behind the numbers Understanding the impact of PTSD'
+card__link:
+  text: "Explore the impact"
+  url: '/'
+card__body__text: | 
+  <ul class="ul">
+  <li>Answer 7 short questions about your loved one’s crying and/or laughing episodes here: <a href="/pba-quiz#quiz"><span>take the PBA Quiz</span></a>.</li>
+  <li>Encourage your loved one to take the PBA Quiz.</li>
+  <li><a href="https://www.facebook.com/groups/ourpbasupportgroup/"><span>Join Our PBA Support Group</span></a> on Facebook, where you can meet people living with or affected by PBA.</li>
+  <li><a href="/educate"><span>Learn more with our PBA FAQs</span></a></li>
+  </ul>

@@ -1,0 +1,20 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.legal-menu {
+  @include list-reset;
+
+  li:first-of-type {
+    margin-right: 60px;
+  }
+
+  .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-underline-offset: 3px;
+  }
+}

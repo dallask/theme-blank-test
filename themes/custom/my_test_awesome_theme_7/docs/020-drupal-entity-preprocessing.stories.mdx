@@ -1,0 +1,336 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Drupal Entity preprocessing"/>
+
+## Data structure
+
+Group of OTSK DS fields include all configuration of standard content structure. This content structure enough flexible for every possible component on the Otsuka project.
+It is up to developer to activate appopriate module to import required content structure configuration.
+
+Content structure include Node Landing page with simple field structure:
+
+```yml
+otsk_ds_landing_page:
+    field_otsk_ds_body_class:
+        type: Text (plain)
+        settings:
+            is_multiple: false
+            required: false
+    field_otsk_ds_metatags:
+        type: Meta tags
+    field_otsk_ds_body:
+        type: Entity reference revisions (Paragraph)
+        settings:
+            is_multiple: true
+            required: false
+            allowed_paragraph_type: Exclude the selected below (none)
+            reference_method: Default
+```
+
+And content block:
+
+```yml
+paragraphs:
+    field_paragraphs:
+        type: Entity reference revisions (Paragraph)
+        settings:
+            is_multiple: true
+            required: false
+            allowed_paragraph_type: Exclude the selected below (none)
+            reference_method: Default
+```
+
+Paragraph types
+
+```yml
+otsk_ds_wrapper:
+    field_otsk_ds_paragraphs
+    
+otsk_ds_title:
+    field_otsk_ds_title
+ 
+otsk_ds_text:
+    field_otsk_ds_text
+    
+otsk_ds_image:
+    field_otsk_ds_image
+    
+otsk_ds_media:
+    field_otsk_ds_media
+    
+otsk_ds_link:
+    field_otsk_ds_link
+    
+otsk_ds_video:
+    field_otsk_ds_image
+    field_otsk_ds_video_remote
+    
+otsk_ds_card:
+    field_otsk_ds_title
+    field_otsk_ds_text
+    field_otsk_ds_image
+    field_otsk_ds_link
+    
+otsk_ds_block:
+    field_otsk_ds_block
+
+views_paragraph:
+    field_views
+```
+
+Combining paragraph wrapper and paragraph with content data DS open possibility to prepare any data structure.
+
+Design system also include media type structure
+
+```yml
+image:
+    field_media_image:
+        type: Image
+        settings:
+            is_multiple: false
+            required: true
+            allowed_file_extensions: png, gif, jpg, jpeg, svg
+            enable_alt_field: true
+            alt_field_required: true
+            upload_destination: Public files
+            
+audio:
+    field_media_audio_file:
+        type: File
+        settings:
+            is_multiple: false
+            required: true
+            allowed_file_extensions: mp3, wav, aac
+            upload_destination: Public files
+        display: Audio
+        
+video:
+    field_media_video_thumbnail:
+        type: Image
+        settings:
+            is_multiple: false
+            required: false
+            allowed_file_extensions: png, gif, jpg, jpeg
+            upload_destination: Public files
+        display: disabled
+	field_media_video_file:
+        type: File
+        settings:
+            is_multiple: false
+            required: true
+            allowed_file_extensions: mp4
+            upload_destination: Public files
+        display: Video
+        
+video_background:
+    field_media_video_thumbnail:
+        type: Image
+        settings:
+            is_multiple: false
+            required: false
+            allowed_file_extensions: png, gif, jpg, jpeg
+            upload_destination: Public files
+        display: disabled
+	field_media_video_file:
+        type: File
+        settings:
+            is_multiple: false
+            required: true
+            allowed_file_extensions: mp4
+            upload_destination: Public files
+        display: 
+            - Video
+            - muted: yes
+        
+video_remote:
+    field_media_oembed_video:
+        type: Text (plain)
+        settings:
+            is_multiple: false
+            required: true
+        display: oEmbed content
+
+            
+document:
+    field_media_document:
+        type: File
+        settings:
+            is_multiple: false
+            required: true
+            allowed_file_extensions: txt, rtf, doc, docx, ppt, pptx, xls, xlsx, pdf, odf, odg, odp, ods, odt, fodt, fods, fodp, fodg, key, numbers, pages
+            upload_destination: Public files
+        display: Generic file
+        
+```
+
+and field types
+
+```yml
+field_otsk_ds_title:
+    type: Text (formatted)
+    settings:
+        is_multiple: false
+        required: false
+        allowed_formats:
+             - Basic HTML
+             - Restricted HTML
+             - Full HTML
+             - Plain text
+
+field_otsk_ds_text:
+    type: Text (formatted, long)
+    settings:
+        is_multiple: false
+        required: false
+        allowed_formats:
+             - Basic HTML
+             - Restricted HTML
+             - Full HTML
+             - Plain text  
+             
+field_otsk_ds_link:
+    type: Link
+    settings:
+        is_multiple: false
+        required: false
+        allowed_link_type: Both internal and external links
+        allowed_link_text: Optional
+             
+field_otsk_ds_paragraphs:
+    type: Entity reference revisions (Paragraph)
+    settings:
+        is_multiple: false
+        required: false
+        allowed_paragraph_type: Exclude the selected below (none)
+        reference_method: Default
+        
+field_otsk_ds_block:
+    type: Entity reference (Block)
+    settings:
+        is_multiple: false
+        required: false
+        reference_method: Default
+        
+field_otsk_ds_image:
+    type: Entity reference (Media)
+    settings:
+        is_multiple: true
+        required: false
+        media_type: Image
+        reference_method: Default  
+        
+field_otsk_ds_media:
+    type: Entity reference (Media)
+    settings:
+        is_multiple: true
+        required: false
+        media_type: Image
+        reference_method: Default
+        
+field_otsk_ds_video:
+    type: Entity reference (Media)
+    settings:
+        is_multiple: false
+        required: false
+        media_type: Video
+        reference_method: Default
+        
+field_otsk_ds_video_remote:
+    type: Entity reference (Media)
+    settings:
+        is_multiple: false
+        required: false
+        media_type: Remote video
+        reference_method: Default
+```
+
+
+## Preprocess logic 
+
+Main idea of passing data from Drupal to frontend theme is to split data management inside Drupal only and pass template render solely to Emulsify theme. In this case frontend developer could work with data it received from Drupal as a CMS and process presentation of it independently preparing HTML template, CSS styles and actions with JS. So does preprocess module preparing data structure for each field on the upper level in block and node. 
+Module **otsuka_ds_preprocess** processing all fields inside block added to general layout and all paragraphs inside node returning flat data structure inside variables key **ds_variables**.
+Independently from amount of paragraph hierarchy layers or referenced entities module will process all data into single array for further processing in twig template.
+From paragraph behaviour **Variant** and **Modifier** fields taken by the module to generate key in variables array for all fields included into paragraph.
+
+```yml
+wrapper: 
+  variant: null
+  modifier: null
+  bundle: 'otsk_ds_wrapper'
+  wrapper:
+    - variant: null
+      modifier: null
+      bundle: 'otsk_ds_wrapper'
+      content:
+        variant: null
+        modifier: null
+        bundle: 'content'
+        media:
+          - src: 'http://nuedxt30678main.otsk.docksal.site/sites/nuedxt30678main.otsk.docksal.site/files/styles/max_1300x1300/public/2023-10/homepage-robert-min.png?itok=YeXMMBsx'
+            alt: 'Robert photo'
+            title: ''
+          - src: 'http://nuedxt30678main.otsk.docksal.site/sites/nuedxt30678main.otsk.docksal.site/files/styles/max_1300x1300/public/2023-10/homepage-robert-m-min.png?itok=0MnQT_UY'
+            alt: 'Robert photo'
+            title: ''
+        link: null
+        text: '<p>Robert is a real patient living with PBA.</p>'
+        title: null
+      wrapper_title: null
+    - variant: null
+      modifier: null
+      bundle: 'otsk_ds_wrapper'
+      content:
+        variant: null
+        modifier: null
+        bundle: 'content'
+        link:
+          url: '/about-pba'
+          title: 'Learn More About PBA'
+          attributes:
+            class:
+              - 'arrow-blue'
+        link: null
+        text: '<p>Trying To Make Sense of Your Uncontrollable Crying and/or Laughing?</p><p class="paragraph-text-regular">If you have a neurologic condition or brain injury, such as:</p><div><div><ul><li class="paragraph-text-regular">Traumatic brain injury (TBI)</li><li class="paragraph-text-regular">Multiple sclerosis (MS)</li><li class="paragraph-text-regular">Amyotrophic lateral sclerosis&nbsp;(ALS)</li></ul></div><div><ul class="list-bullet-regular"><li class="paragraph-text-regular">Stroke</li><li class="paragraph-text-regular">Alzheimer's disease or dementia</li><li class="paragraph-text-regular">Parkinson's disease</li></ul></div></div><p class="paragraph-text-regular">…and you experience'
+        title: null
+      wrapper_title: null
+```
+
+Preprocess module build label for dependency from variant if it is set or from bundle name of the entity reference if variant wasn't set extra.
+Module support extention in 2 dimension with preprocess of the theme in Drupal by creating new preprocess plugin like [PreprocessParagraphPlugin](https://github.com/OAPI-Commercial-IT/otsk-drupal/blob/feature/paragraph-preprocessing/docroot/modules/custom/otsuka_ds/otsuka_ds_preprocess/src/Plugin/Preprocess/PreprocessParagraphPlugin.php). Which is a general Drupal preprocessor hook. Each plugin associated to preprocess by plugin hook property.
+Second processor is field processor for proper mapping and processing all formatters against values. Plugin like [ImageFieldProcessorPlugin](https://github.com/OAPI-Commercial-IT/otsk-drupal/blob/feature/paragraph-preprocessing/docroot/modules/custom/otsuka_ds/otsuka_ds_preprocess/src/Plugin/FieldProcessor/ImageFieldProcessorPlugin.php) working as a formatter in general Drupal render process.
+All preprocessors already prepared for content structure above. In general development this part shouldn't be updated, just need to understand the logic.
+
+If provided structure from example doesn't map to structure of the variables on the theme component preprocess support mapping overrides that automatically discovered inside theme forlder [structure/paragraph](https://github.com/OAPI-Commercial-IT/emulsify-drupal/tree/DS3/structure/paragraph) if it exists. If mapping file doesn't exists data structure stays based on data structure.
+
+```yml
+heading: /wrapper/title
+cards:
+  - chart:
+      start: 0
+      value: /wrapper/0/content/0/text
+      increment: 5.25
+    tooltips_content:
+      button_title: /wrapper/0/content/1/title
+      title: /wrapper/0/content/1/text
+    cta:
+      link_url: /wrapper/0/content/2/link/0/url
+      link_content: /wrapper/0/content/2/link/0/title
+      link_extra: /wrapper/0/content/2/link/0/attributes
+  - chart:
+      start: 0
+      value: /wrapper/1/content/0/text
+      increment: 5.25
+    tooltips_content:
+      button_title: /wrapper/1/content/1/title
+      title: /wrapper/1/content/1/text
+    cta:
+      link_url: /wrapper/1/content/2/link/0/url
+      link_content: /wrapper/1/content/2/link/0/title
+      link_extra: /wrapper/1/content/2/link/0/attributes
+```
+
+Value from original structure pulled by XPath selector.
+
+And last point Drupal template for all paragraphs prepared [paragraph.html.twig](https://github.com/OAPI-Commercial-IT/emulsify-compound/blob/DS3/templates/paragraphs/paragraph.html.twig) and it is universal for any structure. Based on the variant and modifier included specific organism from components folder.
+For example, high level paragraph with variant **hero** and modifier **primary** corresponds to component `@organisms/hero/hero.primary.twig` or without modifier `@organisms/hero/hero.twig`.

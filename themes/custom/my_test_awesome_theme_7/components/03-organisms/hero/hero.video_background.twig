@@ -1,0 +1,46 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_extra: element_extra|default(['position-relative', 'overflow-hidden']),
+  element_attributes: element_attributes|default({})|merge({
+    'data-analytics-position': 'Hero Spot',
+  }),
+} %}
+
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    <div class="hero-video-background">
+      {% include "@atoms/videos/_video-html5.twig" with {
+        video__urls: hero.media.media.0.src ? [hero.media.media.0.src] : hero.video.urls,
+        video_object__attributes: {
+          muted: 'true',
+          preload: 'auto',
+          autoplay: 'autoplay',
+          loop: 'loop',
+        },
+      } %}
+    </div>
+
+    <div class="container text-center position-relative">
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 1,
+        heading__extra: [
+          'hero-title',
+          'text-white',
+          'pb-50',
+        ],
+        heading: hero.title.title|default(hero.title),
+      } %}
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 2,
+        heading__extra: [
+          'hero-subtitle',
+          'text-white',
+          'pt-50',
+          'mt-50',
+        ],
+        heading: hero.text.text|default(hero.subtitle),
+      } %}
+    </div>
+  {% endblock %}
+{% endembed %}
+

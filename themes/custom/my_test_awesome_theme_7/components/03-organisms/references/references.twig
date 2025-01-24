@@ -1,0 +1,34 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('references'),
+} %}
+  {% block element_content %}
+    <div class="container">
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 4,
+        heading: references.title|default('References'|t),
+      } %}
+
+      {% embed "@atoms/lists/list.twig" with {
+        list__addition_classes: ['list-inline'],
+      } %}
+        {% block list__content %}
+          {% for item in references.references_item|default(references.items) %}
+            {% set reference_item %}
+              <strong>{{ loop.index }}.</strong> {{ (item.title ? item.title|t : item.text|t)|default(item) }}
+            {% endset %}
+
+            {% include "@atoms/lists/_list-item.twig" with {
+              list__item__content: reference_item,
+              list__item__extra: [
+                'list-inline-item',
+                'd-inline',
+                'me-0',
+              ],
+            } %}
+          {% endfor %}
+        {% endblock %}
+      {% endembed %}
+    </div>
+  {% endblock %}
+{% endembed %}
+

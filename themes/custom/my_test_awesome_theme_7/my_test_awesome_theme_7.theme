@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the my_test_awesome_theme_7_theme theme.
+ */
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function my_test_awesome_theme_7_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  switch ($hook) {
+    case 'paragraph':
+      $paragraph = $variables['elements']['#paragraph'];
+
+      $paragraphBehaviorsClasses = $paragraph->getBehaviorSetting('custom_id_classes_paragraph', 'custom_classes');
+      if (!empty($paragraphBehaviorsClasses)) {
+        foreach (explode(' ', $paragraphBehaviorsClasses) as $class) {
+          $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $class;
+        }
+      }
+
+      $paragraphBehaviorsTwigSuggestions = $paragraph->getBehaviorSetting('custom_twig_template_suggestions_paragraph', 'custom_suggestions');
+      if (!empty($paragraphBehaviorsTwigSuggestions)) {
+        foreach (explode(' ', $paragraphBehaviorsTwigSuggestions) as $customSuggestion) {
+          $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $customSuggestion;
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function my_test_awesome_theme_7_preprocess(&$variables, $hook, $info) {
+  $variables['twig_debug_on'] = \Drupal::service('twig')->isDebug();
+
+  $variables['site_page_settings'] = \Drupal::config('system.site')->get('page');
+
+  $default_language_id = \Drupal::languageManager()->getDefaultLanguage()->getId();
+  $default_language = \Drupal::languageManager()->getNativeLanguages()[$default_language_id];
+  $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $native_language = \Drupal::languageManager()->getNativeLanguages()[$language_id];
+  $variables['default_language_name'] = $default_language->getName();
+  $variables['current_language_name'] = $native_language->getName();
+  $variables['default_language_id'] = $default_language_id;
+  $variables['current_language_id'] = $language_id;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function my_test_awesome_theme_7_page_attachments_alter(&$attachments) {
+  if (preg_match("/eu_cookie_compliance/is", var_export($attachments['#attached']['library'], TRUE))) {
+    $attachments['#attached']['library'][] = 'my_test_awesome_theme_7/block.eu-cookie-warning';
+  }
+
+  if (preg_match("/bootstrap_external_link_popup/is", var_export($attachments['#attached']['library'], TRUE))) {
+    $attachments['#attached']['library'][] = 'my_test_awesome_theme_7/block.external-link-popup';
+  }
+
+  if (preg_match("/pharma_isi/is", var_export($attachments['#attached']['library'], TRUE))) {
+    $attachments['#attached']['library'][] = 'my_test_awesome_theme_7/block.isi-tray';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function my_test_awesome_theme_7_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Get Request Object.
+  $request = \Drupal::request();
+
+  // If there is HTTP Exception.
+  if ($exception = $request->attributes->get('exception')) {
+    // Get the status code.
+    $status_code = $exception->getStatusCode();
+    if (in_array($status_code, [401, 403, 404])) {
+      $suggestions[] = 'page__' . $status_code;
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function my_test_awesome_theme_7_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}

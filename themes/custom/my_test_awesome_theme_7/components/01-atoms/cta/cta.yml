@@ -1,0 +1,25 @@
+cta_url: 'https://github.com/emulsify-ds/emulsify-design-system'
+cta_content: 'This is my link text'
+cta_blockname: 'link'
+cta_base_class: 'cta'
+cta_modifiers:
+  - - primary
+    - lg
+  - - secondary
+    - lg
+  - link
+  - - icon-right
+    - md
+    - link
+cta_attributes:
+  'target': '_blank'
+cta_icon: 'arrow-white-right'
+docs:
+  source:
+    code: |
+      {% include '@atoms/links/link/link.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

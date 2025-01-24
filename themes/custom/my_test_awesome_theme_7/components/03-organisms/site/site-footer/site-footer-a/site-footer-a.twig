@@ -1,0 +1,174 @@
+{% set footer__base_class = 'footer' %}
+{% set footer__modifier = 'a' %}
+{% set content = ds_variables.block.navigation|default(content) %}
+{% set footer_attributes = {
+  class: bem(footer__base_class,
+    footer__modifier,
+    '',
+    []
+  ),
+  'data-analytics-position': 'Footer',
+} %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<footer {{ add_attributes(footer_attributes) }}>
+  <div {{ bem('container-xl') }}>
+    <div {{ bem('row', [], '') }}>
+
+      {% block footer_branding %}
+        {% if content.branding %}
+          <div {{ bem(
+            'region_logo',
+            [],
+            '',
+            [
+              'col-60',
+              'col-lg-25',
+              'd-flex',
+              'justify-content-center',
+              'justify-content-lg-start'
+            ]
+          ) }}>
+            <div {{ add_attributes({ 'class': bem('branding', ['footer'], ''), 'data-test': 'navbar-branding'}) }}>
+              {% for logo in content.branding %}
+                {% embed "@atoms/links/link/link.twig" with {
+                  link_base_class: 'link',
+                  link_modifiers: ['otsuka'],
+                  link_url: logo.link.url,
+                } %}
+                  {% block link_content %}
+                    {% include "@atoms/images/image/responsive-image.twig" with {
+                      output_image_tag: true,
+                      image_src: logo.img.src,
+                      image_attributes: logo.img.attributes,
+                      responsive_image_blockname: 'logo',
+                    } %}
+                  {% endblock %}
+                {% endembed %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block footer_menu %}
+        {% if content.menus %}
+          <div {{ bem(
+            'region_menu',
+            [],
+            '',
+            [
+              'col-60',
+              'col-lg-35',
+              'flex-column',
+              'flex-lg-row',
+              'text-center',
+              'text-lg-start',
+              'd-flex',
+              'justify-content-center',
+              'justify-content-lg-end'
+            ]
+          ) }}>
+            <div {{ bem('d-flex', [], '', ['flex-column', 'col-lg-40', 'col-60', 'border-right']) }}>
+              <div {{ bem('d-flex', [], '', ['flex-column', 'flex-lg-row']) }}>
+                <div {{bem('col-60', [], '', ['col-lg-35'])}}>
+                  <b>{{ 'Prescribing Information:'|t }}</b>
+                </div>
+                <div {{bem('col-60', [], '', ['col-lg-25'])}}>
+                  <div {{ bem('footer-top', [], 'navbar') }}>
+                    {% include "@molecules/menus/main-menu/main-menu.twig"  with {
+                      menu_items: content.menus['footer-top']['#items'],
+                      list__attributes: {
+                        'data-test': 'footer-top-menu'
+                      }
+                    } %}
+                  </div>
+                </div>
+              </div>
+              <div {{ bem('d-flex', [], '', ['flex-column', 'flex-lg-row']) }}>
+                <div {{ bem('col-60', [], '', ['col-lg-35']) }}>
+                  <b>{{ 'Medication Guide:'|t }}</b>
+                </div>
+                <div {{ bem('col-60', [], '', ['col-lg-25']) }}>
+                  <div {{ bem('footer-bottom', [], 'navbar') }}>
+                    {% include "@molecules/menus/main-menu/main-menu.twig"  with {
+                      menu_items: content.menus['footer-bottom']['#items'],
+                      list__attributes: {
+                        'data-test': 'footer-bottom-menu'
+                      }
+                    } %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div {{ bem('privacy', [], 'navbar', ['col-60', 'col-lg-20', 'position-relative']) }}>
+              {% include "@molecules/menus/main-menu/main-menu.twig"  with {
+                menu_items: content.menus['privacy-menu']['#items'],
+                list__attributes: {
+                  'data-test': 'privacy-menu'
+                }
+              } %}
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block footer_copyright %}
+        {% if content.copyright %}
+          <div {{ bem(
+            'region_copyright',
+            [],
+            '',
+            [
+              'col-60',
+              'text-center'
+            ]
+          ) }}>
+            <div {{ bem('prc', [], '', ['contextual-region']) }}>
+              <span data-test='copyright'>{{ content.copyright|raw }}</span>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block footer_prc %}
+        {% if content.prc_code %}
+          <div {{ bem(
+            'region_prc',
+            [],
+            '',
+            [
+              'col-60',
+              'text-center'
+            ]
+          ) }}>
+            <div {{ bem('prc', [], '', ['contextual-region', 'd-flex', 'justify-content-center']) }}>
+              <div {{ add_attributes({
+                  'class': bem(
+                    'date',
+                    [],
+                    'prc'
+                  ),
+                  'data-test': 'prc-date'
+                }) }}>
+                {{ content.prc_code.date }}
+              </div>
+              <div {{ add_attributes({
+                  'class': bem(
+                    'code',
+                    [],
+                    'prc'
+                  ),
+                  'data-test': 'prc-code'
+                }) }}>
+                {{ content.prc_code.code }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,13 @@
+.video {
+  &--remote {
+    .video-wrapper {
+      padding: 75% 0 0 0;
+
+      iframe {
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+

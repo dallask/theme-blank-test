@@ -1,0 +1,16 @@
+{#
+
+ @file:  block--htmlsnippet.html.twig
+ @description: This is an LD-JSON snippet block twig template; check the site's theme for any overriding template. It outputs with no other wrapping DOM markup.
+ It exists because custom modules can only pass variables down to custom block templates that don't have core hook prefixes, you wind up with nested templates. This bypasses nested templates.
+
+  available variables:
+    elements.content.snippet_markup
+#}
+{% block content %}
+  <script type="text/javascript">
+    var otsuka_dl = {
+      page: {% spaceless %}{{ elements.content.snippet_markup|raw }}{% endspaceless %}
+    };
+  </script>
+{% endblock %}

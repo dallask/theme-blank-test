@@ -1,0 +1,71 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_blockname: 'languageSwitcher',
+  element_base_class: 'menu',
+  element_extra: [
+    'btn-group',
+    'position-relative',
+    'ms-auto',
+  ],
+  element_attributes: element_attributes|default({})|merge({
+    'data-analytics-position': 'Language Switcher Menu',
+  }),
+} %}
+  {% block element_content %}
+    {% include "@atoms/buttons/button.twig" with {
+      button__content: '<div class="label">' ~ current_language_name ~'</span>',
+      button__additional_classes: [
+        'btn',
+        'btn-light',
+        'dropdown-toggle',
+        'btn-lang-' ~ current_language_id,
+      ],
+      button__attributes: {
+        'type': 'button',
+        'data-bs-toggle': 'dropdown',
+        'data-bs-display': 'static',
+        'aria-expanded': 'false',
+      }
+    } %}
+    {% set list_attributes = {
+      class: bem(
+        '',
+        [],
+        '',
+        ['dropdown-menu']
+      ),
+    }|merge(item.attributes|default({})) %}
+    <ul {{ add_attributes(list_attributes) }}>
+      {%- for item in links -%}
+        {% set item_attributes = {
+          class: bem(
+            '',
+            [],
+            '',
+            item.attributes.class is defined ? (item.attributes.class is iterable ? item.attributes.class : [item.attributes.class]) : []
+          ),
+        }|merge((directory ? item.attributes : {})|default({})) %}
+        <li {{ add_attributes(item_attributes) }}>
+          {%- if item.link -%}
+            {% if directory and item.link['#url'].internalPath in site_page_settings.front %}
+              {% include "@atoms/links/link/link.twig" with {
+                link_url: default_language_id == item.link['#options'].language.originalId ? '/' : '/' ~ item.link['#options'].language.originalId,
+                link_content: item.link['#title'],
+                link_attributes: item.link['#options']['attributes']|merge({'hreflang': item.link['#options'].language.originalId}),
+                link_base_class: 'language-link',
+                link_extra: [
+                  item.link['#options'].language.originalId == current_language_id ? 'is-active',
+                ],
+              } %}
+            {% else %}
+              {{ item.link }}
+            {% endif %}
+          {%- elseif item.text_attributes -%}
+            <span{{ item.text_attributes }}>{{ item.text }}</span>
+          {%- else -%}
+            {{ item.text }}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {% endblock %}
+{% endembed %}

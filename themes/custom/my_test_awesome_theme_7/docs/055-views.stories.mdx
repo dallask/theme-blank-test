@@ -1,0 +1,159 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Views"/>
+
+# Views
+
+## Overview
+
+Views mostly presented as the grids with some repeatable elements inside: list, cards, cta, etc.
+Also views can contain pagination element, exposed filters, etc.
+
+## Structure
+
+All views should be placed inside the `03-organisms/views` folder.
+
+```
+├── 03-organisms/
+│   ├── views
+│       ├── user_profiles (folder name and files name should refer to view id)
+│         ├── user_profiles.js - view behavior script
+│         ├── user_profiles.scss - style
+│         ├── user_profiles.twig - main view layout template
+│         ├── user_profiles.yml - view data
+│       ├── views.stories.jsx - views stories
+```
+
+## Drupal template
+
+The main Drupal Views template is `templates/views/views-view.html.twig` it includes view component from the `03-organisms/views`
+folder by means view id. So, folder name and files name should refer to view id.
+
+## Data preparation
+
+It is too difficult to preprocess all types of views, because of their diversity.
+So, mostly, data should be prepared inside view twig template like this:
+
+```twig
+{#
+/**
+ * @file
+ * Theme override for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {% set items = rows[0]['#rows'] %}
+
+    {% set result = [] %}
+
+    {% for item in items %}
+      {% set result = result|merge([
+        {
+          title: item['#row']._entity.field_otsk_ds_title.value,
+          text: item['#row']._entity.field_otsk_ds_text.value,
+          link: {
+            url: item['#row']._entity.field_otsk_ds_link.0.url|render,
+            title: item['#row']._entity.field_otsk_ds_link.0.title,
+          },
+          image: {
+            src: file_url(item['#row']._entity.field_otsk_ds_media.entity.field_media_image.entity.uri.value),
+            alt: item['#row']._entity.field_otsk_ds_media.entity.field_media_image.alt,
+          },
+        }
+      ]) %}
+    {% endfor %}
+     ...
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>
+```
+You also can use Twig Tweak module features (like `image_style('medium')`). See references to study all about this module.
+
+To satisfy Storybook compatability you should use `default()` feature in twig:
+
+```twig
+{% include "@atoms/text/headings/_heading.twig" with {
+  heading_level: 3,
+  heading: item['#row']._entity.field_otsk_ds_title.value|default(item.title),
+  heading__extra: ['card-title']
+} %}
+
+{% include "@atoms/text/text/08-section.twig" with {
+  section_content: item['#row']._entity.field_otsk_ds_text.value|default(item.text),
+  section_extra: ['mb-30'],
+} %}
+
+{% include "@atoms/cta/cta.twig" with {
+  cta_blockname: 'link',
+  cta_url: (item['#row']._entity.field_otsk_ds_link.0.url|render)|default(item.link.url),
+  cta_icon: 'arrow-b',
+  cta_content: item['#row']._entity.field_otsk_ds_link.0.title|default(item.link.title),
+  cta_extra: [
+    'btn-lg',
+    'btn-outline-success'
+  ],
+} %}
+```
+
+## References:
+- https://drupal.stackexchange.com/questions/235897/how-can-i-get-data-from-resultrow-object-in-views-template
+- https://git.drupalcode.org/project/twig_tweak/-/blob/3.x/docs/cheat-sheet.md

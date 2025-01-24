@@ -1,0 +1,20 @@
+card_text_example:
+  card__icon:
+    src: 'https://picsum.photos/54/54'
+    alt: "This is the card image's alt text"
+  card__heading: 'Rural Minds'
+  card__body: |
+    <p><i>on Instagram Live collaboration</i></p>
+    <h4>We hope that you got as much out of the interview
+    as we did, and we look forward to our continued partnership
+    on future initiatives.</h4>
+card_image_example:
+  card__image:
+    src: 'https://picsum.photos/475/475'
+    alt: "This is the card image's alt text"
+  card__link:
+    url: '/test'
+    attributes:
+      target: '_blank'
+      link__icon: 'link'
+  card__heading: '@christineowensart'

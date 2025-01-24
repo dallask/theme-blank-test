@@ -1,0 +1,55 @@
+{% set element_extra = ['container'] %}
+{% set grid = grid|default(grid_with_header) %}
+{% set header_attributes = grid['grid_header_attributes']|default({modifier: []}) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default(''),
+} %}
+  {% block element_content %}
+    <div {{ bem('header', header_attributes['modifier'], 'grid') }}>
+      {% if grid.title %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading_level: 2,
+          heading: grid.title|default(),
+        } %}
+      {% endif %}
+      {% if grid.subtitle %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading_level: 3,
+          heading: grid.subtitle,
+        } %}
+      {% endif %}
+    </div>
+    <div class="row justify-content-center">
+      {% for item in grid.cards %}
+        <div {{ bem('item', [], 'grid', item.attributes.grid_extra_classes) }}>
+          {% include "@" ~ item.attributes.path ~ ".twig" with {
+            card__image: item.image|default(item.media.media),
+            card__heading: item.title.title|default(item.title),
+            card__blockquote: item.blockquote,
+            card__cta: item.link.link|default(item.link),
+            card__body: item.text.text|default(item.text),
+            config: item.attributes.config|default(item.attributes),
+          } %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if grid.footnote %}
+      <div {{ bem('footnote', [], 'grid') }}>
+        {{ grid.footnote|raw }}
+      </div>
+    {% endif %}
+
+    {% if grid.link %}
+      {% include "@atoms/links/link/link.twig" with {
+        link_url: grid.link.url,
+        link_content: grid.link.title,
+        link_extra: [
+          'btn',
+          'btn-success',
+        ],
+      } %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

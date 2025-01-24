@@ -1,0 +1,207 @@
+element:
+  elements:
+    name:
+      '#type': 'textfield'
+      '#title': 'Your Name'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'placeholder'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+    email:
+      '#type': 'textfield'
+      '#title': 'Your Email'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'placeholder'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+    subject:
+      '#type': 'textfield'
+      '#title': 'Subject'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'placeholder'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+    checkbox_sample:
+      '#type': checkbox
+      '#title': Checkbox sample
+      '#wrapper_attributes':
+        class:
+          - form-check
+        label_display: 'after'
+      '#attributes':
+        class:
+          - form-check-input
+      '#label_attributes':
+        class:
+          - form-check-label
+    select_sample:
+      '#type': 'select'
+      '#title': 'Select sample'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-select
+        element_test1: '1'
+        element_test2: '2'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+      '#options':
+        111: '111'
+        222: '222'
+        333: '333'
+      '#default_value': '222'
+    radios_sample:
+      '#type': 'radios'
+      '#title': radios_sample
+      '#options':
+        111: '111'
+        222: '222'
+        333: '333'
+      '#wrapper_attributes':
+        class:
+          - form-check
+        wrapper_test1: '1'
+        wrapper_test2: '1'
+      '#attributes':
+        class:
+          - form-check-input
+        element_test1: '1'
+        element_test2: '1'
+      '#label_attributes':
+        class:
+          - form-check-label
+    message:
+      '#type': 'textarea'
+      '#title': 'Message'
+      '#wrapper_attributes':
+        class:
+          - form-item
+          - mb-30
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        cols: '60'
+        rows: '5'
+        placeholder: 'placeholder'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+    test_fieldset:
+      '#type': fieldset
+      '#title': 'Test fieldset'
+      textarea:
+        '#type': textarea
+        '#title': Another textarea
+        '#wrapper_attributes':
+          class:
+            - form-item
+        '#attributes':
+          class:
+            - form-control
+        '#label_attributes':
+          class:
+            - form-label
+      some_select:
+        '#type': select
+        '#title': Selectbox
+        '#options':
+          111: '111'
+          222: '222'
+          333: '333'
+        '#default_value': '333'
+        '#wrapper_attributes':
+          class:
+            - form-item
+        '#attributes':
+          class:
+            - form-select
+        '#label_attributes':
+          class:
+            - form-label
+    captcha:
+      '#type': 'captcha'
+      '#captcha_type': 'recaptcha/reCAPTCHA'
+      '#captcha_admin_mode': 'true'
+    actions:
+      '#type': 'webform_actions'
+      '#title': 'Submit button(s)'
+      '#submit__label': 'Send message'
+      '#wrapper_attributes':
+        class:
+          - form-actions
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-submit
+          - btn
+          - btn-primary
+        element_test1: '1'
+        element_test2: '2'
+        value: 'Submit form'
+
+

@@ -1,0 +1,211 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/How To/Start"/>
+
+# How to start
+
+**You should use this DS theme and modules only with**
+[otsk-drupal](https://github.com/OAPI-Commercial-IT/otsk-drupal).
+
+## Theme itself utilizes the next repositories:
+- [theme-blank](https://github.com/OAPI-Commercial-IT/theme-blank) - theme repository skeleton
+- [emulsify-drupal](https://github.com/OAPI-Commercial-IT/emulsify-drupal) - emulsify Drupal theme
+- [emulsify-compound](https://github.com/OAPI-Commercial-IT/emulsify-compound) - emulsify compound (storage of base components)
+
+## Theme modules:
+
+### Contrib modules:
+- components (**required**)
+- emulsify_twig (**required**)
+
+### Config modules:
+- otsk_ds_landing_page (content type)
+- otsk_ds_media_image (media type)
+- otsk_ds_media_inline_svg_image (media type)
+- otsk_ds_media_responsive_image (media type)
+- otsk_ds_media_audio (media type)
+- otsk_ds_media_document (media type)
+- otsk_ds_media_video (media type)
+- otsk_ds_media_video_remote (media type)
+- otsk_ds_media_video_background (media type)
+- otsk_ds_paragraphs_block (paragraph type)
+- otsk_ds_paragraphs_link (paragraph type)
+- otsk_ds_paragraphs_media (paragraph type)
+- otsk_ds_paragraphs_text (paragraph type)
+- otsk_ds_paragraphs_wrapper (paragraph type)
+- otsuka_ds_wysywig (Wysywig Editor configs)
+
+### Custom modules
+- otsuka_ds_preprocess (main preprocess module) **required**
+- otsuka_ds_link_attributes (custom link attributes) **required**
+- otsuka_ds_paragraph_behaviors (paragraph behaviors plugin storage) **required**
+- otsuka_ds_block_custom_attributes (block custom attributes) **required**
+- otsk_ds_twig (custom twig filters, functions, operators, tokens, etc.) **required**
+- otsuka_focus_manager (custom element focus management) **optional**
+
+## Steps to create new theme repository:
+1. `git clone git@github.com:OAPI-Commercial-IT/theme-blank.git`
+1. Rename
+1. `cd ./theme-blank/themes/custom`
+1. `emulsify init "My Test Awesome Theme" ./ --platform drupal --starter git@github.com:OAPI-Commercial-IT/emulsify-drupal.git --checkout <commit/branch/tag>`
+1. `cd ./my_test_awesome_theme`
+1. `emulsify system install --repository git@github.com:OAPI-Commercial-IT/emulsify-compound.git --checkout <commit/branch/tag>`
+
+In case the theme repository already exists and you need to create only theme
+itself, just omit the first step.
+
+After theme created, you can review available default components:
+- `emulsify component list`
+
+And install any component you need:
+- `emulsify component install <component_name> --force`
+
+**Please use only components you need**
+Do not install all needless components at once. And you do not need to install atoms separately because they will be
+installed as a complex components dependencies.
+So, it is enough to install only high level components.
+
+After that you can start working with Storybook:
+- `nvm use`
+- `npm install`
+- `npm run build`
+- `npm run storybook`
+- `npm run develop` (to run webpack and storybook simultaneously)
+
+To test the whole system you can use "all-at-once" command:
+```
+git clone git@github.com:OAPI-Commercial-IT/theme-blank.git && \
+cd ./theme-blank/themes/custom && \
+npm install -g @emulsify/cli && \
+emulsify init "My Test Awesome Theme" ./ --platform drupal --starter git@github.com:OAPI-Commercial-IT/emulsify-drupal.git --checkout <commit/branch/tag> && \
+cd ./my_test_awesome_theme && \
+emulsify system install --repository git@github.com:OAPI-Commercial-IT/emulsify-compound.git --checkout <commit/branch/tag> && \
+emulsify component list && \
+emulsify component install accordion --force && \
+emulsify component install alert --force && \
+emulsify component install back-to-top --force && \
+emulsify component install branding --force && \
+emulsify component install card --force && \
+emulsify component install carousel --force && \
+emulsify component install content-types --force && \
+emulsify component install copyright --force && \
+emulsify component install cta --force && \
+emulsify component install eu_cookie_compliance_popup_info --force && \
+emulsify component install external-link-popup --force && \
+emulsify component install font-switcher --force && \
+emulsify component install hero --force && \
+emulsify component install isi-tray --force && \
+emulsify component install landing-pages --force && \
+emulsify component install navbar --force && \
+emulsify component install modal --force && \
+emulsify component install prc --force && \
+emulsify component install references --force && \
+emulsify component install tabs --force && \
+emulsify component install tooltips --force && \
+emulsify component install video --force && \
+npm install && \
+npm run build && \
+npm run storybook
+```
+
+Use the next command to install all available components from compound at once:
+```
+emulsify system install --repository git@github.com:OAPI-Commercial-IT/emulsify-compound.git --checkout <commit/branch/tag> --all
+```
+
+To install your theme in Drupal side use next commands (just remove modules you
+do not need from the list):
+```
+drush -l https://ds3.otsk.docksal.site/ cr && \
+drush -l https://ds3.otsk.docksal.site/ pm:enable \
+components \
+emulsify_twig \
+otsk_ds_media_audio \
+otsk_ds_media_document \
+otsk_ds_media_image \
+otsk_ds_media_inline_svg_image \
+otsk_ds_media_responsive_image \
+otsk_ds_media_video \
+otsk_ds_media_video_background \
+otsk_ds_media_video_remote \
+otsk_ds_block_paragraphs \
+otsk_ds_paragraphs_wrapper \
+otsk_ds_paragraphs_title \
+otsk_ds_paragraphs_text \
+otsk_ds_paragraphs_media \
+otsk_ds_paragraphs_link \
+otsk_ds_paragraphs_block \
+otsk_ds_landing_page \
+otsuka_ds_wysywig \
+otsuka_ds_link_attributes \
+otsuka_ds_preprocess \
+otsuka_ds_paragraph_behaviors \
+otsuka_ds_block_custom_attributes \
+otsuka_focus_manager \
+otsk_ds_twig \
+-y && \
+drush -l https://ds3.otsk.docksal.site/ theme:enable my_test_awesome_theme && \
+drush -l https://ds3.otsk.docksal.site/ config-set system.theme default my_test_awesome_theme -y
+```
+
+**DO NOT forget to uninstall all configs modules right after installation!**
+```
+drush -l https://ds3.otsk.docksal.site/ pmu \
+otsk_ds_media_audio \
+otsk_ds_media_document \
+otsk_ds_media_image \
+otsk_ds_media_inline_svg_image \
+otsk_ds_media_responsive_image \
+otsk_ds_media_video \
+otsk_ds_media_video_background \
+otsk_ds_media_video_remote \
+otsk_ds_block_paragraphs \
+otsk_ds_paragraphs_wrapper \
+otsk_ds_paragraphs_title \
+otsk_ds_paragraphs_text \
+otsk_ds_paragraphs_media \
+otsk_ds_paragraphs_link \
+otsk_ds_paragraphs_block \
+otsk_ds_landing_page \
+otsuka_ds_wysywig \
+-y
+```
+
+After that you can start working with Drupal (config for webpack situated in the
+file `webpack/config.js`, if file does not exist, copy it from
+`webpack/config.default.js` and adjust `localServer` option):
+
+- `npm run webpack`
+- `npm run develop` (to run webpack and storybook simultaneously)
+
+## OBSOLETE DS MODULES
+**Please DO NOT use these obsolete modules in your projects! They are OBSOLETE and will be DEPRECATED and REMOVED from
+main code repository.**
+- feature_modal
+- otsk_ds_paragraphs_dropdown
+- otsk_ds_paragraphs_hero_video_background_wrapper
+- otsk_ds_video
+- otsuka_config_split
+- otsuka_configs_isi
+- otsuka_ds_block_back2top
+- otsuka_ds_block_banner_modal
+- otsuka_ds_configs_footer
+- otsuka_ds_scroll_slider
+- otsuka_ds_scroll_to_element
+- otsuka_ds_views_paragraph
+- otsk_ds_paragraphs_image
+- otsk_ds_paragraphs_video
+- otsk_ds_paragraphs_card
+
+## Requirements
+* Docksal (https://docksal.io/)
+* node.js (https://nodejs.org/)
+* npm (https://www.npmjs.com/)
+* nvm (https://github.com/nvm-sh/nvm)
+* Emulsify CLI (https://github.com/emulsify-ds/emulsify-cli)
+
+## References
+- https://www.emulsify.info/docs/emulsify-drupal
+- https://www.emulsify.info/docs/systems/compound
+- https://www.emulsify.info/docs/supporting-projects/emulsify-cli/emulsify-cli-usage

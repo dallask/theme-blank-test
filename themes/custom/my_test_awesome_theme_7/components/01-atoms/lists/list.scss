@@ -1,0 +1,32 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+
+ul {
+  @include list;
+}
+
+@counter-style custom-zodiak {
+  system: cyclic;
+  symbols:  "\2648" "\2649" "\264A" "\264B" "\264C" "\264D" "\264E" "\264E" "\264F" "\2650" "\2651" "\2652" "\2653";
+  suffix: ' ';
+}
+
+ul.list {
+  &--symbol-link {
+    li {
+      &::marker {
+        content: "✅ ";
+      }
+    }
+  }
+  &--custom-link {
+    list-style-type: custom-zodiak;
+  }
+  &--icon-link {
+    list-style-image: url('../../../images/icons/arrow-a.svg');
+  }
+}

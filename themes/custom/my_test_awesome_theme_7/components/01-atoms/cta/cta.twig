@@ -1,0 +1,43 @@
+{#
+/**
+ * Available variables:
+ * - cta_content - the content of the link (typically text)
+ * - cta_url - the url this link should poing to
+ * - cta_attributes - array of attribute,value pairs
+ * - cta_base_class - the base class name
+ * - cta_modifiers - array of modifiers to add to the base classname
+ * - cta_blockname - blockname prepended to the base classname
+ *
+ * Available blocks:
+ * - cta_content - used to replace the content of the link
+ *     Example: to insert the image component
+ */
+#}
+{% set cta_base_class = cta_base_class|default('cta') %}
+{% set cta_extra = ['btn']|merge(cta_extra is not empty ? cta_extra : [])%}
+{% set cta_attributes = cta_attributes|default({})|merge({'data-test': cta_content|striptags|lower|replace({' ':'-'}) ~ '-cta' })|merge({'data-analytics-name': 'CTA ' ~ cta_content|striptags|trim}) %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<{{ cta_url is not empty ? 'a' : 'button' }}
+  {{ bem(cta_base_class, cta_modifiers, cta_blockname, cta_extra) }}
+  {% for attribute, value in cta_attributes|without('class') %}
+    {{ attribute }}="{{ value }}"
+  {% endfor %}
+  {% if cta_url is not empty %}
+    href="{{ cta_url }}"
+  {% endif %}
+>
+  {% block cta_content %}
+    <span class="text">{{ cta_content|raw }}</span>
+  {% endblock %}
+  {% block cta_icon %}
+    {% if cta_icon %}
+      {% include "@atoms/images/icons/_icon.twig" with {
+        icon__name: cta_icon
+      } %}
+    {% elseif cta_icon_content %}
+      {{ cta_icon_content }}
+    {% endif %}
+  {% endblock %}
+</{{ cta_url ? 'a' : 'button' }}>

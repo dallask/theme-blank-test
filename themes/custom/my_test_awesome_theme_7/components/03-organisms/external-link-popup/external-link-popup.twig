@@ -1,0 +1,63 @@
+{% block content %}
+  {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+  {% embed "@molecules/modal/_modal.twig" with {
+    modal__id: modalID|default('externalLinkPopupModal'),
+  } %}
+    {% block modal_header %}
+      <div class="modal-header">
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading_level: 5,
+          heading__extra: 'modal-title',
+          heading: modalTitle|default('You are now leaving nexusmentalhealth.com'),
+          heading_attributes: {
+            id: modalLabelID|default('externalLinkPopupModalLabel'),
+            'data-test': 'modal-title',
+          }
+        } %}
+        {% include "@atoms/buttons/button.twig" with {
+          button__attributes: {
+            'data-bs-dismiss': 'modal',
+            'aria-label': 'Close',
+            'data-test': 'modal-close',
+          },
+          button__additional_classes: [
+            "btn-close",
+          ],
+        } %}
+      </div>
+    {% endblock %}
+    {% block modal_body %}
+      <div class="modal-body" id="{{ modalBodyID|default('externalLinkPopupModalBody') }}" {{ add_attributes({ 'data-test': 'modal-body' }) }}>
+        {{ modalContent|default('<p>You are about to leave this Otsuka America Pharmaceutical, Inc. (OAPI) site. You are being redirected to another OAPI site.</p><p>Would you like to leave this site?</p>') | raw }}
+      </div>
+    {% endblock %}
+    {% block modal_footer %}
+      <div class="modal-footer">
+        {% include "@atoms/buttons/button.twig" with {
+          button__attributes: {
+            role: 'button',
+            'data-bs-dismiss': 'modal',
+            id: modalContinueButtonID|default('externalLinkPopupModalContinueButton'),
+            'data-test': 'modal-accept',
+          },
+          button__additional_classes: ["btn-primary"],
+          button__content: modalContinueButtonText|default('Back')
+        } %}
+
+        {% include "@atoms/buttons/button.twig" with {
+          button__attributes: {
+            role: 'button',
+            'data-bs-dismiss': 'modal',
+            id: modalCloseButtonID|default('externalLinkPopupModalCloseButton'),
+            'data-test': 'modal-cancel',
+          },
+          button__additional_classes: [
+            "btn-secondary",
+            "btn-back",
+          ],
+          button__content: modalCloseButtonText|default('Continue')
+        } %}
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

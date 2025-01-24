@@ -1,0 +1,51 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './font-switcher.yml';
+
+<Title/>
+<Subtitle/>
+
+## Font Switcher block
+
+### Templates
+<Templates />
+
+### Libraries
+<Libraries/>
+
+### Drupal fields
+The component has no specific fields. Can use any fields through `content` twig variable.
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+<Code text={data.docs.source.code}/>
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- ...
+- ...
+

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for a 'radios' #type form element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered radios.
+ *
+ * @see template_preprocess_radios()
+ */
+#}
+{%
+  set classes = [
+  'form-item--radio',
+]
+%}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default(classes)|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [''])
+  ) %}
+<div {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+  {% block children %}
+    {{ children }}
+  {% endblock %}
+</div>

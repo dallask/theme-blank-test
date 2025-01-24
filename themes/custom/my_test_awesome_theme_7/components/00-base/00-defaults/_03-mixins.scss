@@ -1,0 +1,229 @@
+@import '@base/00-defaults/_02-breakpoints.scss';
+
+/*
+ * General Mixins (put specific ones in component files where applicable)
+*/
+
+/* Mixin - Clearfix.
+ * Adds clearfix based on http://bourbon.io/docs/#clearfix
+ * use example =   @include cleafix
+*/
+
+@mixin body-copy {
+  font-family: $font-body;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+$outer-container-break: $small;
+
+/// Mixin - Wrapper
+/// Outer container mixin for large screens
+@mixin wrapper(
+  $container-max-width: $max-width,
+  $outer-container-break: $small,
+  $v-margin: 0,
+  $v-padding: 0,
+  $h-padding: $space,
+  $h-padding-large: $h-padding
+) {
+  max-width: #{$container-max-width};
+  width: 100%;
+  margin: #{$v-margin} auto;
+  padding: #{$v-padding} #{$h-padding};
+
+  @include breakpoint($outer-container-break) {
+    padding: #{$v-padding} #{$h-padding-large};
+  }
+
+  @include breakpoint($container-max-width) {
+    padding-left: calc(
+      #{$h-padding-large} + calc(-50vw + calc(#{$container-max-width} / 2))
+    );
+    padding-right: calc(
+      #{$h-padding-large} + calc(-50vw + calc(#{$container-max-width} / 2))
+    );
+  }
+}
+
+// Mixin - Standard Margin
+@mixin margin {
+  margin-bottom: 1em;
+}
+
+@mixin no-bottom {
+  margin-bottom: 0;
+}
+
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// OTSK
+/*
+ * General Mixins (put specific ones in component files where applicable)
+*/
+
+@mixin responsive-image {
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote(($y / $x) * 100 + '%');
+  @if $pseudo {
+    &::before {
+      @include pseudo($pos: relative);
+
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+@mixin font(
+  $font-size: $font-size-base,
+  $color: vars(primary),
+  $font-family: $font-body,
+  $font-weight: $font-weight-normal,
+  $line-height: $line-height-base,
+  $font-style: normal,
+  $letter-spacing: normal
+) {
+  $val: rfs-value($font-size);
+  $fluid-val: rfs-fluid-value($font-size);
+
+  @if $val == $fluid-val {
+    font-size: $val;
+  } @else {
+    @include _rfs-rule() {
+      font-size: if($rfs-mode == max-media-query, $val, $fluid-val);
+
+      // Include safari iframe resize fix if needed
+      min-width: if($rfs-safari-iframe-resize-bug-fix, (0 * 1vw), null);
+    }
+
+    @include _rfs-media-query-rule() {
+      font-size: if($rfs-mode == max-media-query, $fluid-val, $val);
+    }
+  }
+
+  font-family: $font-family;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  color: $color;
+  font-style: $font-style;
+  letter-spacing: $letter-spacing;
+}
+
+@mixin top-border {
+  position: absolute;
+  top: -5rem;
+  width: 100%;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    fill: vars(background-section);
+  }
+}
+
+@mixin clearsize {
+  width: auto;
+  height: auto;
+}
+
+@mixin list {
+  list-style: disc;
+
+  ::marker {
+    color: vars(list-marker);
+    @include font-size(15px);
+  }
+}
+
+@mixin icon-top {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-right: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-bottom: rfs-value(12px) solid;
+  transform: translate(-50%, -100%);
+  border-bottom-color: vars(primary);
+}
+
+@mixin icon-left {
+  content: '';
+  position: absolute;
+  left: rfs-value(-6px);
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-bottom: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-right: rfs-value(12px) solid;
+  transform: translate(-50%, -100%);
+  border-right-color: vars(primary);
+}
+
+@mixin icon-right {
+  content: '';
+  position: absolute;
+  right: rfs-value(-18px);
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-bottom: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-left: rfs-value(12px) solid;
+  transform: translate(-50%, -100%);
+  border-left-color: vars(primary);
+}
+
+@mixin icon-bottom {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: rfs-value(-24px);
+  width: 0;
+  height: 0;
+  border-left: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-right: rfs-value(13px) solid rgb(0 0 0 / 0%);
+  border-top: rfs-value(12px) solid;
+  transform: translate(-50%, -100%);
+  border-top-color: vars(primary);
+}
+
+@mixin safariOnly() {
+  @supports (background: -webkit-named-image(i)) {
+    @content;
+  }
+}
+
+// end OTSK

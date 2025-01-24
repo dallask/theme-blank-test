@@ -1,0 +1,21 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.audio {
+  .buzzsprout-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    .episode {
+      width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        width: calc(50% - 15px);
+      }
+    }
+  }
+}

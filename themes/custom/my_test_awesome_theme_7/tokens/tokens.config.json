@@ -1,0 +1,54 @@
+{
+  "source": ["tokens/dist/**/*.json"],
+  "platforms": {
+    "scss": {
+      "transforms": [
+        "attribute/cti",
+        "name/cti/kebab",
+        "time/seconds",
+        "content/icon",
+        "color/css",
+        "toEm/pxToEm",
+        "toRem/pxToRem",
+        "toRem/appendRem",
+        "toPX/appendPX",
+        "toEm",
+        "shadow/css"
+      ],
+      "transformGroup": "scss",
+      "buildPath": "dist/css/",
+      "files": [{
+        "destination": "_00-design-tokens-variables.scss",
+        "format": "scss/map-deep",
+        "filter": "excludeTokens"
+      }]
+    },
+    "css": {
+      "transforms": [
+        "attribute/cti",
+        "name/cti/kebab",
+        "time/seconds",
+        "content/icon",
+        "color/css",
+        "toEm/pxToEm",
+        "toRem/pxToRem",
+        "toRem/appendRem",
+        "toPX/appendPX",
+        "toEm",
+        "shadow/css"
+      ],
+      "transformGroup": "css",
+      "buildPath": "dist/css/",
+      "files": [{
+        "destination": "_00-design-tokens-root-storybook.css",
+        "format": "customFormat",
+        "filter": "excludeTokens"
+      },
+        {
+          "destination": "_00-design-tokens-root.css",
+          "format": "customHeader",
+          "filter": "excludeTokens"
+        }]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+grid_header_attributes: /grid-header/attributes
+cards: /cards
+title: /grid-header/title/title
+subtitle: /grid-header/text/text
+footnote: /grid-footer/text/text
+link: /grid-footer/link

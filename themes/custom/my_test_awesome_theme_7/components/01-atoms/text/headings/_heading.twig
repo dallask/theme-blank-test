@@ -1,0 +1,46 @@
+{#
+/**
+ * Available variables:
+ * - heading_level - the header level 1-6 (produces h1, h2, etc.)
+ *
+ * - heading__base_class - the base class
+ * - heading__modifiers - array of modifiers to add to the base classname
+ * - heading__blockname - blockname prepended to the base classname
+ *
+ * - heading - the content of the heading (typically text)
+ *
+ * - heading_url - (optional) the url the heading should poing to
+ * - heading_link_attributes - key/value attributes to pass to link
+ * - heading_link_base_class - override the link base class
+ * - heading_link_modifiers - override the link modifiers
+ * - heading_link_blockname - override the link block name (defaults to heading_base_class)
+ */
+#}
+{% set heading__base_class = heading__base_class|default('heading') %}
+
+{% set heading_attributes = {
+  class: bem(
+    heading__base_class,
+    heading__modifiers,
+    heading__blockname,
+    heading__extra
+  ),
+}|merge(heading_attributes|default({})) %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<h{{ heading_level }} {{ add_attributes(heading_attributes) }}>
+  {% if heading_url %}
+    {% include "@atoms/links/link/link.twig" with {
+      "link_content": heading,
+      "link_url": heading_url,
+      "link_attributes": heading_link_attributes,
+      "link_base_class": heading_link_base_class,
+      "link_modifiers": heading_link_modifiers,
+      "link_blockname": heading_link_blockname|default(heading_base_class),
+      "link_extra": heading_link_extra|default([''])|join(' '),
+    } %}
+  {% else %}
+    {{ heading|raw }}
+  {% endif %}
+</h{{ heading_level }}>

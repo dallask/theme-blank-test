@@ -1,0 +1,91 @@
+@import '@molecules/card/card-e/card-e-extension.scss';
+
+.card-e {
+  display: block;
+  max-width: 475px;
+  overflow: hidden;
+  background: vars(white);
+  border: 1px solid #000000;
+  border-radius: 14px;
+  text-decoration: none;
+
+  &__top {
+    padding: 10px 7px 10px 20px;
+    background: vars(white);
+    border-bottom: 1px solid #000000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    @include media-breakpoint-up(lg) {
+      padding: 12px 10px 12px 36px;
+    }
+
+    .image {
+      max-width: 44px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      @include media-breakpoint-up(lg) {
+        max-width: 54px;
+      }
+    }
+
+    svg {
+      margin-left: auto;
+      height: 28px;
+      width: 28px;
+      background: vars(white);
+      border: 1px solid #000000;
+      border-radius: 9px;
+      padding: 6.5px;
+      color: #343a40;
+      @include media-breakpoint-up(lg) {
+        width: 37px;
+        height: 37px;
+        padding: 10px;
+      }
+    }
+  }
+
+  &__heading {
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__text {
+    padding: 26px 24px 20px;
+    @include media-breakpoint-up(lg) {
+      padding: 36px 48px 30px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: 500;
+      @include media-breakpoint-up(lg) {
+        font-size: 1.125rem;
+      }
+    }
+
+    p + h4 {
+      margin-top: 12px;
+      @include media-breakpoint-up(lg) {
+        margin-top: 24px;
+      }
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 700;
+      @include media-breakpoint-up(lg) {
+        font-size: 2rem;
+      }
+    }
+  }
+}

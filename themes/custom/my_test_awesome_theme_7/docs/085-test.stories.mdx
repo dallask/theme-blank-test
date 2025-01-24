@@ -1,0 +1,38 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Tests"/>
+
+# Tests
+
+## Test runner
+
+Storybook test runner turns all of your stories into executable tests. It is powered by Jest and Playwright.
+- For those without a play function: it verifies whether the story renders without any errors.
+- For those with a play function: it also checks for errors in the play function and that all assertions passed.
+
+To test storybook integrity you van utilize the next commands (`npm run storibook` should be run prior):
+- `npm run test:storybook` - to test all stories at once
+- `test:storybook:watch` - to watch changes during development
+
+## Accessibility testing
+
+Just read https://storybook.js.org/docs/react/writing-tests/accessibility-testing
+
+## Other testing tools
+
+You also can use mny other testing tools for Storybook:
+- Visual tests
+- Interaction tests
+- Test coverage
+- Snapshot tests
+- End-to-end tests
+- Unit tests
+
+All those options require some additional configuration. See https://storybook.js.org/docs/react/writing-tests/introduction
+for details.
+
+## References
+- https://storybook.js.org/docs/react/writing-tests/introduction
+- https://storybook.js.org/docs/react/writing-tests/test-runner
+- https://storybook.js.org/docs/react/writing-tests/accessibility-testing

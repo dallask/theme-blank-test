@@ -1,0 +1,641 @@
+global:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.critical.css: { minified: true }
+    theme:
+      dist/css/global.css: { minified: true }
+  js:
+    dist/js/global.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/once
+    - my_test_awesome_theme_7/focus
+    - my_test_awesome_theme_7/focus.advanced
+    - my_test_awesome_theme_7/paragraph.spacer
+
+root-css-variables:
+  css:
+    base:
+      dist/css/root.css: { minified: true }
+
+modernizr:
+  js:
+    dist/js/00-base/05-libraries/modernizr-custom.js: { preprocess: 0, weight: -21 }
+
+bootstrap:
+  version: 5.1.3
+  license:
+    name: MIT
+    url: https://github.com/twbs/bootstrap/blob/main/LICENSE
+  js:
+    //cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js: { type: external, minified: true }
+
+bootstrap-local:
+  version: 5.1.3
+  remote: https://getbootstrap.com/
+  license:
+    name: MIT
+    url: https://github.com/twbs/bootstrap/blob/main/LICENSE
+  js:
+    dist/js/00-bootstrap/js/bootstrap.js: { minified: true }
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.css: { minified: true }
+  dependencies:
+    - core/jquery
+    - my_test_awesome_theme_7/popper
+
+bootstrap.accordion:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.accordion.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.collapse.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - my_test_awesome_theme_7/bootstrap.transitions
+
+bootstrap.alert:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.alert.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.alert.js: { minified: true }
+
+bootstrap.badge:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.badge.css: { minified: true }
+
+bootstrap.breadcrumb:
+  css:
+    component:
+      dist/css/00-bootstrap/styles/bootstrap.breadcrumb.css: { minified: true }
+
+bootstrap.button:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.buttons.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.button.js: { minified: true }
+
+bootstrap.button-group:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.button-group.css: { minified: true }
+
+bootstrap.card:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.card.css: { minified: true }
+
+bootstrap.carousel:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.carousel.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.carousel.js: { minified: true }
+
+bootstrap.collapse:
+  js:
+    dist/js/00-bootstrap/js/bootstrap.collapse.js: { minified: true }
+
+bootstrap.close:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.close.css: { minified: true }
+
+bootstrap.dropdown:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.dropdown.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.dropdown.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.button
+
+bootstrap.forms:
+  css:
+    component:
+      dist/css/00-bootstrap/styles/bootstrap.forms.css: { minified: true }
+
+bootstrap.images:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.images.css: { minified: true }
+
+bootstrap.list-group:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.list-group.css: { minified: true }
+
+bootstrap.modal:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.modal.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.modal.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.close
+
+bootstrap.nav:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.nav.css: { minified: true }
+      dist/css/00-bootstrap/styles/bootstrap.navbar.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.collapse.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - my_test_awesome_theme_7/bootstrap.dropdown
+    - my_test_awesome_theme_7/bootstrap.transitions
+
+bootstrap.offcanvas:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.offcanvas.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.offcanvas.js: { minified: true }
+
+bootstrap.pagination:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.pagination.css: { minified: true }
+
+bootstrap.placeholders:
+  css:
+    component:
+      dist/css/00-bootstrap/styles/bootstrap.placeholders.css: { minified: true }
+
+bootstrap.popover:
+  css:
+    component:
+      dist/css/00-bootstrap/styles/bootstrap.poprver.css: { minified: true }
+      dist/css/00-bootstrap/styles/bootstrap.tooltip.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.poprver.js: { minified: true }
+    dist/js/00-bootstrap/js/bootstrap.tooltip.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/popper
+
+bootstrap.progress:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.progress.css: { minified: true }
+
+bootstrap.scrollspy:
+  js:
+    dist/js/00-bootstrap/js/bootstrap.scrollspy.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+
+bootstrap.spinners:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.spinners.css: { minified: true }
+
+bootstrap.tables:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.tables.css: { minified: true }
+
+bootstrap.tab:
+  js:
+    dist/js/00-bootstrap/js/bootstrap.tab.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - my_test_awesome_theme_7/bootstrap.nav
+
+bootstrap.transitions:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.transitions.css: { minified: true }
+
+bootstrap.toasts:
+  css:
+    component:
+      dist/css/00-bootstrap/styles/bootstrap.toasts.css: { minified: true }
+  js:
+    dist/js/00-bootstrap/js/bootstrap.toasts.js: { minified: true }
+
+bootstrap.utilities:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.utilities.css: { minified: true }
+
+bootstrap.root:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.root.css: { minified: true }
+
+bootstrap.reboot:
+  css:
+    base:
+      dist/css/00-bootstrap/styles/bootstrap.reboot.css: { minified: true }
+
+popper:
+  version: 2.14.
+  remote: https://popper.js.org/
+  license:
+    name: MIT
+    url: https://github.com/popperjs/popper-core/blob/master/LICENSE.md
+  js:
+    //unpkg.com/@popperjs/core@2: { type: external }
+  dependencies:
+    - core/jquery
+
+# IE 11 support for SVG use - disable if not needed.
+# See also components/01-atoms/images/icons/_icon.twig to remove attach_library.
+sprite:
+  js:
+    components/01-atoms/images/icons/svgxuse.min.js:
+      { attributes: { defer: true } }
+
+atom.tooltip:
+  js:
+    dist/js/01-atoms/tooltips/tooltips.js: { }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.tooltip
+
+atom.tooltipster:
+  js:
+    dist/js/01-atoms/tooltipster/tooltipster.js: { }
+  dependencies:
+    - my_test_awesome_theme_7/tooltipster
+
+block.tabs:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+    - my_test_awesome_theme_7/bootstrap.tab
+
+block.primary-tabs:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+    - my_test_awesome_theme_7/bootstrap.tab
+
+block.messages:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.alert
+    - my_test_awesome_theme_7/bootstrap.close
+
+block.status-messages:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.alert
+    - my_test_awesome_theme_7/bootstrap.close
+
+block.isi-tray:
+  css:
+    component:
+      dist/css/03-organisms/isi-tray/isi-tray.css: { minified: true }
+
+block.eu-cookie-warning:
+  css:
+    component:
+      dist/css/03-organisms/eu_cookie_compliance_popup_info/eu_cookie_compliance_popup_info.css: { minified: true }
+  dependencies:
+    - eu_cookie_compliance/eu_cookie_compliance
+    - eu_cookie_compliance/eu_cookie_compliance_default
+    - eu_cookie_compliance/eu_cookie_compliance_bare
+
+block.external-link-popup:
+  css:
+    component:
+      dist/css/03-organisms/external-link-popup/external-link-popup.css: { minified: true }
+  js:
+    dist/js/03-organisms/external-link-popup/external-link-popup.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.modal
+    - external_link_popup/dialog
+    - bootstrap_external_link_popup/dialog
+
+block.back-to-top:
+  css:
+    component:
+      dist/css/03-organisms/back-to-top/back-to-top.css: { minified: true }
+  js:
+    dist/js/03-organisms/back-to-top/back-to-top.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.button
+
+block.font-switcher:
+  css:
+    component:
+      dist/css/01-atoms/font-switcher/font-switcher.css: { minified: true }
+  js:
+    dist/js/01-atoms/font-switcher/font-switcher.js: { minified: true }
+
+block.site_header:
+  css:
+    component:
+      dist/css/02-molecules/logo/logo.css: { minified: true }
+      dist/css/02-molecules/menus/main-menu/main-menu.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+    - my_test_awesome_theme_7/bootstrap.images
+
+block.site_footer:
+  css:
+    component:
+      dist/css/02-molecules/logo/logo.css: { minified: true }
+      dist/css/02-molecules/menus/inline/inline-menu.css: { minified: true }
+      dist/css/02-molecules/menus/social-menu/social-menu.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+    - my_test_awesome_theme_7/bootstrap.images
+    - my_test_awesome_theme_7/block.otsuka-updated-prc-code-info
+
+block.otsuka-updated-prc-code-info:
+  css:
+    component:
+      dist/css/01-atoms/prc/prc.css: { minified: true }
+
+block.addtoany-share-buttons:
+  css:
+    component:
+      dist/css/02-molecules/share-button/share-button.css: { minified: true }
+  js:
+    dist/js/02-molecules/share-button/share-button.js: { minified: true }
+  dependencies:
+    - core/jquery
+
+region.header-menu:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.nav
+
+region.content:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.alert
+    - my_test_awesome_theme_7/bootstrap.close
+
+paragraph.tile:
+  css:
+    component:
+      dist/css/02-molecules/tile/tile.css: { minified: true }
+
+molecules.group:
+  css:
+    base:
+      dist/css/03-organisms/group/group.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/paragraph.grid_with_header
+    - my_test_awesome_theme_7/paragraph.grid_multi_column
+    - my_test_awesome_theme_7/paragraph.tile
+
+paragraph.accordion_tabs:
+  css:
+    component:
+      dist/css/02-molecules/tabs/accordion_tabs/accordion_tabs.css: { minified: true }
+  js:
+    dist/js/02-molecules/tabs/accordion_tabs/accordion_tabs.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.tab
+    - my_test_awesome_theme_7/bootstrap.accordion
+
+paragraph.accordion:
+  css:
+    component:
+      dist/css/02-molecules/accordion/accordion.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.accordion
+
+paragraph.tabs:
+  css:
+    component:
+      dist/css/02-molecules/tabs/tabs.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/paragraph.grid_with_header
+    - my_test_awesome_theme_7/paragraph.grid_multi_column    
+    - my_test_awesome_theme_7/bootstrap.nav
+    - my_test_awesome_theme_7/bootstrap.tab
+
+paragraph.carousel:
+  css:
+    component:
+      dist/css/02-molecules/carousel/carousel.css: { minified: true }
+  js:
+    dist/js/02-molecules/carousel/carousel.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/slick
+
+paragraph.carousel.bs:
+  css:
+    component:
+      dist/css/02-molecules/carousel/carousel.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.carousel
+    - my_test_awesome_theme_7/bootstrap.button
+
+paragraph.gallery:
+  css:
+    component:
+      dist/css/03-organisms/gallery/gallery.css: { minified: true }
+  js:
+    dist/js/03-organisms/gallery/gallery.js: { minified: true }
+
+paragraph.hero:
+  css:
+    component:
+      dist/css/03-organisms/hero/hero.css: { minified: true }
+
+molecules.card-a:
+  css:
+    base:
+      dist/css/02-molecules/card/card-a/card-a.css: { minified: true }
+  js:
+    dist/js/02-molecules/card/card-a/card-expand.js: { }
+
+molecules.card-b:
+  css:
+    base:
+      dist/css/02-molecules/card/card-b/card-b.css: { minified: true }
+
+molecules.card-c:
+  css:
+    base:
+      dist/css/02-molecules/card/card-c/card-c.css: { minified: true }
+
+
+molecules.card-d:
+  css:
+    base:
+      dist/css/02-molecules/card/card-d/card-d.css: { minified: true }
+  js:
+    dist/js/02-molecules/card/card-d/card-expand.js: { }
+
+molecules.card-e:
+  css:
+    base:
+      dist/css/02-molecules/card/card-e/card-e.css: { minified: true }
+
+molecules.card-f:
+  css:
+    base:
+      dist/css/02-molecules/card/card-f/card-f.css: { minified: true }
+
+molecules.card-g:
+  css:
+    base:
+      dist/css/02-molecules/card/card-g/card-g.css: { minified: true }
+
+molecules.tile:
+  css:
+    base:
+      dist/css/02-molecules/tile/tile.css: { minified: true }
+
+paragraph.card-f:
+  css:
+    component:
+      dist/css/02-molecules/card/card-f/card-f.css: { minified: true }
+
+paragraph.references:
+  css:
+    component:
+      dist/css/03-organisms/references/references.css: { minified: true }
+
+paragraph.video:
+  css:
+    component:
+      dist/css/03-organisms/video/video.css: { minified: true }
+  js:
+    //player.vimeo.com/api/player.js: { type: external }
+
+paragraph.video.youtube:
+  css:
+    component:
+      dist/css/03-organisms/video/video.css: { minified: true }
+
+paragraph.videoReact:
+  css:
+    component:
+      dist/css/03-organisms/video/videoReact/videoReact.css: { minified: true }
+  js:
+    //unpkg.com/react-player/dist/ReactPlayer.standalone.js: { type: external, minified: true }
+    dist/js/03-organisms/video/videoReact/videoReact.js: { minified: true }
+
+paragraph.cards_complex:
+  css:
+    component:
+      dist/css/01-atoms/cta/cta.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.card
+    - my_test_awesome_theme_7/bootstrap.button
+    - my_test_awesome_theme_7/sprite
+
+paragraph.error404:
+  css:
+    component:
+      dist/css/03-organisms/error404/error404.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/paragraph.navButtons
+      
+block.webform:
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.forms
+    - my_test_awesome_theme_7/bootstrap.button
+
+block.questionnaire:
+  css:
+    component:
+      dist/css/03-organisms/webforms/questionnaire/questionnaire.css: { minified: true }
+  js:
+    dist/js/03-organisms/webforms/questionnaire/questionnaire.js: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.forms
+    - my_test_awesome_theme_7/bootstrap.button
+    - core/jquery
+    - core/once
+    - my_test_awesome_theme_7/slick
+
+view.user-profiles:
+  css:
+    component:
+      dist/css/01-atoms/cta/cta.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/bootstrap.card
+    - my_test_awesome_theme_7/bootstrap.button
+    - my_test_awesome_theme_7/bootstrap.pagination
+
+paragraph.spacer:
+  css:
+    component:
+      dist/css/01-atoms/spacer/spacer.css: { minified: true }
+
+focus:
+  css:
+    component:
+      dist/css/00-base/04-focus/focus.css: { minified: true }
+  js:
+    dist/js/00-base/04-focus/focus.js: { minified: true, weight: -10 }
+
+focus.advanced:
+  js:
+    dist/js/00-base/04-focus/focus.advanced.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - my_test_awesome_theme_7/focus
+
+slick:
+  version: 1.8.1
+  license:
+    name: MIT
+    url: https://github.com/kenwheeler/slick/blob/master/LICENSE
+  css:
+    component:
+      //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css: { type: external }
+      //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css: { type: external }
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js: { type: external }
+  dependencies:
+    - core/jquery
+
+font-awesome:
+  version: 5.15.2
+  remote: https://fontawesome.com/
+  license:
+    url: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
+  css:
+    theme:
+      //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css: { type: external, minified: true }
+
+tooltipster:
+  version: 4.2.8
+  remote: http://calebjacob.github.io/
+  license:
+    name: MIT
+    url: https://github.com/calebjacob/tooltipster/blob/master/LICENSE
+  css:
+    base:
+      //cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css: { type: external, minified: true }
+      //cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-noir.min.css: { type: external, minified: true }
+  js:
+    //cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+
+paragraph.grid_with_header:
+  css:
+    component:
+      dist/css/03-organisms/grid/grid.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/molecules.card-a
+    - my_test_awesome_theme_7/molecules.card-b
+    - my_test_awesome_theme_7/molecules.card-c
+    - my_test_awesome_theme_7/molecules.card-d
+    - my_test_awesome_theme_7/molecules.card-e
+    - my_test_awesome_theme_7/molecules.card-f
+    - my_test_awesome_theme_7/molecules.card-g
+
+paragraph.grid_multi_column:
+  css:
+    component:
+      dist/css/03-organisms/grid/grid.css: { minified: true }
+  dependencies:
+    - my_test_awesome_theme_7/molecules.card-a
+    - my_test_awesome_theme_7/molecules.card-b
+    - my_test_awesome_theme_7/molecules.card-c
+    - my_test_awesome_theme_7/molecules.card-d
+    - my_test_awesome_theme_7/molecules.card-e
+    - my_test_awesome_theme_7/molecules.card-f
+    - my_test_awesome_theme_7/molecules.card-g

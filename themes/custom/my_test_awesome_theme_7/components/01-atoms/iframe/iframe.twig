@@ -1,0 +1,21 @@
+{% set iframe_base_class = iframe_base_class|default('iframe') %}
+{% set iframe_modifiers = iframe_modifiers|default([]) %}
+{% set iframe_blockname = iframe_blockname|default('') %}
+
+{% set iframe_attributes = {
+  class: bem(
+    iframe_base_class,
+    iframe_modifiers,
+    iframe_blockname,
+    [
+      iframe_extra|default([''])|join(' '),
+    ]
+  ),
+}|merge(iframe_attributes|default({
+  src: src|default(iframe.src)
+})) %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<iframe {{ add_attributes(iframe_attributes) }}></iframe>
+

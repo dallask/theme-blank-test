@@ -1,0 +1,95 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './image-text-block.yml';
+
+<Title/>
+<Subtitle/>
+
+## Content paragraph
+
+### Parent
+The component extends next template:
+[@components/paragraph/abstract/paragraph.twig](?path=/docs/ds-paragraph--paragraph)
+
+### Templates
+<Templates text="paragraphs/paragraph--content.html.twig"/>
+
+### Libraries
+<Libraries libraries={[
+  '[theme_name]/paragraph.content'
+]}/>
+
+### Drupal fields
+| Label            | Mashine name                     | Field type                             | Field Widget              | Display format  |
+|------------------|----------------------------------|----------------------------------------|---------------------------|-----------------|
+| Title            | field_otsk_ds_title              | Text (formatted)                       | Text field                | Default         |
+| Image mobile     | field_otsk_ds_image_mobile       | Entity reference (Image)               | Media Library             | Rendered Entity |
+| Image            | field_otsk_ds_image              | Entity reference (Image)               | Media Library             | Rendered Entity |
+| Text             | field_otsk_ds_text               | Text (formatted, long)                 | Text area (multiple rows) | Default         |
+| Link             | field_otsk_ds_link               | Link                                   | Link (with attributes)    | Rendered Entity |
+
+### Behaviors
+The paragraph uses all behaviors from the [parent](?path=/docs/ds-paragraph--paragraph#behaviors)
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+Basic:
+```
+{% extends "@components/paragraph/content/content.twig" %}
+```
+Full:
+```
+{% set paragraph_base_class = 'content' %} {# optional #}
+{% set paragraph_blockname = 'paragraph' %} {# optional #}
+{% set paragraph_modifiers = [
+  'modifierOne',
+  'modifierTwo',
+] %} {# optional #}
+{% set paragraph_container_class = 'container-full' %} {# optional #}
+{% set paragraph_extra = [
+  'classOne',
+  'classTwo',
+] %} {# optional #}
+
+{% extends "@components/paragraph/content/content.twig" %}
+{% block content %}
+  {% include "@components/global/_twig_debug.twig" with { component_debug_path: _self} %}
+
+  {{ attach_library('[theme_name]/[library_name]') }}
+
+  {# Some HTML structure #}
+  {{ content }}
+  {# Some HTML structure #}
+
+{% endblock %}
+```
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- ...
+- ...
+

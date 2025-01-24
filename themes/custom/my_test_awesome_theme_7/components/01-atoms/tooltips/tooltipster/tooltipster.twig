@@ -1,0 +1,37 @@
+{% set tooltips_base_class = tooltips_base_class|default('tooltip') %}
+{% set tooltips_modifiers = tooltips_modifiers|default([]) %}
+{% set tooltips_blockname = tooltips_blockname|default('tooltipster') %}
+
+{% set tooltips_attributes = {
+  id: 'tooltip_id',
+  class: bem(
+    tooltips_base_class,
+    tooltips_modifiers,
+    tooltips_blockname,
+    [
+      tooltips_classes|join(' '),
+    ]
+  ),
+}|merge(tooltips_attributes|default({})) %}
+
+{% block content %}
+  {% block tooltip_trigger %}
+    <span class="tooltipster"
+          tabindex="1"
+          aria-describedby="{{ tooltips_attributes.id }}"
+          data-tooltip-content="#{{ tooltips_attributes.id }}"
+          data-tooltipster='{{ tooltips_options|json_encode() }}'
+    >
+      {{ tooltips_content.button_title|raw }}
+    </span>
+  {% endblock %}
+  {% block tooltip_content %}
+    <div class="tooltip_templates d-none">
+        <span id="{{ tooltips_attributes.id }}" aria-hidden="true">
+            {{ tooltips_content.title }}
+        </span>
+    </div>
+  {% endblock %}
+{% endblock %}
+
+

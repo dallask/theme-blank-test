@@ -1,0 +1,41 @@
+{#
+/**
+ * Available variables:
+ * - link_content - the content of the link (typically text)
+ * - link_url - the url this link should poing to
+ * - link_attributes - array of attribute,value pairs
+ * - link_base_class - the base class name
+ * - link_modifiers - array of modifiers to add to the base classname
+ * - link_blockname - blockname prepended to the base classname
+ *
+ * Available blocks:
+ * - link_content - used to replace the content of the link
+ *     Example: to insert the image component
+ */
+#}
+{% set link_base_class = link_base_class|default('link') %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+{% if link_attributes['data-analytics-link'] is not defined %}
+  {% set obj = {
+    name: (link_attributes['data-analytics-name']|default(link_content|default(data_analytics_name))),
+    position: (link_attributes['data-analytics-position']|default(data_analytics_position|default('body'))),
+    group: (link_attributes['data-analytics-group']|default(data_analytics_group)),
+    href: link_attributes['data-analytics-href']|default(('http' not in link_url|render ? url('<front>')|render|trim('/', 'right') : '') ~ link_url|render),
+  }|merge(link_attributes['data-analytics-exitmodal'] ? {exitmodal: link_attributes['data-analytics-exitmodal']} : {})|merge(link_attributes['data-analytics-filename'] ? {filename: link_attributes['data-analytics-filename']} : {}) %}
+
+  {% set link_attributes = link_attributes|merge(analytics(obj))|merge(test(obj.name)) %}
+{% endif %}
+<a
+  {{ bem(link_base_class, link_modifiers, link_blockname, link_extra) }}
+  {% for attribute, value in link_attributes %}
+    {% if attribute != 'class' %}
+      {{ attribute }}='{{ value|raw }}'
+    {% endif %}
+  {% endfor %}
+  href="{{ link_url }}"
+>
+  {% block link_content %}
+    {{ link_content|raw }}
+  {% endblock %}
+</a>

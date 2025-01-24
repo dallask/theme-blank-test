@@ -1,0 +1,45 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+@import "@atoms/text/text/text.scss";
+@import "@atoms/lists/list.scss";
+@import "@atoms/text/headings/_headings.scss";
+
+// Google Fonts
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+// Custom Local Fonts.
+// Gandhi Sans.
+//@font-face {
+//  font-family: 'Gandhi Sans';
+//  src: url('../fonts/gandhi_sans/GandhiSans-Regular-webfont.woff') format('woff'),
+//  url('../fonts/gandhi_sans/GandhiSans-Regular.otf') format("opentype");
+//  font-weight: normal;
+//  font-style: normal;
+//}
+//@font-face {
+//  font-family: 'Gandhi Sans';
+//  src: url('../fonts/gandhi_sans/GandhiSans-Italic-webfont.woff') format('woff'),
+//  url('../fonts/gandhi_sans/GandhiSans-Italic.otf') format("opentype");
+//  font-weight: normal;
+//  font-style: italic;
+//}
+//@font-face {
+//  font-family: 'Gandhi Sans';
+//  src: url('../fonts/gandhi_sans/GandhiSans-Bold-webfont.woff') format('woff'),
+//  url('../fonts/gandhi_sans/GandhiSans-Bold.otf') format("opentype");
+//  font-weight: bold;
+//  font-style: normal;
+//}
+//@font-face {
+//  font-family: 'Gandhi Sans';
+//  src: url('../fonts/gandhi_sans/GandhiSans-BoldItalic-webfont.woff') format('woff'),
+//  url('../fonts/gandhi_sans/GandhiSans-BoldItalic.otf') format("opentype");
+//  font-weight: bold;
+//  font-style: italic;
+//}
+
+

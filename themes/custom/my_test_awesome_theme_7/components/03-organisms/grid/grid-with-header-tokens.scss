@@ -1,0 +1,39 @@
+@import '@bootstrap/styles/_variables.scss';
+
+.grid_with_header {
+  .grid__header {
+    &--mod1 {
+      --#{$prefix}component-width: #{$grid-header-mod1-width};
+      --#{$prefix}component-height: #{$grid-header-mod1-height};
+      --#{$prefix}component-bg-color: #{$grid-header-mod1-bg-color};
+      --#{$prefix}component-text-width: #{$grid-header-mod1-text-width};
+      --#{$prefix}component-text-height: #{$grid-header-mod1-text-height};
+      --#{$prefix}component-text-bg-color: #{$grid-header-mod1-text-bg-color};
+      --#{$prefix}component-text-spacing-t: #{$grid-header-mod1-text-spacing-t};
+      --#{$prefix}component-text-spacing-b: #{$grid-header-mod1-text-spacing-b};
+      --#{$prefix}component-text-spacing-l: #{$grid-header-mod1-text-spacing-l};
+      --#{$prefix}component-text-spacing-r: #{$grid-header-mod1-text-spacing-r};
+      --#{$prefix}component-text-font-family: #{$grid-header-mod1-text-font-family};
+      --#{$prefix}component-text-font-color: #{$grid-header-mod1-text-font-color};
+      --#{$prefix}component-text-font-weight: #{$grid-header-mod1-text-font-weight};
+      --#{$prefix}component-text-font-size: #{$grid-header-mod1-text-font-size};
+      --#{$prefix}component-text-font-text-align: #{$grid-header-mod1-text-font-text-align};
+      --#{$prefix}component-text-font-letter-spacing: #{$grid-header-mod1-text-font-letter-spacing};
+      --#{$prefix}component-text-font-line-height: #{$grid-header-mod1-text-font-line-height};
+      --#{$prefix}component-heading-width: #{$grid-header-mod1-heading-width};
+      --#{$prefix}component-heading-height: #{$grid-header-mod1-heading-height};
+      --#{$prefix}component-heading-bg-color: #{$grid-header-mod1-heading-bg-color};
+      --#{$prefix}component-heading-spacing-t: #{$grid-header-mod1-heading-spacing-t};
+      --#{$prefix}component-heading-spacing-b: #{$grid-header-mod1-heading-spacing-b};
+      --#{$prefix}component-heading-spacing-l: #{$grid-header-mod1-heading-spacing-l};
+      --#{$prefix}component-heading-spacing-r: #{$grid-header-mod1-heading-spacing-r};
+      --#{$prefix}component-heading-font-family: #{$grid-header-mod1-heading-font-family};
+      --#{$prefix}component-heading-font-color: #{$grid-header-mod1-heading-font-color};
+      --#{$prefix}component-heading-font-weight: #{$grid-header-mod1-heading-font-weight};
+      --#{$prefix}component-heading-font-size: #{$grid-header-mod1-heading-font-size};
+      --#{$prefix}component-heading-font-text-align: #{$grid-header-mod1-heading-font-text-align};
+      --#{$prefix}component-heading-font-letter-spacing: #{$grid-header-mod1-heading-font-letter-spacing};
+      --#{$prefix}component-heading-font-line-height: #{$grid-header-mod1-heading-font-line-height};
+    }
+  }
+}

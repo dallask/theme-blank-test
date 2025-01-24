@@ -1,0 +1,46 @@
+// Base variables.
+@import "variables";
+@import "mixins_functions";
+@import '~bootstrap/scss/utilities';
+
+// Add utility here.
+// https://getbootstrap.com/docs/5.0/utilities/api/
+$utilities: map-merge(
+    $utilities,
+    (
+      // Add utility to use adaptive font size classes .fs-md-1, .fs-lg-10 etc.
+      'font-size': map-merge(
+          map-get($utilities, 'font-size'),
+          (
+            responsive: true,
+            rfs: false,
+          )
+      ),
+      'font-weight': map-merge(
+          map-get($utilities, 'font-weight'),
+          (
+            responsive: true,
+            rfs: false,
+          )
+      ),
+      // Add utility to use adaptive font size classes .lh-md-1, .lh-lg-10 etc.
+      'line-height': map-merge(
+          map-get($utilities, 'line-height'),
+          (
+            responsive: true,
+            rfs: false,
+            values: $line-height
+          )
+      ),
+      // Add utility to use adaptive white-space classes .text-lg-normal, .text-md-nowrap etc.
+      "white-space": (
+        property: white-space,
+        responsive: true,
+        class: text,
+        values: (
+          normal: normal,
+          nowrap: nowrap,
+        )
+      )
+    )
+);

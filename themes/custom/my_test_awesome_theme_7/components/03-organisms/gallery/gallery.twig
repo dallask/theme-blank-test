@@ -1,0 +1,64 @@
+{% set data_switch_event = gallery.config['data-switch-event']|default('click') %}
+{% set data_gallery_type = gallery.config['data-gallery-type']|default('image') %}
+
+{% set element_base_class = element_base_class|default('gallery') %}
+{% set element_attributes = element_attributes|default({})|merge({
+  'data-switch-event': data_switch_event,
+  'data-gallery-type': data_gallery_type,
+}) %}
+{% set element_modifiers = element_modifiers|default(['images']) %}
+
+{% extends "@base/06-common/_wrapper.twig" %}
+
+{% block element_content %}
+  <div class="container">
+    <div class="row">
+      <div {{ bem('head', [], element_base_class, gallery.config.gallery_head_extra_classes) }}>
+        {% for item in gallery.cards %}
+          <div id="gallery-item-{{ loop.index }}" {{ bem('card-wrapper', [], element_base_class, loop.first ? ['active'] : []) }}>
+            {% block included_head_card %}
+              {% include "@" ~ item.attributes.path ~ ".twig" with {
+                card__image: item.image,
+                card__video: item.video,
+                card__heading: item.title,
+                card__subheading: item.subtitle,
+                card__video_time: item.time,
+                card__body: item.body,
+                config: item.attributes.config,
+              } %}
+            {% endblock %}
+          </div>
+        {% endfor %}
+      </div>
+      <div {{ bem('list', [], element_base_class, gallery.config.gallery_items_extra_classes) }}>
+        <div class="container-fluid">
+          <div class="row">
+            {% for item in gallery.cards %}
+              <div {{ bem('item', [], element_base_class, item.attributes.grid_extra_classes) }}>
+                {% set card_wrapper_tag = data_switch_event == 'click' ? 'a' : 'div' %}
+                {% set button_attributes = {
+                  class: bem('card-wrapper', [], '', ['gallery-item-update', loop.first ? 'active' : '']),
+                  href: '#',
+                  "data-id": 'gallery-item-' ~ loop.index
+                } %}
+
+                <{{ card_wrapper_tag }} {{ add_attributes(button_attributes) }}>
+                  {% block included_list_card %}
+                    {% include "@" ~ item.attributes.path ~ ".twig" with {
+                      card__image: item.image,
+                      card__heading: item.title,
+                      card__subheading: item.subtitle,
+                      card__video_time: item.time,
+                      card__body: item.body,
+                      config: item.attributes.config,
+                    } %}
+                  {% endblock %}
+                </{{ card_wrapper_tag }}>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

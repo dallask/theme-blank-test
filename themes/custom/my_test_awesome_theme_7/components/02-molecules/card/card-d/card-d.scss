@@ -1,0 +1,101 @@
+@import '@molecules/card/card-d/card-d-extension.scss';
+
+.card-d {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  max-width: 575px;
+  height: auto;
+  margin-top: 30px;
+
+  @include media-breakpoint-up(lg) {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .card-d {
+    &__body-wrapper {
+      position: relative;
+    }
+  
+    &__image {
+      width: 100%;
+      min-height: 360px;
+      object-fit: cover;
+    }
+  
+    &__heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      font-size: 1.4375rem;
+      text-align: center;
+      margin: 0;
+      color: #ffffff;
+      background: #a98eda;
+  
+      @include media-breakpoint-up(lg) {
+        font-size: 2.625rem;
+        min-height: 142px;
+      }
+    }
+  
+    &__body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ffffff;
+      border: 6px solid #a98eda;
+      padding-top: 26px;
+      height: 0;
+      visibility: hidden;
+      transition: .4s ease;
+      overflow: hidden;
+  
+      .card-c__text {
+        opacity: 0;
+        transition:  opacity .4s .2s linear;
+      }
+  
+      @include media-breakpoint-up(lg) {
+        padding-top: 52px;
+      }
+  
+      p {
+        font-size: 1rem;
+        color: #000000;
+        line-height: 1.4;
+        font-weight: 700;
+        padding-left: 24px;
+        padding-right: 14px;
+        @include media-breakpoint-up(lg) {
+          font-size: 1.75rem;
+          padding-left: 47px;
+          padding-right: 93px;
+        }
+      }
+  
+      sup {
+        top: -8px;
+        font-size: .5em;
+        @include media-breakpoint-up(md) {
+          top: -12px;
+        }
+      }
+    }
+  }
+  
+  &.active {
+    .card-d__body {
+      height: 100%;
+      visibility: visible;
+      transition: .4s ease;
+  
+      .card-d__text {
+        opacity: 1;
+      }
+    }
+  }
+}

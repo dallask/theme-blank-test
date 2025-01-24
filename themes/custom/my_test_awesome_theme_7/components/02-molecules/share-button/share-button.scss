@@ -1,0 +1,266 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.share-button {
+  --#{$prefix}share-button-colors-toggler: #{$share-button-colors-toggler};
+  --#{$prefix}share-button-colors-twitter: #{$share-button-colors-twitter};
+  --#{$prefix}share-button-colors-linkedin: #{$share-button-colors-linkedin};
+  --#{$prefix}share-button-colors-facebook: #{$share-button-colors-facebook};
+  --#{$prefix}share-button-colors-email: #{$share-button-colors-email};
+  --#{$prefix}share-button-font-toggler-size: #{$share-button-font-toggler-size};
+  --#{$prefix}share-button-font-toggler-weight: #{$share-button-font-toggler-weight};
+  --#{$prefix}share-button-font-desktop-toggler-size: #{$share-button-font-desktop-toggler-size};
+
+  position: absolute;
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+  }
+
+  .share-button-toggler  {
+    background: transparent url('./img/share.svg') no-repeat center/contain;
+    padding: 18px 0 0;
+    width: 43px;
+    height: 43px;
+    border: 0 none;
+    border-radius: 50%;
+    font-size: vars(share-button-font-toggler-size);
+    font-weight: vars(share-button-font-toggler-weight);
+    color: vars(share-button-colors-toggler);
+
+    @include media-breakpoint-up(lg) {
+      padding-top: 22px;
+      width: 62px;
+      height: 62px;
+      font-size: vars(share-button-font-desktop-toggler-size);
+    }
+  }
+
+  &.share-button--dropdown {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: none;
+      bottom: -10px;
+      height: 10px;
+      @include media-breakpoint-up(xl) {
+        width: 140px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+    }
+
+
+    &.show {
+      .addtoany_list,
+      &:before {
+        display: block;
+      }
+    }
+
+    &:active {
+      @include media-breakpoint-down(md) {
+        .addtoany_list {
+          display: block;
+        }
+      }
+    }
+
+    .addtoany_list {
+      position: absolute;
+      top: 44px;
+      left: -2.5px;
+      display: none;
+      z-index: 1;
+      @include media-breakpoint-up(md) {
+        width: 140px;
+      }
+      @include media-breakpoint-up(lg) {
+        top: 64px;
+      }
+
+      .a2a_button {
+        position: relative;
+        display: block;
+        border-bottom: 1px solid $black;
+        color: $white;
+        font-size: 0;
+        padding: 0;
+        font-weight: 700;
+        text-decoration: none;
+        @include media-breakpoint-up(md) {
+          display: flex;
+          align-items: center;
+          background: rgba($black, .75);
+          padding: 8px 10px 8px 7px;
+          font-size: 16px;
+        }
+
+        .a2a_svg {
+          @include media-breakpoint-up(md) {
+            margin-right: 6px;
+          }
+        }
+
+        &.a2a_button_twitter {
+          @include media-breakpoint-down(md) {
+            background-color: vars(share-button-colors-twitter);
+          }
+
+          &:hover,
+          &:focus {
+            background-color: vars(share-button-colors-twitter);
+            border-color: vars(share-button-colors-twitter);
+          }
+        }
+
+        &.a2a_button_linkedin {
+          @include media-breakpoint-down(md) {
+            background-color: vars(share-button-colors-linkedin);
+          }
+
+          &:hover,
+          &:focus {
+            background-color: vars(share-button-colors-linkedin);
+            border-color: vars(share-button-colors-linkedin);
+          }
+        }
+
+        &.a2a_button_facebook {
+          @include media-breakpoint-down(md) {
+            background-color: vars(share-button-colors-facebook);
+          }
+
+          &:hover,
+          &:focus {
+            background-color: vars(share-button-colors-facebook);
+            border-color: vars(share-button-colors-facebook);
+          }
+        }
+
+        &.a2a_button_email {
+          @include media-breakpoint-down(md) {
+            background-color: vars(share-button-colors-email);
+          }
+
+          &:hover,
+          &:focus {
+            background-color: vars(share-button-colors-email);
+            border-color: vars(share-button-colors-email);
+          }
+        }
+
+        &:hover,
+        &:focus {
+          span {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &.share-button--inline {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0;
+    border-radius: 50%;
+    flex-direction: column;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+    }
+
+    .addtoany_list {
+      display: none;
+      position: relative;
+      z-index: 1;
+      background-color: $white;
+
+      @include media-breakpoint-up(md) {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+      }
+
+      .a2a_button {
+        position: relative;
+        font-size: 0;
+        width: 62px;
+        height: 52px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        .a2a_svg {
+          position: relative;
+          z-index: 1;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 0;
+          transition: .35s;
+        }
+
+        &:hover,
+        &:focus {
+          &:after {
+            top: unset;
+            height: 52px;
+          }
+
+          .a2a_svg {
+            opacity: 1;
+
+            path {
+              fill: $white;
+            }
+          }
+
+          &.a2a_button_twitter:after {
+            background-color: vars(share-button-colors-twitter);
+          }
+
+          &.a2a_button_linkedin:after {
+            background-color: vars(share-button-colors-linkedin);
+          }
+
+          &.a2a_button_facebook:after {
+            background-color: vars(share-button-colors-facebook);
+          }
+
+          &.a2a_button_email:after {
+            background-color: vars(share-button-colors-email);
+          }
+        }
+      }
+    }
+
+    svg path {
+      fill: $black;
+      transition: .35s;
+    }
+
+    &.show .addtoany_list {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{% if tile %}
+  {% set tile__body = tile.tile__body.text|default(tile.tile__body) %}
+  {% set tile__heading = tile.tile__heading.title|default(tile.tile__heading) %}
+  {% set tile__image = tile.tile__image.media|default(tile.tile__image) %}
+  {% set config = tile.attributes|default({}) %}
+{% endif %}
+{% set tile__base_class = element_base_class|default('tile') %}
+{% set tile_modifiers = element_modifiers|default([]) %}
+{% set tile_extra = element_extra|default([]) %}
+{% set config = config|default({}) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: tile__base_class,
+} %}
+  {% block element_content %}
+    {% if tile__image and tile__image.src %}
+      {% include "@atoms/images/image/responsive-image.twig" with {
+        responsive_image_blockname: tile__base_class,
+        output_image_tag: config.tile__image__output_image_tag|default('true'),
+        image_src: tile__image.src,
+        image_alt: tile__image.alt,
+        image_attributes: tile__image.attributes,
+      } %}
+    {% endif %}
+
+    {# Heading #}
+    {% if tile__heading %}
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading__base_class: config.tile__heading__base_class|default('heading'),
+        heading__modifiers: config.tile__heading__modifiers,
+        heading__blockname: tile__base_class,
+        heading_level: 3,
+        heading: tile__heading,
+      } %}
+    {% endif %}
+
+    {% if tile__body %}
+      {% if tile__body is iterable %}
+        {% for item in tile__body %}
+          {% include "@atoms/text/text/08-section.twig" with {
+            section_base_class: config.tile__body__base_class|default('body'),
+            section_modifiers: config.tile__body__modifiers,
+            section_blockname: tile__base_class,
+            section_content: item.text|default(item),
+          } %}
+        {% endfor %}
+      {% else %}
+        {% include "@atoms/text/text/08-section.twig" with {
+          section_base_class: config.tile__body__base_class|default('body'),
+          section_modifiers: config.tile__body__modifiers,
+          section_blockname: tile__base_class,
+          section_content: tile__body,
+        } %}
+      {% endif %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

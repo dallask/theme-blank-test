@@ -1,0 +1,48 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './carousel.yml';
+
+<Title/>
+<Subtitle/>
+
+## Carousel Slick
+
+This paragraph built on the JS Slick Carousel.
+
+### Libraries
+<Libraries/>
+
+#### - Drupal Libraries:
+- `[theme_name]/paragraph.carousel`
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+<Code text={data.docs.source.code}/>
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- https://kenwheeler.github.io/slick/

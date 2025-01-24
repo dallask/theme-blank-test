@@ -1,0 +1,8 @@
+content: ""
+height: 32px
+height_desktop: 16px
+docs:
+  source:
+    code: |
+      {% extends "@atoms/spacer/spacer.twig" %}
+

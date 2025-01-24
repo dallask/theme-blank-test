@@ -1,0 +1,116 @@
+{#
+# Available variables:
+# - config.base_class - base classname of the wrapper.
+# - config.modifier - array of modifiers to add to the base classname of the wrapper.
+# - config.blockname - blockname prepended to the base classname of the wrapper(s) and each component.
+#
+# - config.card__content__base_class - base classname of the copy wrapper - defaults to 'heading'.
+# - config.card__content__modifiers - array of modifiers to add to the base classname of the copy wrapper.
+# - config.card__content__blockname - blockname prepended to the base classname of the copy wrapper.
+#
+# - card__heading - the content of the title component.
+# - card__heading__link - (optional) the url the title should link to. Defaults to card__link__url.
+# - config.card__heading__base_class - base classname of the title component. Defaults to "title".
+# - config.card__heading__blockname - blockname to add to the base classname of the title - defaults to card__base_class.
+# - config.card__heading__modifiers - array of modifiers to add to the base classname of the title.
+#
+# - card__body - the content of the body component.
+# - config.card__body__base_class - base classname of the body component. Defaults to "body".
+# - config.card__body__modifiers - array of modifiers to add to the base classname of the body.
+#
+# - card__cta.text - the content of the link component.
+# - card__cta.url - the url the link should link to.
+# - config.card__link__base_class - base classname of the link component. Defaults to "link".
+# - config.card__link__blockname - override link blockname. Defaults to card__base_class.
+# - config.card__link__attributes - array of attribute,value pairs for the link attribute.
+# - config.card__link__modifiers - array of modifiers to add to the base classname of the link.
+#}
+{% if ds_variables['card-f'] %}
+  {% set card__body = ds_variables['card-f']['card__body']['text']|default(ds_variables['card-f']['card__body']) %}
+  {% set card__heading = ds_variables['card-f']['card__heading']['title'] %}
+  {% set card__cta = ds_variables['card-f']['card__cta'] %}
+  {% set config = ds_variables['card-f']['attributes'] %}
+{% endif %}
+{% set card__base_class = config.base_class|default('card-f') %}
+{% set card__blockname = config.blockname|default() %}
+{% set card__modifiers = config.modifier|default([]) %}
+{% set card__data_analytics_group = config.data_analytics_group|default(card__heading) %}
+
+{% set card_attributes = {
+  class: bem(
+    card__base_class,
+    card__modifiers,
+    card__blockname
+  ),
+  'data-analytics-group': 'Card > ' ~ card__data_analytics_group|render is not empty ? card__data_analytics_group|striptags : 'Card F',
+  'data-test': (card__heading|render is not empty ? card__heading : 'card-heading')|trim|striptags|replace({' ':'-'})|lower ~ '-card'
+} %}
+
+<div {{ add_attributes(card_attributes) }}>
+  {# CTA #}
+  {% block card__cta %}
+    {% if card__cta %}
+      {% if card__cta.link %}
+        {% if card__cta.link.title %}
+          {% include "@atoms/cta/cta.twig" with {
+            cta_base_class: config.card__cta__base_class|default('cta'),
+            cta_blockname: card__base_class,
+            cta_modifiers: config.card__cta__modifiers,
+            cta_attributes: card__cta.link.attributes,
+            cta_content: card__cta.link.title,
+            cta_url: card__cta.link.url,
+            cta_icon: config.card__cta__icon,
+          } %}
+        {% endif %}
+      {% else %}
+        {% for item in card__cta %}
+          {% if item.link.title %}
+            {% include "@atoms/cta/cta.twig" with {
+              cta_base_class: config.card__cta__base_class|default('cta'),
+              cta_blockname: card__base_class,
+              cta_modifiers: config.card__cta__modifiers,
+              cta_attributes: item.link.attributes,
+              cta_content: item.link.title,
+              cta_url: item.link.url,
+              cta_icon: config.card__cta__icon,
+            } %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endblock %}
+  {# Content #}
+  <div {{ bem('content', config.card__content__modifiers, card__base_class) }}>
+    {% block card__content %}
+      {% if card__heading %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading__base_class: config.card__heading__base_class|default('heading'),
+          heading__modifiers: config.card__heading__modifiers,
+          heading__blockname: card__base_class,
+          heading_level: 3,
+          heading: card__heading,
+        } %}
+      {% endif %}
+      {# Body #}
+      {% if card__body %}
+        {% if card__body is iterable %}
+          {% for item in card__body %}
+            {% include "@atoms/text/text/08-section.twig" with {
+              section_base_class: config.card__body__base_class|default('body'),
+              section_modifiers: config.card__body__modifiers,
+              section_blockname: card__base_class,
+              section_content: item.text|default(item),
+            } %}
+          {% endfor %}
+        {% else %}
+          {% include "@atoms/text/text/08-section.twig" with {
+            section_base_class: config.card__body__base_class|default('body'),
+            section_modifiers: config.card__body__modifiers,
+            section_blockname: card__base_class,
+            section_content: card__body,
+          } %}
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

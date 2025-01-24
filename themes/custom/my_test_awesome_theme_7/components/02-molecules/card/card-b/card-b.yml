@@ -1,0 +1,15 @@
+card__icon:
+  url: 'link-out'
+card__link:
+  url: 'sms:741741'
+card__heading: 'Text <strong>HOME</strong> to <strong>741741</strong>'
+card__body: 
+  - '<p><strong>to reach the crisis text line</strong><br>'
+  - 'receive free, 24/7 mental health support in English and Spanish</p>'
+card__image:
+  src: 'https://picsum.photos/320/180'
+  attributes:
+    alt: "This is the card image's alt text"
+    loading: "lazy"
+config:
+  card__image__output_image_tag: true

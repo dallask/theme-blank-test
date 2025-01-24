@@ -1,0 +1,78 @@
+{% set modal__id = custom_attributes.id|default('externalLinkPopupModal') %}
+{% set modal__blockname = modal__blockname|default('') %}
+{% set modal__base_class = modal__base_class|default('modal') %}
+{% set modal__modifiers = modal__modifiers|default([]) %}
+{% set modal__extra = modal__extra|default(['fade']) %}
+{% set modal__attributes = modal__attributes|default({
+  'class': bem(modal__base_class, modal__modifiers, modal__blockname, modal__extra),
+  'id': modal__id,
+  'tabindex': '-1',
+  'aria-label': modal_title|default('You Are Now Leaving This Site'),
+  'aria-hidden': 'true',
+  'data-test': 'modal',
+  'data-analytics-position': 'Overlay',
+}) %}
+{% set modal_dialog__extra = modal_dialog__extra|default(['modal-dialog-centered']) %}
+
+<div {{ add_attributes(modal__attributes) }}>
+  <div {{ bem('modal-dialog', [], modal__blockname, modal_dialog__extra) }}>
+    <div {{ bem('modal-content', [], modal__blockname, []) }}>
+      {% block modal_header %}
+        <div {{ bem('modal-header', [], modal__blockname, []) }}>
+          {% if modal_title %}
+            {% include "@atoms/text/headings/_heading.twig" with {
+              heading_level: 5,
+              heading__extra: 'modal-title',
+              heading: modal_title|default('You Are Now Leaving This Site'),
+              heading_attributes: {
+                'data-test': 'modal-title',
+              }
+            } %}
+          {% endif %}
+          {% include "@atoms/buttons/button.twig" with {
+            button__additional_classes: ['btn-close'],
+            button__attributes: {
+              'data-bs-dismiss': 'modal',
+              'aria-label': 'Close',
+              'data-test': 'modal-close',
+              'data-analytics-name': 'Close Button',
+            },
+          } %}
+        </div>
+      {% endblock %}
+      {% block modal_body %}
+        <div {{ bem('modal-body', [], modal__blockname, []) }} {{ add_attributes({ 'data-test': 'modal-body'}) }}>
+          {% include "@atoms/text/text/01-paragraph.twig" with {
+            paragraph_content: modal_content|default('Would you like to leave this site?'),
+          } %}
+        </div>
+      {% endblock %}
+      {% block modal_footer %}
+        <div {{ bem('modal-footer', [], modal__blockname, []) }}>
+          {% if modal_cancel_text %}
+            {% include "@atoms/buttons/button.twig" with {
+              button__additional_classes: ['btn-secondary'],
+              button__attributes: {
+                role: 'button',
+                'data-bs-dismiss': 'modal',
+                'data-test': 'modal-cancel',
+              },
+              button__content: modal_cancel_text|default('Cancel')
+            } %}
+          {% endif %}
+          {% if modal_continue_text %}
+            {% include "@atoms/buttons/button.twig" with {
+              button__additional_classes: ['btn-primary'],
+              button__attributes: {
+                role: 'button',
+                'data-bs-dismiss': 'modal',
+                'data-test': 'modal-accept',
+              },
+              button__content: modal_continue_text|default('OK')
+            } %}
+          {% endif %}
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>

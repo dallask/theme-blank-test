@@ -1,0 +1,91 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('card-complex'),
+} %}
+  {% block element_content %}
+    <div class="container text-center">
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 2,
+        heading__extra: 'cards-title',
+        heading: cards_complex.title,
+      } %}
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 3,
+        heading__extra: 'cards-subtitle',
+        heading: cards_complex.subtitle,
+      } %}
+
+      <div class="row">
+        {% for item in cards_complex.cards %}
+          <div class="col-60 col-md-20">
+            {% set card__header %}
+              {% include "@atoms/images/image/responsive-image.twig" with {
+                output_image_tag: true,
+                image_src: item.image.src,
+                image_attributes: item.image.attributes,
+                image_extra: ['mw-100'],
+                responsive_image_blockname: 'patient-image',
+              } %}
+            {% endset %}
+
+            {% set card__body__text %}
+              {% include "@atoms/text/headings/_heading.twig" with {
+                heading_level: 4,
+                heading__extra: 'patient-name',
+                heading: item.title,
+              } %}
+
+              {% include "@atoms/text/headings/_heading.twig" with {
+                heading_level: 5,
+                heading__extra: 'patient-subtitle',
+                heading: item.subtitle,
+              } %}
+
+              {{ item.text|raw }}
+
+              {% include "@atoms/cta/cta.twig" with {
+                cta_blockname: 'link',
+                cta_content: item.cta.title,
+                cta_modifiers: [
+                  'lg',
+                  item.cta.type
+                ],
+                cta_extra: [
+                  'btn-' ~ item.cta.theme,
+                  'btn-lg',
+                  'mt-20',
+                  'w-100',
+                ],
+                cta_icon: item.cta.icon
+              } %}
+            {% endset %}
+
+            {% set card__footer %}
+              {{ item.icon|raw }}
+            {% endset %}
+
+            {% include "@molecules/card/bs/card.twig" with {
+              card__header: card__header,
+              card__body__text: card__body__text,
+              card__footer: card__footer,
+              card_classes: ['mb-20']
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="fs-12">
+        {{ cards_complex.footnote|raw }}
+      </div>
+
+      {% include "@atoms/links/link/link.twig" with {
+        link_url: cards_complex.link.url,
+        link_content: cards_complex.link.title,
+        link_extra: [
+          'btn',
+          'btn-success',
+        ],
+      } %}
+    </div>
+  {% endblock %}
+{% endembed %}
+

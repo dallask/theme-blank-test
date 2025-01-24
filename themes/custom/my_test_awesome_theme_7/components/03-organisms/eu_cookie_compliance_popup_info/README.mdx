@@ -1,0 +1,64 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './eu_cookie_compliance_popup_info.yml';
+
+<Title/>
+<Subtitle/>
+
+## eu_cookie_compliance_popup_info block
+
+### Templates
+<Templates />
+
+### Libraries
+<Libraries libraries={[
+  '[theme_name]/block.eu-cookie-warning'
+]}/>
+
+### Drupal fields
+The component has no specific fields. Can use any fields through `content` twig variable.
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+<Code text={data.docs.source.code}/>
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- ...
+- ...
+
+This component allows to implement a cookie consent.
+
+### How to use it in a Drupal site:
+
+**Template**: `templates/eu_cookie_compliance_popup_info.html.twig`
+**Module**: `eu_cookie_compliance`
+
+1. Enable the theme `emulsify` or a sub-theme based on it.
+2. Enable the contributed
+   module `EU Cookie Compliance (GDPR Compliance)` (https://www.drupal.org/project/eu_cookie_compliance).
+3. Configure cookie consent settings (admin/config/system/eu-cookie-compliance/settings).

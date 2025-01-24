@@ -1,0 +1,13 @@
+content: |
+    <a>
+      <span class="content--text">CHANGE TYPE SIZE</span>
+      <span class="content--label">
+        <span class="type--sm">A</span>
+        <span class="type--md">A</span>
+        <span class="type--lg">A</span>
+      </span>
+    </a>
+docs:
+  source:
+    code: |
+      {% extends "@atoms/font-switcher/font-switcher.twig" %}

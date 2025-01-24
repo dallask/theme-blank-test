@@ -1,0 +1,14 @@
+{#
+/**
+ * Available variables:
+ * - element_base_class - the base classname
+ * - buzzsprout_subscription_id - subscription id for buzzsprout script
+#}
+<div {{ bem('wrap', [], element_base_class) }}>
+  <div {{ bem('items', [], audio__base_class, ['buzzsprout-items']) }} id="buzzsprout-player-{{ buzzsprout_subscription_id }}"></div>
+  <script
+    src="https://www.buzzsprout.com/{{ buzzsprout_subscription_id }}.js?container_id=buzzsprout-player-{{ buzzsprout_subscription_id }}&player=small"
+    type="text/javascript"
+    charset="utf-8">
+  </script>
+</div>

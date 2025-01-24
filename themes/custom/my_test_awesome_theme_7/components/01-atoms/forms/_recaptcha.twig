@@ -1,0 +1,25 @@
+{#
+/**
+ * @file recaptcha-widget-noscript.tpl.php
+ * Default theme implementation to present the reCAPTCHA noscript code.
+ *
+ * Available variables:
+ * - sitekey: Google web service site key.
+ * - language: Current site language code.
+ * - url: Google web service API url.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_recaptcha_widget_noscript()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div>
+  <div>
+    <div>
+      <iframe src="{{ url }}" title="Google captcha"
+              style="border: none; overflow: hidden; width: 302px; height:76px; border-style: none;"></iframe>
+    </div>
+  </div>
+</div>

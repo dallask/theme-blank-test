@@ -1,0 +1,42 @@
+carousel:
+  - title: '@haleyincarnate'
+    link:
+      url: '/'
+    image:
+      src: "https://picsum.photos/474/572"
+      attributes:
+        alt: '@haleyincarnate'
+        loading: 'lazy'
+    card__icon:
+      url: 'link-out'
+    attributes:
+      path: molecules/card/card-b/card-b
+      variant: card
+      modifier: 
+        - main
+  - title: '@thatstafted'
+    link:
+      text: '@thatstafted'
+      url: '/'
+    image:
+      src: 'https://sovm47088main.dev.oapi.com/sites/g/files/qhldwo5008071dev/files/styles/medium/public/2024-02/Screenshot%202024-02-23%20at%208.08.49%E2%80%AFAM.png?itok=qvQU0809'
+      attributes:
+        alt: '@thatstafted'
+        loading: 'lazy'
+    card__icon:
+      url: 'link-out'
+    attributes:
+      path: molecules/card/card-b/card-b
+      variant: card
+      modifier: 
+        - main
+carousel_options:
+  dots: true
+  infinite: true
+  slidesToShow: 1
+  slidesToScroll: 1
+docs:
+  source:
+    code: |
+      {% extends "@molecules/carousel/carousel.twig" %}
+

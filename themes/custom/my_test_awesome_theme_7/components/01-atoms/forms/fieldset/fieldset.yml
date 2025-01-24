@@ -1,0 +1,33 @@
+elements:
+  - test_fieldset:
+      '#type': fieldset
+      '#title': 'Test fieldset'
+      textarea:
+        '#type': textarea
+        '#title': Textarea
+        '#wrapper_attributes':
+          class:
+            - form-item
+        '#attributes':
+          class:
+            - form-control
+        '#label_attributes':
+          class:
+            - form-label
+      some_select:
+        '#type': select
+        '#title': Selectbox
+        '#options':
+          111: '111'
+          222: '222'
+          333: '333'
+        '#default_value': '333'
+        '#wrapper_attributes':
+          class:
+            - form-item
+        '#attributes':
+          class:
+            - form-select
+        '#label_attributes':
+          class:
+            - form-label

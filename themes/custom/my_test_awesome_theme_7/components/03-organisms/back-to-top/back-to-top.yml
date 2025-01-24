@@ -1,0 +1,5 @@
+content: 'Top'
+docs:
+  source:
+    code: |
+      {% include "@organisms/back-to-top/back-to-top.twig" %}

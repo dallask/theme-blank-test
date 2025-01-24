@@ -1,0 +1,20 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.block {
+  &__back-to-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__back-to-top-button {
+    bottom: 50px;
+    right: 10px;
+    display: none;
+    transition-duration: .4s;
+    z-index: 999;
+  }
+}

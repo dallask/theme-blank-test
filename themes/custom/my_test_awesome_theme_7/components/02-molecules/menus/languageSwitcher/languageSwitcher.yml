@@ -1,0 +1,12 @@
+current_language_name: English
+current_language_id: en
+links:
+  en:
+    link: |
+      <a href="#" class="language-link is-active" hreflang="en">English</a>
+    attributes:
+      class:
+        - is-active
+  fr:
+    link: |
+      <a href="#" class="language-link" hreflang="fr">Français</a>

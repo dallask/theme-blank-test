@@ -1,0 +1,22 @@
+content: "<strong>Holy guacamole!</strong> You should check in on some of those fields below."
+variant:
+  - primary
+  - secondary
+  - success
+  - danger
+  - warning
+  - info
+  - dark
+  - light
+dismissible: true
+classes: [ ]
+attributes: {}
+docs:
+  source:
+    code: |
+      {% include '@molecules/alert/alert.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

@@ -1,0 +1,42 @@
+tabs:
+  tabs_block_item:
+    - title:
+        title:
+          title: "Home"
+      content:
+        text:
+          text: |
+            <p>Home Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+    - title:
+        title:
+          title: "Profile"
+      content:
+        text:
+          text: |
+            <p>Home Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+    - title:
+        title:
+          title: "Contact"
+      content:
+        text:
+          text: |
+            <p>Home Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+type:
+  - pills
+  - tabs
+fill: true
+justified: false
+justify_content:
+  - justify-content-start
+  - justify-content-end
+direction:
+  - flex-column
+  - flex-row
+classes: [ ]
+attributes: {}

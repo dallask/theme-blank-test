@@ -1,0 +1,136 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/How To/Use with legacy sites"/>
+
+# Using the Design System approaches on legacy sites
+
+## Introduction
+
+The current version of Design System uses a lot of features and approaches can be partially applied to the legacy sites.
+
+Most of the legacy sites use `gulp` as a builder and `Bootstrap v4.*.*` as a CSS framework.
+
+Current version of Design System uses `webpack` as a builder and `Bootstrap v5.*.*` as a CSS framework.
+
+This documentation shows the way to combine new approaches from the last version of Design System with the legacy approaches.
+
+The main point is the separation legacy and new Design System parts. The legacy assets should be built as is
+by means of legacy builder (e.g. gulp) in legacy folder.
+
+All legacy components can be transformed from legacy to new approach by means of extending Design System templates.
+
+All new components should be built in the Design System way (see the Design System documentation).
+
+## Challenges
+
+- Bootstrap 4 vs Bootstrap 5 ([https://www.geeksforgeeks.org/difference-between-bootstrap-4-and-bootstrap-5/](https://www.geeksforgeeks.org/difference-between-bootstrap-4-and-bootstrap-5/))
+- Design System Bootstrap grid uses 60 columns instead of 12 columns by default
+- Storybook uses Bootstrap parts as a basis
+- Libraries from Design System theme are not corresponding to the legacy ones
+- Modules dependencies have links to the active theme and cannot be installed
+(otsuka_configs_isi, otsuka_ds_block_back2top, otsuka_ds_block_banner_modal, otsuka_ds_configs_footer)
+
+[<img src="/docs/legacy/legacy-modules-dependencies-issue.png" width="100%"/>](/docs/legacy/legacy-modules-dependencies-issue.png)
+
+- Configs collision
+
+[<img src="/docs/legacy/legacy-configs-collision-issue.png" width="100%"/>](/docs/legacy/legacy-configs-collision-issue.png)
+
+- Documentation in storybook does not correspond the final structure
+- Assets paths in legacy SCSS (npm run build failed)
+- Twig components aliases are different
+- Storybook versions are different
+- Different version of emulsify storybook stories (`html` vs `React`)
+- Webpack's configs deeply customized and are not compatible
+
+## Steps:
+
+### For the sites without previous version of Design System:
+
+1. Move old builder to the legacy folder in theme root:
+    1. Move files and folders to the legacy folder:
+        - `assets`
+        - `gulpfile.js`
+        - `package.json`
+        - `package-lock.json`
+    1. Create `.nvmrc` file with the string `v14.14.0` inside the `legacy` folder
+    1. Alter all assets paths inside the `*.libraries.yml`
+1. Copy next folders/files from otsk emulsify-compound repo theme root folder into `themes/custom/[themename]` folder:
+    - `
+1. Add `@legacy` alias to the `themes/custom/[themename]/.storybook/main.js` and `themes/custom/[themename]/webpack/webpack.common.js` files
+    - `'@legacy': path.join(__dirname, '../', 'legacy'),`
+    - `staticDirs: ['../dist', '../images', '../fonts', '../videos', '../legacy']`
+1. Extract legacy libraries into storybook `themes/custom/[themename]/.storybook/preview-head.html` file:
+    - Create `preview-head.html` file in the `themes/custom/[themename]/.storybook` folder
+    - Add all needed libraries there:
+    ```
+     <link href="./Whitney.css" rel="stylesheet" type="text/css" />
+
+     <!-- layout -->
+     <link rel="stylesheet" href="./assets/build/css/layouts/otsuka.footer.css" />
+     <link rel="stylesheet" href="./assets/build/css/layouts/otsuka.header.css" />
+     <link rel="stylesheet" href="./assets/build/css/layouts/otsuka.page.css" />
+     <!-- theme -->
+     <link rel="stylesheet" href="./assets/build/css/theme/grid.css" />
+     <link rel="stylesheet" href="./assets/build/css/theme/misc.css" />
+
+     <!-- global-styling:theme -->
+     <link rel="stylesheet" href="./assets/build/css/theme/global.css" />
+     ```
+1. Add absent variables to the `*.libraries.yml` file from similar file in otsk emulsify-drupal repo.
+1. Install the next modules and add dependencies to the *.info.yml file:
+    - `drupal:components`
+    - `drupal:emulsify_twig`
+    - `otsuka_ds_block_custom_attributes`
+    - `otsuka_ds_preprocess`
+    - `otsuka_ds_paragraph_behaviors`
+    - `otsuka_ds_link_attributes`
+    - `otsk_ds_twig`
+1. Add twig components to the *.info.yml file:
+    ```
+    components:
+      namespaces:
+        base:
+          - components/00-base
+        bootstrap:
+          - components/00-bootstrap
+        atoms:
+          - components/01-atoms
+        molecules:
+          - components/02-molecules
+        organisms:
+          - components/03-organisms
+        templates:
+          - components/04-templates
+        pages:
+          - components/05-pages
+    ```
+1. Add features to the `*.theme` file:
+    - copy all preprocess from otsk emulsify-drupal repo
+    - replace `emulsify` string with your `theme_name`
+1. Add `dist` folder to `.gitignore` in the theme root folder
+
+### For the sites with previous version of Design System (v2.0):
+
+1. Install the next modules and add dependencies to the *.info.yml file:
+    - `drupal:components`
+    - `drupal:emulsify_twig`
+    - `otsuka_ds_block_custom_attributes`
+    - `otsuka_ds_preprocess`
+    - `otsuka_ds_paragraph_behaviors`
+    - `otsuka_ds_link_attributes`
+    - `otsk_ds_twig`
+
+1. Copy any atoms you need from otsk `emulsify-compound` repository manually
+
+1. Use existing paragraphs or create new manually or by means of modules from DS v3.0
+    - `otsk_ds_paragraphs_wrapper`
+    - `otsk_ds_paragraphs_video`
+    - `otsk_ds_paragraphs_text`
+    - `otsk_ds_paragraphs_link`
+    - `otsk_ds_paragraphs_image`
+    - `otsk_ds_paragraphs_media`
+    - `otsk_ds_paragraphs_card`
+    - `otsk_ds_paragraphs_block`
+

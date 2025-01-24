@@ -1,0 +1,34 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Templates,
+  Libraries,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './gallery.yml';
+
+<Title/>
+<Subtitle/>
+
+### Templates
+<Templates />
+
+### Libraries
+<Libraries libraries={[
+  '[theme_name]/paragraph.gallery'
+]}/>
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+<Code text={data.docs.source.code}/>

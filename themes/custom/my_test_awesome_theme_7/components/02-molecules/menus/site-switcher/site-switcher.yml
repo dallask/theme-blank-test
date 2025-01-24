@@ -1,0 +1,7 @@
+menu_items:
+  - title: 'Schizophrenia'
+    below:
+      - title: 'Bipolar I Disorder'
+        url: '#'
+      - title: 'Schizophrenia'
+        url: '#'

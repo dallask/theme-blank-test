@@ -1,0 +1,12 @@
+elements:
+  - radios_sample:
+      '#type': radios
+      '#title': 'Radios Sample'
+      '#options':
+        1: "<strong>On an oral antipsychotic</strong> but curious about a\Lonce every-2-months treatment option"
+        2: '<strong>On ABILIFY&nbsp;MAINTENA<sup>®</sup> (aripiprazole),</strong> and curious about a once every-2-months treatment option'
+        3: "<strong>Not on treatment</strong>\Lbut am curious about a once every-2-months treatment option"
+      '#default_value': '2'
+      '#wrapper_attributes':
+        class:
+          - form-check

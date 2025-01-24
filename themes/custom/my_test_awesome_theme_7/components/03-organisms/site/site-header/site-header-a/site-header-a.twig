@@ -1,0 +1,84 @@
+{% set content = ds_variables.block.navigation|default(content) %}
+{% set header__base_class = 'header' %}
+{% set header__modifiers = ['a'] %}
+{# If `directory` is defined, set the path relative for Drupal.
+ # Otherwise, set the path relative to the Component Library. #}
+{% set header__logo_src = directory ? '/' ~ directory ~ '/images/logo.png' : 'logo.png' %}
+{% set navbar_collapsible = navbar_collapsible|default('true') %}
+{% set navbar_id = navbar_id|default('primary') %}
+{% set header_attributes = {
+  class: bem(
+    header__base_class,
+    header__modifiers,
+    '',
+    ['d-flex', 'flex-column', 'justify-content-center']
+  ),
+  'data-analytics-position': 'Header',
+} %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<header {{ add_attributes(header_attributes) }}>
+
+  {% if content['menus']['header-top-menu'] %}
+    <div {{ bem('header-top', [], '', ['text-center']) }}>
+      {% block header_top %}
+        {% include "@molecules/menus/site-switcher/site-switcher.twig"  with {
+          items: content.menus['bp-sz-switcher'] ? content.menus['bp-sz-switcher']['#items'] : [],
+        } %}
+        {% include "@molecules/menus/top-menu/top-menu.twig"  with {
+          items: content.menus['header-top-menu'] ? content.menus['header-top-menu']['#items'] : [],
+        } %}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+  {% block header_main_menu %}
+    <div {{ bem('header-main-menu', [], '') }}>
+      {% include "@molecules/navbar/navbar-a/navbar.twig" with {
+        navbar_content: {
+          navbar_logo: content.logo,
+          navbar_main_menu: content.menus['main-menu'] ? content.menus['main-menu']['#items'] : [],
+          navbar_actions: content.menus['header-actions'] ? content.menus['header-actions']['#items'] : [],
+        }
+      } %}
+    </div>
+  {% endblock %}
+
+  {% if navbar_collapsible and navbar_collapsible is not same as('false') %}
+    {% embed "@atoms/buttons/button.twig" with {
+      button__additional_classes: [
+        'navbar-toggler',
+      ],
+      button__attributes: {
+        'type': 'button',
+        'data-bs-toggle': 'collapse',
+        'data-bs-target': '#navbar_collapse-' ~ navbar_id,
+        'aria-expanded': 'false',
+        'aria-label': ('Toggle navigation')|t,
+        'aria-controls': 'navbar_collapse-' ~ navbar_id,
+        'data-test': 'mobile-menu-toggle'
+      }
+    } %}
+      {% block button__content %}
+        <span class="navbar-toggler-icon"></span>
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
+
+  {% block header_main_menu_mobile %}
+    <div {{ bem(navbar_collapsible and navbar_collapsible is not same as('false') ? 'collapse' : '', [], 'header-main-mobile', [navbar_collapsible and navbar_collapsible is not same as('false') ? 'collapse' : '', 'navbar-collapse']) }}
+      id="navbar_collapse-{{ navbar_id }}">
+      {% include "@molecules/navbar/navbar-a/navbar.twig" with {
+        navbar_content: {
+          navbar_logo: content.logo,
+          navbar_menu_switcher: content.menus['bp-sz-switcher'] ? content.menus['bp-sz-switcher']['#items'] : [],
+          navbar_main_menu: content.menus['main-menu'] ? content.menus['main-menu']['#items'] : NULL,
+          navbar_menu_docs: content.menus['header-top-menu'] ? content.menus['header-top-menu']['#items'][2:1] : [],
+          navbar_actions: content.menus['header-actions'] ? content.menus['header-actions']['#items'] : [],
+        }
+      } %}
+    </div>
+  {% endblock %}
+
+</header>

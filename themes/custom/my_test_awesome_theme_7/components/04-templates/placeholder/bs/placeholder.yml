@@ -1,0 +1,29 @@
+variant:
+  - primary
+  - secondary
+  - success
+  - danger
+  - warning
+  - info
+  - dark
+  - light
+size:
+  - xs
+  - sm
+  - md
+  - lg
+effect:
+  - glow
+  - wave
+classes:
+  - 'w-100'
+attributes: {}
+docs:
+  source:
+    code: |
+      {% include '@templates/placeholder/bs/placeholder.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

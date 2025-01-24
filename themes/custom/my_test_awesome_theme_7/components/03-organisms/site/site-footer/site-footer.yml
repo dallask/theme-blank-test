@@ -1,0 +1,36 @@
+site_footer:
+  logo:
+    image:
+      src: logo.png
+      alt: Home
+      title: ''
+    link:
+      url: '/'
+      title: ''
+      attributes:
+        rel: home
+  inline_menu_items:
+    - title: 'Test'
+      url: '#'
+    - title: 'Number 2'
+      url: '#'
+    - title: 'Item Number 3'
+      url: '#'
+  social_menu_items:
+    - title: 'Twitter'
+      url: '#'
+      icon: 'twitter'
+    - title: 'Facebook'
+      url: '#'
+      icon: 'facebook'
+    - title: 'Instagram'
+      url: '#'
+      icon: 'instagram'
+    - title: 'LinkedIn'
+      url: '#'
+      icon: 'linkedin'
+  copyright: |
+    <p>© 2023 All rights reserved.</p>
+  footer_prc:
+    '#prc_code_markup': '10US21EUC0004'
+    '#prc_date_markup': 'May 2022'

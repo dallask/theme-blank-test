@@ -1,0 +1,59 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Drupal Responsive images"/>
+
+## Data structure
+
+### Installation
+
+Module binded to breakpoints inside modules. After installation change configuration of Responsive image styles to breakpoint group imported with theme.
+**/admin/config/media/responsive-image-style**
+Only after this changes disable module and export configuration to the site config.
+
+### Configuration
+
+**otsk_ds_media_responsive_image** module contain all content configuration.
+
+Module include:
+1. Breakpoints. 
+```yml
+otsk_ds_media_responsive_image.small:
+  label: small
+  mediaQuery: 'all and (min-width: 25em)'
+otsk_ds_media_responsive_image.small-med:
+  label: small-med
+  mediaQuery: 'all and (min-width: 26em)'
+otsk_ds_media_responsive_image.small-large:
+  label: small-large
+  mediaQuery: 'all and (min-width: 41em)'
+otsk_ds_media_responsive_image.medium:
+  label: medium
+  mediaQuery: 'all and (min-width: 48em)'
+otsk_ds_media_responsive_image.large:
+  label: large
+  mediaQuery: 'all and (min-width: 61.25em)'
+```
+2. Responsive image styles for list of breakpoint. Configuration has 2 styles for desktop/tablet and mobile resolutions
+**/admin/config/media/responsive-image-style**
+[<img src="/docs/responsive-images/responsive-styles.png" width="100%"/>](/docs/components/responsive-styles.png)
+3. Responsive image media type with 2 fields image for desktop and tablet with desktop responsive image type formatting (field_media_image) and mobile formatter (field_media_mobile_image).
+**/admin/structure/media/manage/responsive_image/fields**
+[<img src="/docs/responsive-images/responsive-media.png" width="100%"/>](/docs/components/responsive-media.png)
+
+On content editing paragraph accept video, image or responsive image. Image paragraph contain media with single image formatter for one resolution. Responsive media support uploading desktop image and mobile image. Images could be the same with different croping or different if they should be absolutely different.
+[<img src="/docs/responsive-images/responsive-media-edit.png" width="100%"/>](/docs/components/responsive-media-edit.png)
+
+**otsuka_ds_preprocess** combine both files into single image srcset with preconfigured in responsive styles resolution for each breakpoint. Final component render prepare markup:
+
+```html
+<picture class="image">
+          <!--[if IE 9]><video style="display: none;"><![endif]-->
+          <source srcset="/sites/designsystem41502main.otsk.docksal.site/files/styles/wide/public/2023-12/background.jpeg?itok=MaWhJB2e 1x" media="all and (min-width: 61.25em)" type="image/jpeg">
+          <source srcset="/sites/designsystem41502main.otsk.docksal.site/files/styles/large/public/2023-12/background.jpeg?itok=_RklDUMj 1x" media="all and (min-width: 48em)" type="image/jpeg">
+          <source srcset="/sites/designsystem41502main.otsk.docksal.site/files/styles/medium/public/2023-12/VideoThumb.jpeg?itok=HzbIP6cY 1x" media="all and (min-width: 25em)" type="image/jpeg">
+        <!--[if IE 9]></video><![endif]-->
+
+<img class="image mw-100 position-absolute" src="/sites/designsystem41502main.otsk.docksal.site/files/styles/wide/public/2023-12/background.jpeg?itok=MaWhJB2e" alt="Background as a responsive image">
+</picture>
+```

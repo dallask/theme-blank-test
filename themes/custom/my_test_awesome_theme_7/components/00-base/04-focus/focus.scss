@@ -1,0 +1,55 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+@mixin custom_focus($color:"") {
+  @if not($color == "") {
+    outline-color: $color;
+  } @else {
+    outline-color: $blue;
+  }
+  outline-width: 3px;
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+body {
+  &.user-is-tabbing *:focus {
+    @include custom_focus();
+
+    // Disable focus state on mobile devices.
+    @media(hover: none) and (pointer: coarse) {
+      outline-style: none;
+      box-shadow: none;
+    }
+  }
+
+  &.user-is-tabbing {
+    .skip-link:focus {
+      display: none;
+    }
+
+    .g-recaptcha {
+      a:focus {
+        @include custom_focus();
+      }
+    }
+
+    .region-header-top {
+      a:focus {
+        @include custom_focus($white);
+      }
+    }
+
+    footer {
+      a:focus {
+        @include custom_focus();
+      }
+    }
+  }
+
+  &.user-is-clicking *:focus {
+    outline-style: none !important;
+    box-shadow: none !important;
+  }
+}

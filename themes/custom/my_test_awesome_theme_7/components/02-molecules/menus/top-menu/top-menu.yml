@@ -1,0 +1,19 @@
+menu_items:
+  - title: 'U.S. <u>Prescribing information</u>, including <u>BOXED WARNING</u>'
+    url: '#'
+    below:
+      - title: 'ABILIFY ASIMTUFII<sup>®</sup> (aripiprazole)'
+        url: '#'
+      - title: 'ABILIFY MAINTENA<sup>®</sup> (aripiprazole)'
+        url: '#'
+  - title: '<u>Medication Guide</u>'
+    url: '#'
+    below:
+      - title: 'ABILIFY ASIMTUFII<sup>®</sup> (aripiprazole)'
+        url: '#'
+      - title: 'ABILIFY MAINTENA<sup>®</sup> (aripiprazole)'
+        url: '#'
+  - title: '<u>U.S. Healthcare Providers Website</u>'
+    url: '#'
+  - title: '<u>Learn about a once-monthly treatment</u>'
+    url: '#'

@@ -1,0 +1,57 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './isi-tray.yml';
+
+<Title/>
+<Subtitle/>
+
+## ISI Tray
+
+This module built on the Otsuka Custom Pharma ISI module
+
+Adds custom ISI content management and functionality capabilities to a pharmaceutical brand site, including theme layer integration for custom theming
+
+### Templates
+<Templates />
+
+### Libraries
+<Libraries libraries={[
+  '[theme_name]/block.isi-tray'
+]}/>
+
+### Drupal fields
+The component has no specific fields. Can use any fields through `content` twig variable.
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+### Code to use
+<Code text={data.docs.source.code}/>
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- ...
+- ...
+

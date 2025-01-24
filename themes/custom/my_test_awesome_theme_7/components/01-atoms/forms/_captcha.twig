@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a captcha.
+ *
+ * Available variables:
+ * - is_visible: Boolean to indicate if the CAPTCHA is visible or was
+ *   already solved (but element still needed for hidden inputs).
+ * - attributes: HTML attributes for the containing element.
+ * - title: The captcha title
+ * - description: The captcha description
+ * - element: The captcha element itself (image, recaptcha, ...)
+ *
+ * @see template_preprocess_captcha()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+  'captcha',
+  ('captcha-type-challenge--' ~ element['#captcha_type_challenge'])|clean_class,
+]
+%}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default(classes)|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [''])
+  ) %}
+
+{% block captcha %}
+  {% if is_visible %}
+    {% block captcha_display %}
+      {% if title is not empty %}
+        <fieldset {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+        <legend class="captcha__title js-form-required form-required">
+          {{ title }}
+        </legend>
+      {% else %}
+        <div {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+      {% endif %}
+      <div class="captcha__element">
+        {{ element }}
+      </div>
+      {% if description is not empty %}
+        <div class="captcha__description description">{{ description }}</div>
+      {% endif %}
+      {% if title is not empty %}
+        </fieldset>
+      {% else %}
+        </div>
+      {% endif %}
+    {% endblock %}
+  {% else %}
+    {# Required for _captcha_required_for_user() to preserve the hidden fields
+    				in the form even though the CAPTCHA is not visible. 	#}
+    {{ element }}
+  {% endif %}
+{% endblock %}
+

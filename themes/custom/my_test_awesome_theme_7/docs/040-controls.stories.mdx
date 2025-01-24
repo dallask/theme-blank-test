@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Controls"/>
+
+# Storybook Controls Documentation
+
+## Steps to create components with controls
+
+1. Declare which variable will use which style (radio, select box, text box) For more detail please check the original documentation.
+```
+/**
+ * Storybook Definition.
+*/
+export default {
+  ...,
+  argTypes: {
+    hero_sizing_modifier: {
+      options: [
+        'full-width-height',
+        'full-width-100',
+        'full-width-300',
+        'full-width-500'
+      ],
+      control: {
+        type: 'radio'
+      },
+      name: 'Hero Sizing Modifier'
+    },
+    hero_placement_modifier: {
+      options: [
+      'center',
+      'center-horizontaly',
+      'center-vertically'
+    ],
+      control: {
+        type: 'radio'
+      },
+      name: 'Hero Placement Modifier'
+    },
+    hero_padding_modifier: {
+      options: [
+        'all-8px', 'all-16px', 'all-32px', 'all-64px',
+        'h-8px', 'h-16px', 'h-32px', 'h-64px',
+        'v-8px', 'v-16px', 'v-32px', 'v-64px'
+      ],
+      control: {
+        type: 'select'
+      },
+      name: 'Hero Padding Modifier'
+    }
+  },
+  ...,
+}
+```
+Passing arguments to the component
+```
+export const YourComponent = (args) => (
+  <div
+    dangerouslySetInnerHTML={{
+      __html: yourComponentsTwig(args)
+    }}
+  />
+);
+```
+Declaring default arguments
+```
+YourComponent.args = {
+  hero_sizing_modifier: 'full-width-height',
+  hero_placement_modifier: 'center',
+  hero_padding_modifier: 'all-8px'
+};
+```
+
+Please try to fill all controll information (name, description, default values, etc.).
+
+As the examples use any **abstract** block/paragraph/menu/etc. from `06-components`.
+
+For sure to be able to see the result we need to use these passed arguments in our twig file.
+[<img src="/docs/controls/controls.png" width="100%"/>](/docs/controls/controls.png)
+
+
+## References:
+- https://storybook.js.org/docs/react/essentials/controls
+- https://storybook.js.org/docs/react/api/argtypes
+- https://storybook.js.org/docs/react/writing-stories/parameters

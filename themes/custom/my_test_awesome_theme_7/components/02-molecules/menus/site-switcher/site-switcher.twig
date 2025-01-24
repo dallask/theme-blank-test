@@ -1,0 +1,9 @@
+{% include "@molecules/menus/_menu.twig" with {
+  menu_class: "site-switcher",
+  items: items|default(menu_items),
+  list__addition_classes: [''],
+  list__attributes: list__attributes|default({
+    'data-test': 'site-switcher',
+  })
+} %}
+

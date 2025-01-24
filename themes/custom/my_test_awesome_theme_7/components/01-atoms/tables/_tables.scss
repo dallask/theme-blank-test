@@ -1,0 +1,75 @@
+$table-border-width: 1px;
+
+@mixin table-header-footer {
+  background-color: vars(highlight-high);
+
+  > * {
+    border-color: vars(highlight);
+  }
+}
+
+@mixin table-cell {
+  border: 0;
+  border-right-width: $table-border-width;
+  border-bottom-width: $table-border-width;
+  border-style: solid;
+  border-color: inherit;
+  padding: $space;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  :last-child > & {
+    border-bottom: 0;
+  }
+
+  &[data-cell-highlight] {
+    background-color: vars(highlight);
+  }
+}
+
+.table {
+  border: $table-border-width solid vars(highlight-high);
+  border-spacing: 0;
+  margin: $space 0;
+  width: 100%;
+}
+
+// Table header elements
+.table__header {
+  @include table-header-footer;
+}
+
+.table__header_cell {
+  @include table-cell;
+}
+
+// Table body rows
+.table__row {
+  // Alternate row background/border colors
+  &:nth-child(odd) {
+    background-color: vars(background);
+    border-color: vars(highlight-high);
+  }
+
+  &:nth-child(even) {
+    background-color: vars(highlight-high);
+    border-color: vars(highlight);
+  }
+}
+
+// Table body cells
+.table__cell {
+  @include table-cell;
+}
+
+// Table footer elements
+.table__footer {
+  @include table-header-footer;
+}
+
+.table__footer_cell {
+  @include table-cell;
+}
+

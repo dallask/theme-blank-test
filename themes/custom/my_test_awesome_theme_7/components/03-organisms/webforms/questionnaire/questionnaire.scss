@@ -1,0 +1,13 @@
+.carousel-questionnaire {
+  .slick-track {
+    display: flex !important;
+  }
+
+  .slick-slide {
+    height: auto;
+
+    & > div {
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+@import '@molecules/card/card-b/card-b-extension.scss';
+
+.card-b {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  padding: 1.25rem;
+  background-color: vars(white);
+
+  &--top {
+    width: 31.25rem;
+    height: 10.625rem;
+    border: 0.25rem solid;
+    border-radius: 1.25rem;
+    border-color: vars(primary);    
+  }
+
+  &--main {
+    width: 20rem;
+    height: 16.25rem;  
+    border: 4px solid;
+    border-radius: 1.25rem;
+    border-color: vars(white);
+  }
+  .card-b { 
+    &__image {
+      height: 6.25rem;
+      width: 6.25rem;
+      object-fit: cover;
+      position: absolute;
+      bottom: 1.25rem;
+    }
+  
+  
+    &__card-icon {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+  
+      svg {
+        width: 1.625rem;
+        height: 1.625rem;
+      }
+    }
+  
+    &__top {
+      display: inline;
+      width: 20rem;
+      color: var(--body-colors-text-primary);
+      padding-top: 1.25rem;
+    }
+  
+    &__heading {
+      @include font(
+        $font-size: 28,
+        $color: var(--body-colors-text-primary)
+      );
+    }
+  }  
+}

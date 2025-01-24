@@ -1,0 +1,31 @@
+{#
+/**
+ * Available variables:
+ * - element_base_class - the base classname
+ * - element_modifiers - array of modifiers to add to the base classname
+ * - element_blockname - blockname prepended to the base classname
+ * - audio__type - type of audio block
+ *
+ * - audio__urls - array of audio URLs
+ * - audio_object__attributes - <audio> HTML5 specific attributes
+ *
+ * - buzzsprout_subscription_id - subscription id for buzzsprout script
+ */
+#}
+{% set audio__type = audio__type|default('html5') %}
+{% set audio__urls = audio__urls|default([]) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('audio'),
+} %}
+  {% block element_content %}
+    <div {{ add_attributes(audio__attributes) }}>
+      {% if audio__type == 'buzzsprout' %}
+        {% include "@atoms/audios/_audio-buzzsprout.twig" %}
+      {% endif %}
+      {% if audio__type == 'html5' %}
+        {% include "@atoms/audios/_audio-html5.twig" %}
+      {% endif %}
+    </div>
+  {% endblock %}
+{% endembed %}

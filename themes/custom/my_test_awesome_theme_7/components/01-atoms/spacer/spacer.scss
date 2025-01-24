@@ -1,0 +1,35 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.spacer {
+  height:  var(--element-spacer-height);
+
+  @include media-breakpoint-up(md) {
+    height:  var(--element-spacer-height-desktop);
+  }
+}
+
+.spacer-ds {
+  margin-top: var(--element-mt, auto) !important;
+  margin-bottom: var(--element-mb, auto) !important;
+  margin-left: var(--element-ms, auto) !important;
+  margin-right: var(--element-me, auto) !important;
+  padding-top: var(--element-pt, auto) !important;
+  padding-bottom: var(--element-pb, auto) !important;
+  padding-left: var(--element-ps, auto) !important;
+  padding-right: var(--element-pe, auto) !important;
+
+  @include media-breakpoint-up($main-breakpoint) {
+    margin-top: var(--element-mt-#{$main-breakpoint}, auto) !important;
+    margin-bottom: var(--element-mb-#{$main-breakpoint}, auto) !important;
+    margin-left: var(--element-ms-#{$main-breakpoint}, auto) !important;
+    margin-right: var(--element-me-#{$main-breakpoint}, auto) !important;
+    padding-top: var(--element-pt-#{$main-breakpoint}, auto) !important;
+    padding-bottom: var(--element-pb-#{$main-breakpoint}, auto) !important;
+    padding-left: var(--element-ps-#{$main-breakpoint}, auto) !important;
+    padding-right: var(--element-pe-#{$main-breakpoint}, auto) !important;
+  }
+}

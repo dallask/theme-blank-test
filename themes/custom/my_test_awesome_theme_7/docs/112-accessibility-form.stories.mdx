@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Accessibility/Forms"/>
+
+## Form elements radios/checkbox
+
+
+### Radio
+
+Native HTML radio buttons are 100% accessible by default.
+
+To ensure correct grouping semantics, radio buttons should be placed inside of a fieldset with legend.
+
+```html
+<fieldset>
+    <legend>Radio Group Title</legend>
+    <span>
+        <input id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
+        <label for="radio-group1_input1">Input 1</label>
+    </span>
+    <span>
+        <input id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
+        <label for="radio-group1_input2">Input 2</label>
+    </span>
+    <span>
+        <input id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
+        <label for="radio-group1_input3">Input 3</label>
+    </span>
+</fieldset>
+```
+
+### Checkbox
+
+Native HTML checkboxes are 100% accessible by default.
+
+To ensure correct grouping semantics, checkboxes should be placed inside of a fieldset with legend.
+
+```html
+<fieldset>
+    <legend>Auction Type</legend>
+    <span>
+        <input id="freeshipping" type="checkbox" name="freeshipping" />
+        <label for="freeshipping">Free Shipping</label>
+    </span>
+    <span>
+        <input id="endssoon" type="checkbox" name="endssoon" />
+        <label for="endssoon">Ends soon</label>
+    </span>
+    <span>
+        <input id="zerobids" type="checkbox" name="zerobids" />
+        <label for="zerobids">Zero bids</label>
+    </span>
+</fieldset>
+```
+
+### Listbox
+
+Select HTML element by default 100% accessible. In some cases when element should have option with extra elements like images in the list markup built with general section/div markup.
+In this case accessibility covered with role attribute 
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role
+
+```html
+<div role="listbox" tabindex="0">
+    <div class="listbox__option" role="option">
+        <span>Option 1</span>
+        <span class="listbox__status"></span>
+    </div>
+    <div class="listbox__option" role="option">
+        <span>Option 2</span>
+        <span class="listbox__status"></span>
+    </div>
+    <div class="listbox__option" role="option">
+        <span>Option 3</span>
+        <span class="listbox__status"></span>
+    </div>
+</div>
+```
+
+Menu other components could also mark specific elements with role to properly present it for the users with disabilities.

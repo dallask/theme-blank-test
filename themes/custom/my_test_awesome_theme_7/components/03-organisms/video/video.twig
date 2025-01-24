@@ -1,0 +1,32 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('video'),
+  element_modifiers: element_modifiers|default(['remote']),
+} %}
+  {% block element_content %}
+    <div class="container">
+      {% set video_content %}
+        <div class="video-wrapper position-relative">
+          {% include "@atoms/iframe/iframe.twig" with {
+            iframe_extra: [
+              'position-absolute',
+              'w-100',
+              'h-100',
+            ],
+            iframe_attributes: {
+              src: video.media.1.media|default(video.video_content),
+              allow: 'autoplay; fullscreen; picture-in-picture',
+              frameborder: '0',
+              allowfullscreen: 'allowfullscreen',
+            },
+          } %}
+        </div>
+      {% endset %}
+
+      {% include "@atoms/videos/_video-embed.twig" with {
+        video__base_class: 'video-embed',
+        video_content: video_content,
+      } %}
+    </div>
+  {% endblock %}
+{% endembed %}
+

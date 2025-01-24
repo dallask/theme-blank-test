@@ -1,0 +1,68 @@
+custom_attributes:
+  id: "519-12323"
+tabs:
+  tabs_block_item:
+    - attributes:
+        variant: "tabs_block_item"
+      title:
+        attributes:
+          id: "589-61047"
+          variant: "title"
+        title:
+          title: "IPA Definition"
+      content:
+        - attributes:
+            id: "589-61047"
+            variant: "content"
+            path: 'base/06-common/_wrapper'
+            type: "text"
+          text:
+            text: "<p>Home Lorem Ipsum is simply dummy text of the printing and typesetting
+                   industry. Lorem Ipsum has been the industry's standard dummy text ever
+                   since the 1500s</p>"
+    - attributes:
+        variant: "tabs_block_item"
+      tabs_title:
+        attributes:
+          id: "589-61048"
+          variant: "tabs_title"
+          type: "text"
+        title:
+          title: "Profile"
+      tabs_content:
+        - attributes:
+            id: "589-61048"
+            variant: "tabs_content"
+            path: 'base/06-common/_wrapper'
+            type: "text"
+          text:
+            text: "<p>Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+                   industry. Lorem Ipsum has been the industry's standard dummy text ever
+                   since the 1500s</p>"
+        - attributes:
+            id: "589-61048"
+            variant: "tabs_content"
+            path: 'base/06-common/_wrapper'
+            type: "text"
+          text:
+            text: "<p>Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+                   industry. Lorem Ipsum has been the industry's standard dummy text ever
+                   since the 1500s</p>"
+    - attributes:
+        variant: "tabs_block_item"
+      tabs_title:
+        attributes:
+          id: "589-61049"
+          variant: "tabs_title"
+        title:
+          title: "Contact"
+      tabs_content:
+        attributes:
+          id: "589-61049"
+          variant: "tabs_content"
+          path: 'base/06-common/_wrapper'
+          type: "text"
+        text:
+          text: "<p>Contact Lorem Ipsum is simply dummy text of the printing and typesetting
+                 industry. Lorem Ipsum has been the industry's standard dummy text ever
+                 since the 1500s</p>"

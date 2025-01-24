@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Theme override for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default([])|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [dom_id ? 'js-view-dom-id-' ~ dom_id : ''])
+  ) %}
+<div {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+  <div class="container">
+    {% if rows -%}
+      {% set items = rows[0]['#rows']|default(rows) %}
+      {% for item in items %}
+        <div class="card mb-30">
+          <div class="row g-0">
+            <div class="col-md-20">
+              {% include "@atoms/images/image/responsive-image.twig" with {
+                output_image_tag: true,
+                image_src: file_url(item['#row']._entity.field_otsk_ds_media.entity.field_media_image.entity.uri.value)|default(item.image.src),
+                image_attributes: item['#row']._entity.field_otsk_ds_media.entity.field_media_image.attributes|default(item.image.attributes),
+                image_alt: item['#row']._entity.field_otsk_ds_media.entity.field_media_image.alt|default(item.image.alt),
+                image_extra: ['img-fluid', 'rounded-start'],
+              } %}
+            </div>
+            <div class="col-md-40">
+              <div class="card-body">
+                {% include "@atoms/text/headings/_heading.twig" with {
+                  heading_level: 3,
+                  heading: item['#row']._entity.field_otsk_ds_title.value|default(item.title),
+                  heading__extra: ['card-title']
+                } %}
+
+                {% include "@atoms/text/text/08-section.twig" with {
+                  section_content: item['#row']._entity.field_otsk_ds_text.value|default(item.text),
+                  section_extra: ['mb-30'],
+                } %}
+
+                {% include "@atoms/cta/cta.twig" with {
+                  cta_blockname: 'link',
+                  cta_url: (item['#row']._entity.field_otsk_ds_link.0.url|render)|default(item.link.url),
+                  cta_icon: 'arrow-b',
+                  cta_content: item['#row']._entity.field_otsk_ds_link.0.title|default(item.link.title),
+                  cta_extra: [
+                    'btn-lg',
+                    'btn-outline-success'
+                  ],
+                } %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% elseif empty -%}
+      {{ empty }}
+    {% endif %}
+    {% if directory %}
+      {{ pager }}
+    {% else %}
+      {% include "@molecules/pager/pager.twig" with pagination %}
+    {% endif %}
+  </div>
+</div>

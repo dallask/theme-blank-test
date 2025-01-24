@@ -1,0 +1,43 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.footer {
+  &--a {
+    --#{$prefix}footer-bg: #{$navbar-colors-footer-bg};
+
+    padding-top: rfs_value(28px);
+    padding-bottom: rfs_value(44px);
+    background-color: vars(footer-bg);
+
+    .region_menu {
+      margin-bottom: rfs_value(18px);
+      @include font($font-size: 16px);
+    }
+
+    .navbar {
+      &__privacy {
+        &::before {
+          content: "";
+          width: rfs-value(1px);
+          height: rfs-value(110px);
+          background-color: vars(footer-bg);
+          display: block;
+          position: absolute;
+          top: rfs_value(10px);
+          left: rfs-value(-10px);
+
+          @include media-breakpoint-down(lg) {
+            width: rfs-value(180px);
+            height: rfs-value(1px);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+}

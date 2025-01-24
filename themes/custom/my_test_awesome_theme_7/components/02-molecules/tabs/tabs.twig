@@ -1,0 +1,106 @@
+{% set customTabs = [] %}
+{% for tab in tabs.tabs_block_item %}
+
+  {% set tabContent %}
+    {% if tab.content[0] %}
+      {% set content_items = tab.content %}
+    {% else %}
+      {% set content_items = [tab.content] %}
+    {% endif %}
+    
+    {% for content in content_items %}
+      {% if content.attributes %}
+        {% if 'grid' in content.attributes.type %}
+          {% set grid = {
+            cards: content.cards,
+            title: content['grid-header']['title']['title'],
+            subtitle: content['grid-header']['text']['text'],
+            footnote: content['grid-footer']['text']['text'],
+            link: content['grid-footer']['link'],
+            grid_header_attributes: content['grid-header']['attributes']|default([]),
+          } %}
+          {% include "@" ~ content.attributes.path ~ ".twig" with {
+            element_base_class: content.attributes.type,
+            grid: grid,
+          }%}
+        {% endif %}
+        
+        {% if 'card' in content.attributes.type %}
+          {% include "@" ~ content.attributes.path ~ ".twig" with {
+            card__image: content.media|default(content.media.media),
+            card__heading: content.title.title|default(content.title),
+            card__blockquote: content.blockquote,
+            card__cta: content.link.link|default(content.link),
+            card__body: content.text.text|default(content.text),
+            config: content.attributes.config|default([]),
+          } %}
+        {% endif %}
+        
+        {% if 'accordion' in content.attributes.type %}
+          {% include "@molecules/accordion/accordion.twig" with {
+            accordion: content.accordion,
+          } %}
+        {% endif %}
+        
+        {% if content.attributes.type == 'tile' %}
+          {% include "@molecules/tile/tile.twig" with {
+            element_base_class: 'tile',
+            tile: {
+              body: content.text.text|default(content.text),
+            },
+            element_attributes: null,
+            paragraph_behavior_custom_id: null,
+          } %}
+        {% endif %}
+      {% endif %}
+      {% if content.media %}
+        {% include "@atoms/images/image/responsive-image.twig" with {
+          output_image_tag: true,
+          image_src: content.media.media.src|default(content.media.src),
+          image_attributes: content.media.media.attributes|default(content.media.attributes),
+          image_alt: content.media.media.alt|default(content.media.alt),
+          image_srcset: content.media.media.srcset|default(content.media.srcset),
+          sources: content.media.media.sources|default(content.media.sources),
+          output_image_tag: content.media.media.sources.output_image_tag|default(''),
+        } %}
+      {% endif %}
+      {% if content.title %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading__base_class: config.card__heading__base_class|default('heading'),
+          heading__modifiers: config.card__heading__modifiers,
+          heading__blockname: card__base_class,
+          heading_level: 3,
+          heading: content.title.title|default(title),
+        } %}
+      {% endif %}
+      {% if content.text %}
+        {% include "@atoms/text/text/08-section.twig" with {
+          section_blockname: 'ipa',
+          section_base_class: 'footnote',
+          section_content: content.text.text|default(content.text),
+        } %}
+      {% endif %}
+      {% if content.link %}
+        {% include "@atoms/cta/cta.twig" with {
+          cta_base_class: 'cta',
+          cta_blockname: 'card-f',
+          cta_modifiers: ['primary'],
+          cta_attributes: content.link.attributes|default(content.link.link.attributes),
+          cta_content: content.link.title|default(content.link.link.title),
+          cta_url: content.link.url|default(content.link.link.url),
+          cta_icon: 'arrow-long-right',
+        } %}
+      {% endif %}
+    {% endfor %}
+  {% endset %}
+  
+  {% set customTabs = customTabs|merge([{'title': tab.title, 'content': tabContent }]) %}
+{% endfor %}
+
+{% include "@molecules/tabs/tabs_sb.twig" with {
+  element_base_class: 'tabs',
+  tabs: customTabs,
+  tabs_pills: true,
+  tabs_fill: false,
+  tabs_justified: false,
+} %}

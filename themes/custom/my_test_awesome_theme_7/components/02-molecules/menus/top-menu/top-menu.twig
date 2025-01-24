@@ -1,0 +1,13 @@
+{% include "@molecules/menus/_menu.twig" with {
+  menu_class: "top-menu",
+  items: items|default(menu_items),
+  list__addition_classes: [
+    'd-inline-flex',
+  ],
+  list__attributes: list__attributes|default({
+    'data-test': 'top-menu',
+  }),
+  data_analytics_position: 'body',
+  data_analytics_group: 'top-menu',
+} %}
+

@@ -1,0 +1,25 @@
+{% set placeholder_base_class = placeholder_base_class|default('placeholder') %}
+{% set placeholder_modifiers = placeholder_modifiers|default([]) %}
+{% set placeholder_blockname = placeholder_blockname|default('') %}
+
+{% set placeholder_attributes = {
+  class: bem(
+    '',
+    placeholder_modifiers,
+    placeholder_blockname,
+    [
+      'placeholder-' ~ placeholder_effect|default('glow'),
+      placeholder_position ? placeholder_position : '',
+      placeholder_classes|join(' '),
+    ]
+  ),
+}|merge(placeholder_attributes|default({})) %}
+
+<div {{ add_attributes(placeholder_attributes) }}>
+  {% block content %}
+    {% for i in 0..placeholder_rows|default(0) %}
+      <span {{ bem('', '', offcanvas_base_class, ['placeholder', 'bg-' ~ placeholder_variant|default('primary'), 'placeholder-' ~ placeholder_size|default('md'), 'w-100']) }}></span>
+    {% endfor %}
+  {% endblock %}
+</div>
+

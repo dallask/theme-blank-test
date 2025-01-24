@@ -1,0 +1,9 @@
+card__heading: 'What is the risk-vs-benefit profile of JYNARQUE treatment in older patients?'
+card__subheading: 'KOL: German Hernandez, MD'
+card__video_time: '18 min 02 sec'
+card__body: |
+  <p>In this video, German Hernandez, MD, illustrates the risk-vs-benefit profile of JYNARQUE treatment in older 
+  patients by  presenting data from a retrospective analysis of patients ages 55-65 years old.</p>
+card__video:
+  url: https://vimeo.com/226053498
+  thumbnail: https://picsum.photos/id/10/1213/682

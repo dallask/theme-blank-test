@@ -1,0 +1,14 @@
+{% include "@molecules/menus/_menu.twig" with {
+  menu_class: "main-menu-bs",
+  items: menu_items,
+  list__addition_classes: [
+    'navbar-nav',
+    'ms-auto',
+  ],
+  list__attributes: list__attributes|default({
+    'data-test': 'main-menu',
+  }),
+  data_analytics_position: data_analytics_position,
+  data_analytics_group: 'main-menu',
+} %}
+

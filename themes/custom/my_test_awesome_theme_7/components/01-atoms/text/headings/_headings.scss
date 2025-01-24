@@ -1,0 +1,232 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+/*
+ * Generic header styles:
+ * All arguments are optional. If not defined, the defaults below will be used
+*/
+
+$color-heading: vars(body-color);
+
+@mixin heading-xl(
+  $font-family: $typography-h1-desktop-font-family,
+  $font-size: $typography-h1-desktop-font-size,
+  $color: $color-heading,
+  $color-link: inherit,
+  $color-link-hover: inherit,
+  $font-weight: $typography-h1-desktop-font-weight,
+  $line-height: $typography-h1-desktop-line-height,
+  $letter-spacing: $typography-h1-desktop-letter-spacing,
+  $margin: 0 0 0.5em
+) {
+  color: $color;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  margin: $margin;
+  width: auto;
+
+  &__link {
+    color: $color-link;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-large(
+  $font-family: $typography-h2-desktop-font-family,
+  $font-size: $typography-h2-desktop-font-size,
+  $color: $color-heading,
+  $color-link: inherit,
+  $color-link-hover: inherit,
+  $font-weight: $typography-h2-desktop-font-weight,
+  $line-height: $typography-h2-desktop-line-height,
+  $letter-spacing: $typography-h2-desktop-letter-spacing,
+  $margin: 0 0 0.5em
+) {
+  color: $color;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  margin: $margin;
+  width: auto;
+
+  &__link {
+    color: $color-link;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-medium(
+  $font-family: $typography-h3-desktop-font-family,
+  $font-size: $typography-h3-desktop-font-size,
+  $color: $color-heading,
+  $color-link: inherit,
+  $color-link-hover: inherit,
+  $font-weight: $typography-h3-desktop-font-weight,
+  $line-height: $typography-h3-desktop-line-height,
+  $letter-spacing: $typography-h3-desktop-letter-spacing,
+  $margin: 0 0 0.5em
+) {
+  color: $color;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  margin: $margin;
+  width: auto;
+
+  &__link {
+    color: $color-link;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-small(
+  $font-family: $typography-h4-desktop-font-family,
+  $font-size: $typography-h4-desktop-font-size,
+  $color: $color-heading,
+  $color-link: inherit,
+  $color-link-hover: inherit,
+  $font-weight: $typography-h4-desktop-font-weight,
+  $line-height: $typography-h4-desktop-line-height,
+  $letter-spacing: $typography-h4-desktop-letter-spacing,
+  $margin: 0 0 0.5em
+) {
+  color: $color;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  margin: $margin;
+  width: auto;
+
+  &__link {
+    color: $color-link;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-xs(
+  $font-family: $typography-h5-desktop-font-family,
+  $font-size: $typography-h5-desktop-font-size,
+  $color: $color-heading,
+  $color-link: inherit,
+  $color-link-hover: inherit,
+  $font-weight: $typography-h5-desktop-font-weight,
+  $line-height: $typography-h5-desktop-line-height,
+  $letter-spacing: $typography-h5-desktop-letter-spacing,
+  $margin: 0 0 0.5em
+) {
+  color: $color;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  margin: $margin;
+  width: auto;
+
+  &__link {
+    color: $color-link;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+h1, .h1 {
+  @include heading-xl;
+
+   @include media-breakpoint-down(lg) {
+     @include heading-xl(
+       $font-family: $typography-h1-mobile-font-family,
+       $font-size: $typography-h1-mobile-font-size,
+       $font-weight: $typography-h1-mobile-font-weight,
+       $line-height: $typography-h1-mobile-line-height,
+       $letter-spacing: $typography-h1-mobile-letter-spacing
+     );
+   }
+}
+
+h2, .h2 {
+  @include heading-large;
+
+   @include media-breakpoint-down(lg) {
+     @include heading-large(
+       $font-family: $typography-h2-mobile-font-family,
+       $font-size: $typography-h2-mobile-font-size,
+       $font-weight: $typography-h2-mobile-font-weight,
+       $line-height: $typography-h2-mobile-line-height,
+       $letter-spacing: $typography-h2-mobile-letter-spacing
+     );
+   }
+}
+
+h3, .h3 {
+  @include heading-medium;
+
+   @include media-breakpoint-down(lg) {
+     @include heading-medium(
+       $font-family: $typography-h3-mobile-font-family,
+       $font-size: $typography-h3-mobile-font-size,
+       $font-weight: $typography-h3-mobile-font-weight,
+       $line-height: $typography-h3-mobile-line-height,
+       $letter-spacing: $typography-h3-mobile-letter-spacing
+     );
+   }
+}
+
+h4, .h4 {
+  @include heading-small;
+
+   @include media-breakpoint-down(lg) {
+     @include heading-small(
+       $font-family: $typography-h4-mobile-font-family,
+       $font-size: $typography-h4-mobile-font-size,
+       $font-weight: $typography-h4-mobile-font-weight,
+       $line-height: $typography-h4-mobile-line-height,
+       $letter-spacing: $typography-h4-mobile-letter-spacing
+     );
+   }
+}
+
+h5, .h5 {
+  @include heading-xs;
+
+   @include media-breakpoint-down(lg) {
+     @include heading-xs(
+       $font-family: $typography-h5-mobile-font-family,
+       $font-size: $typography-h5-mobile-font-size,
+       $font-weight: $typography-h5-mobile-font-weight,
+       $line-height: $typography-h5-mobile-line-height,
+       $letter-spacing: $typography-h5-mobile-letter-spacing
+     );
+   }
+}

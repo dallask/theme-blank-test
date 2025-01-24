@@ -1,0 +1,47 @@
+{% set tabs_container_base_class = accordion_tabs.attributes.tabs.container_base_class|default('col-tabs') %}
+{% set tabs_container_modifiers = accordion_tabs.attributes.tabs.container_modifiers|default([]) %}
+{% set tabs_container_extra_classes = accordion_tabs.attributes.tabs.container_extra_classes|default([])|merge([
+  'col-60',
+  'd-none',
+  'd-lg-block',
+]) %}
+
+{% set accordion_container_base_class = accordion_tabs.attributes.accordion.container_base_class|default('col-accordion') %}
+{% set accordion_container_modifiers = accordion_tabs.attributes.accordion.container_modifiers|default([]) %}
+{% set accordion_container_extra_classes = accordion_tabs.attributes.accordion.container_extra_classes|default([])|merge([
+  'col-60',
+  'd-block',
+  'd-lg-none',
+]) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('accordion_tabs'),
+} %}
+  {% block element_content %}
+    <div class="container">
+      <div class="row">
+        <div {{ bem(tabs_container_base_class, tabs_container_modifiers, element_base_class, tabs_container_extra_classes) }}>
+          {% block tabs_section %}
+            {% include "@molecules/tabs/tabs_sb.twig" with {
+              element_base_class: 'tabs',
+              tabs: accordion_tabs.wrapper|default(accordion_tabs.tabs),
+              paragraph_behavior_custom_id: paragraph_behavior_custom_id|default('accordionTabsDesktop'),
+              tabs_fill: accordion_tabs.attributes.tabs.tabs_fill|default(false),
+              tabs_justified: accordion_tabs.attributes.tabs.tabs_justified|default(false),
+            } %}
+          {% endblock %}
+        </div>
+        <div {{ bem(accordion_container_base_class, accordion_container_modifiers, element_base_class, accordion_container_extra_classes) }}>
+          {% block accordion_section %}
+            {% include "@molecules/accordion/accordion.twig" with {
+              element_base_class: 'accordion',
+              accordion: accordion_tabs.wrapper|default(accordion_tabs.tabs),
+              paragraph_behavior_custom_id: paragraph_behavior_custom_id|default('accordionTabsMobile'),
+              accordion_flush: accordion_tabs.attributes.accordion.accordion_flush|default(false),
+            } %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}

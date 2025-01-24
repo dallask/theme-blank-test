@@ -1,0 +1,47 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('prc'),
+  element_modifiers: element_modifiers|default['code-date'],
+} %}
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {% if content["#markup"] is not empty %}
+      {% block block_content_prc_markup %}
+        <span {{ bem('markup', [], 'prc') }}>
+          {{ content["#markup"] }}
+        </span>
+      {% endblock %}
+    {% endif %}
+
+    {% if content["#prc_code_markup"] is not empty %}
+      {% block block_content_prc_code %}
+        <span {{ add_attributes({
+            'class': bem(
+              'code',
+              [],
+              'prc'
+            ),
+            'data-test': 'prc-code'
+          }) }}>
+          {{ content["#prc_code_markup"] }}
+        </span>
+      {% endblock %}
+    {% endif %}
+
+    {% if content["#prc_date_markup"] is not empty %}
+      {% block block_content_prc_date %}
+        <span {{ add_attributes({
+          'class': bem(
+            'date',
+            [],
+            'prc'
+          ),
+          'data-test': 'prc-date'
+        }) }}>
+          {{ content["#prc_date_markup"] }}
+        </span>
+      {% endblock %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}
+

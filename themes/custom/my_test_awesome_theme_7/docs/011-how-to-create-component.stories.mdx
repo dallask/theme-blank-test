@@ -1,0 +1,145 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/How To/Create Component"/>
+
+# How to Create Component
+
+Most basic components as links, lists, buttons, etc. are already exist in the structure.
+To create something bigger, you must utilize those simple particles in accordance with the atomic design approach.
+
+First of all you need to be sure, that you have no any possibility to use existing component for your purpose, and
+really need something new.
+
+1. Determine, what kind of component you are going to create:
+  - `atom` - does not contain any of other component
+  - `molecule` - contain atoms
+  - `organism` - contain atoms and molecules
+  - `template` - contain atoms, molecules, and organisms
+  - `page` - utilize templates to create page types
+1. Create an appropriate separate subfolder with the unique name in the appropriate folder inside
+`components/{number}-{type}` folder (e.g. `components/03-organisms/{component_name}`)
+1. Create next files inside the component folder:
+ - `[component_name].stories.jsx`
+ - `README.mdx`
+ - `[component_name].yml`
+ - `[component_name].twig`
+ - `[component_name].[modifier].twig` (optional)
+ - `_[component_name]-[part-name].scss` (optional)
+ - `[component_name].scss` (optional)
+ - `[component_name].js` (optional)
+1. Fill the `[component_name].stories.jsx` with the certain component
+structure/information/controls.
+Use any existing components in the `components` folder as an example.
+1. Fill the component documentation in the `README.mdx` file
+1. Create the component library inside the `*.libraries.yml` file
+1. Add SCSS and JS code if it needed (for JS using the Drupal behaviors
+approach is mandatory. Behavior name should be unique)
+1. Add twig debug in the template
+1. Run (or restart) storybook with the “npm run test:storybook” command in the theme folder (Make sure that storybook runs without the issues)
+1. Check that your component appears in the Storybook UI
+1. Check all component controls to make sure that they really work as expected
+1. Check the component `Docs` tab
+1. Run build with the `npm run build` command in the theme folder
+(Make sure that build runs without the issues)
+1. Run build with the `npm run webpack` command in the theme folder
+(Make sure that webpack runs without the issues)
+1. Fill all component content, behaviors, attributes
+1. Create component mapping file in `structure` folder if it needed
+1. Check that your component appears in Drupal and looks as expected
+
+## Component twig debug in Drupal
+
+The default Drupal twig debug information will be available only in the Drupal
+entity, but not in your nested components (atoms, molecules, etc.).
+So, it would be totally difficult to see what exact atom or whatever
+is used inside the paragraph or block.
+
+There is a possibility to see what exact template is used inside the Drupal
+entity. For example, you can see twig debug information inside any of
+components in admin mode on Drupal.
+
+To use this feature, just add the next string inside your component somewhere in block declaration:
+
+`{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}`
+
+It will add the next information about certain twig template path:
+
+```
+<!-- THEME STORYBOOK DEBUG -->
+<!-- OUTPUT from '@organisms/component_name/component_name.twig' -->
+```
+
+This functionality is built on `hook_preprocess()` in `*.theme` file and
+depends on the global twig debug option that is set in the twig config for Drupal
+[<img src="/docs/components/components-twig-debug.png" width="320"/>](/docs/components/components-twig-debug.png)
+
+This preprocess places the next: `\Drupal::service('twig')->isDebug()`
+in the twig_debug_on global variable.
+
+## Mapping fields
+
+To create structure mapping fields you can utilize `{{ devel_dump() }}` function from Devel module inside your templates
+to visualize the data structure for your component:
+
+[<img src="/docs/components/components-devel-1.png" width="520"/>](/docs/components/components-devel.png)
+
+[<img src="/docs/components/components-devel-2.png" width="650"/>](/docs/components/components-devel-dump.png)
+
+[<img src="/docs/components/components-devel-3.png" width="520"/>](/docs/components/components-devel-dump.png)
+
+[<img src="/docs/components/components-devel-4.png" width="520"/>](/docs/components/components-devel-dump.png)
+
+## Best practices
+
+### **DO**
+- Use existing components
+- Use existing particles as inclusion in the components
+- Define the default values for all twig variables inside the component
+- Place component SCSS into a separated component-related SCSS file
+- Use BEM approach for style encapsulation to avoid CSS overriding
+- Use bootstrap default mixins and variables as often as you can
+- Store all images for the components in `[component_name]/images` folder
+- Each component in Storybook **MUST** have its own folder and its
+own `*.story.js` file (the same for the component variants)
+- Avoid placing complex logic inside the twig template
+- Store the paragraph's extra settings in behaviors or twig variables
+- After creating, deleting, refactoring, replacing, renaming components
+run `npm run test:storybook`, `npm run storybook`, `npm run build`, `npm run webpack`
+to make sure that the integrity of the system is maintained
+- After creating, deleting, refactoring, replacing, renaming components
+fix the paths in `*.library.yml` file and in all dependent components
+- Store all your components inside components/ folder
+- Use twig namespaces inside your templates
+(e.g.` @organisms/[component_name]/[component_name].twig`)
+(https://www.drupal.org/docs/contributed-modules/components/understanding-twig-namespaces)
+- Use JS webpack aliases for `import` directives instead of absolute or
+relative paths (e.g. `import accordion from
+"@organisms/[component_name]/[component_name].js";`)
+(https://www.npmjs.com/package/babel-plugin-webpack-alias)
+- Use Bootstrap components from storybook or from the original Bootstrap
+site in most cases (same for tags, structures, classes, etc.)
+
+### **DO NOT**
+- Create components without utilizing existing particles
+- Use global CSS selectors, or selectors with common names
+- Place components SCSS into one file or into global.scss
+- Use custom mixins and variables as often as you can
+- Store your images for the components wherever you want
+- Make import SCSS files inside the *.story.js files (all SCSS will be
+imported automatically. All SCSS, except those have the prefix “_”,
+will be built into the dist folder)
+- Place a lot of logic inside the twig template
+- Store the paragraph's extra settings in fields
+- Delete, replace, edit, refactor, rename any component or file you want
+- Store your components wherever you want
+
+## References
+- https://storybook.js.org/docs/react/writing-stories/introduction
+- https://www.emulsify.info/docs/emulsify-drupal/basic-usage/writing-stories
+- https://www.emulsify.info/docs/emulsify-drupal/advanced-usage/3rd-party-libraries
+- https://www.emulsify.info/docs/supporting-projects/webpack-and-build
+- https://twig.symfony.com/doc/3.x/tags/extends.html
+- https://twig.symfony.com/doc/3.x/tags/include.html
+- https://stackoverflow.com/questions/40526990/difference-between-include-extends-use-macro-embed-in-twig
+

@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Styling"/>
+
+# Styling
+
+## SASS
+
+The current version of the Design System utilizes SASS as a CSS preprocessor and Webpack as a bundler/builder.
+All basic stuff and configuration files you can find in the `components/00-base` folder.
+
+### Variables
+The most of these needs covered by means of Bootstrap CSS framework (see `Bootstrap` section).
+
+However, there is the possibility to create your own variables. All custom *not Bootstrap related* variables must be
+placed in the file `components/00-base/00-defaults/_01-variables.scss`
+
+### Functions
+The most of these needs covered by means of Bootstrap CSS framework (see `Bootstrap` section).
+
+There if the special file where you can place your own *not Bootstrap related* SASS functions:
+`components/00-base/00-defaults/_04-functions.scss`.
+
+Please pay attention, that function `rem()` is deprecated. You can use `rfs-value` or `rfs-fluid-value` instead.
+
+### Mixins
+The most of these needs covered by means of Bootstrap CSS framework (see `Bootstrap` section).
+
+There if the special file where you can place your own *not Bootstrap related* SASS mixins:
+`components/00-base/00-defaults/_03-mixins.scss`
+
+### Post CSS
+There is the feature `postcss-pxtorem` that allows to transform some CSS values from `px` to `rem` automatically for
+the production build during `npm run build` process.
+
+The configuration for the functionality can be found in the `postcss.config.js` file.
+
+So, in most cases you do not need to use additional functions like `rem`, `rfs-value` or `rfs-fluid-value`.
+
+## Best practices
+
+### **DO**
+- Use Bootstrap SCSS variables, mixins, functions in most cases
+- Use existing mixins prior creating new
+
+### **DO NOT**
+- Use deprecated functions or mixins
+
+## References
+- https://sass-lang.com/documentation/
+- https://bootstrap-cheatsheet.themeselection.com/mixins.html
+- https://github.com/twbs/rfs
+- https://www.npmjs.com/package/postcss-pxtorem

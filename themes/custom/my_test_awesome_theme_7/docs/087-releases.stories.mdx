@@ -1,0 +1,50 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Releases"/>
+
+# Releases
+
+## Overview
+
+Current version of DS utilizes `semantic-release` tool for releases preparation.
+All releases should be automatically prepared ofter push changes to `main` branch by means of `.github/workflows/release.yml`
+workflow.
+
+Base config of `semantic-release` tool located in the file `.releaserc.js`.
+
+## Commit messages convention
+
+To add any commit to the release changelog you should follow the commit message rules (see References section).
+
+### Commit message examples:
+Feature:
+- `feat: Provided config object to extend other configs`
+
+Breaking changes:
+- `feat(BREAKING CHANGE): Added semantic release tool`
+
+Documentation:
+- `docs: Corrected spelling of CHANGELOG`
+
+Commit message with scope:
+- `feat(lang): Added Polish language`
+
+Fix:
+- `fix: Fixed racing of requests`
+
+Performance update:
+- `perf: Updated performance of Storybook`
+
+With the previous example:
+
+- Commits with a breaking change will be associated with a major release.
+- Commits with type 'feat' will be associated with a minor release.
+- Commits with type 'fix' will be associated with a patch release.
+- Commits with type 'perf' will be associated with a patch release.
+- Commits with scope no-release will not be associated with a release type even if they have a breaking change or the
+type 'feat', 'fix' or 'perf'.
+
+## References:
+- https://semantic-release.gitbook.io/semantic-release
+- https://www.conventionalcommits.org/en/v1.0.0/

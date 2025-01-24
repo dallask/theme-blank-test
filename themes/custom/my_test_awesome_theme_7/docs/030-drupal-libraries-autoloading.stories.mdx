@@ -1,0 +1,91 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Drupal libraries autoloading"/>
+
+# How to create Drupal library
+
+## On-demand loading
+
+For performance optimization, the feature of separate on-demand library
+loading was created.
+
+All CSS and JS files should be separated into parts and loaded only if an
+exact component is present on the page.
+
+Webpack config compiles multiple SCSS files into multiple CSS files while
+keeping the default style.css. Any SASS file that is not a partial (its filename
+is not prefixed with an underscore) will have a file created in `dist/css`.
+
+The main functionality of this feature is present in the `otsuka_ds_preprocess` module
+
+[<img src="/docs/libraries/drupal-on-demand-loading.png" width="100%"/>](/docs/libraries/drupal-on-demand-loading.png)
+
+And all parts of CSS/JS related to a certain component should belong to
+this component as a separate library.
+
+[<img src="/docs/libraries/download-libraries.png" width="100%"/>](/docs/libraries/download-libraries.png)
+
+Those libraries should be attached to the component by means of twig, preprocesses,
+or on-demand loading feature in case of paragraphs, menus, blocks, nodes, etc.
+
+For example, “paragraph.scroll-slider” will be automatically attached to the
+paragraph with the name “scroll-slider”:
+
+[<img src="/docs/libraries/drupal-library-example.png" width="100%"/>](/docs/libraries/drupal-library-example.png)
+
+By means of the next functionality:
+
+[<img src="/docs/libraries/drupal-library-preprocess.png" width="100%"/>](/docs/libraries/drupal-library-preprocess.png)
+
+In most cases you should avoid “attach_library” in the twig template, because
+library will be attached to appropriate entity automatically on-demand,
+and because constructions like `attach_library('...')` are not processed by
+installation functionality of emulsify CLI. So, if you use direct
+`attach_library('...')` in templates you should care about library names on
+your own.
+
+The same approach works by default for menus, blocks, nodes, regions, views, etc.
+
+The global SCSS code should be placed to the `components/global.scss`
+
+The file `dist/global.css` is already added to the Drupal global library
+in `[theme_name].libraries.yml`.
+
+After run `npm run build` you will be able to find the final CSS and JS parts
+of the framework inside the `dist/css`, `dist/img` and `dist/js` folders.
+
+Please pay attention that images also will be ganerated SVG sprite and webp
+version of `png/jpg/gif` images. It allows you to use progressive webp format.
+This requires also modernizr library (which is already included in
+`[theme_name].libraries.yml` and using webp-background mixin (available in
+`components/00-base/00-defaults/_03-mixins.scss`) or similar solution.
+Also, you need webp module in Drupal.
+
+If you need to add some SCSS or JS adjustments just in place in Drupal,
+you can use BrowserSync webpack functionality: `npm run webpack`
+
+Please pay attention that you should set the correct localServer URL first in
+webpack config right after installation of the emulsify theme (`webpack/config.js`).
+
+## Best practices
+
+### **DO**
+- Use Bootstrap libraries as dependencies
+- Use Drupal library autoloading feature instead of `attach_library('...')`
+- After creating, deleting, refactoring, replacing, renaming components or files
+fix the paths in `[theme_name].library.yml` file and in all dependent components
+- After creating, deleting, refactoring, replacing, renaming components run
+`npm run storybook`, `npm run build`, `npm run webpack` to make sure that
+the integrity of the system is maintained
+
+### **DO NOT**
+- Delete, replace, edit, refactor, rename any component or file you want
+without checking the paths integrity
+- Use `attach_library('...')` in twig
+
+## References
+- https://www.emulsify.info/docs/emulsify-drupal/advanced-usage/3rd-party-libraries
+- https://www.emulsify.info/docs/supporting-projects/webpack-and-build
+- https://www.emulsify.info/docs/emulsify-drupal/advanced-usage/hot-reload-drupal
+- https://imagexmedia.com/blog/speed-your-drupal-9-website-webp-images/

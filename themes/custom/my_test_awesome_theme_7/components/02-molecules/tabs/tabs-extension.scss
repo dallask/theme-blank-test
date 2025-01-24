@@ -1,0 +1,73 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+@import '@molecules/tabs/tabs-tokens.scss';
+
+.nav__tabs {  
+  .nav-link {
+    @include media-breakpoint-up(md) {
+      width: vars(component-width);
+      height: vars(component-height);
+      border-color: vars(component-border-color);
+      border-radius: vars(component-border-radius);
+      background-color: vars(component-bg-color);
+    }
+    
+    width: vars(component-mobile-width);
+    height: vars(component-mobile-height);
+    border-color: vars(component-mobile-border-color);
+    border-radius: vars(component-mobile-border-radius);
+    background-color: vars(component-mobile-bg-color);
+  
+    &.active {
+      @include media-breakpoint-up(md) {
+        width: vars(component-width);
+        height: vars(component-height);
+        border-color: vars(component-border-color);
+        border-radius: vars(component-border-radius);
+        background-color: vars(component-bg-color);
+      }
+      
+      width: vars(component-mobile-width);
+      height: vars(component-mobile-height);
+      border-color: vars(component-mobile-border-color);
+      border-radius: vars(component-mobile-border-radius);
+      background-color: vars(component-mobile-bg-color);    
+    }
+  
+    h3 {
+      @include media-breakpoint-up(md) {
+        width: vars(component-heading-width);
+        height: vars(component-heading-height);
+        @include margin(vars(component-heading-spacing-t) vars(component-heading-spacing-r) vars(component-heading-spacing-b) vars(component-heading-spacing-l));
+      }
+      width: vars(component-mobile-heading-width);
+      height: vars(component-mobile-heading-height);
+      @include margin(vars(component-mobile-heading-spacing-t) vars(component-mobile-heading-spacing-r) vars(component-mobile-heading-spacing-b) vars(component-mobile-heading-spacing-l));
+  
+      @include media-breakpoint-up(md) {
+        @include font(
+          $font-size: vars(component-heading-font-size),
+          $color: vars(component-heading-font-color),
+          $font-family: vars(component-heading-font-family),
+          $font-weight: vars(component-heading-font-weight),
+          $line-height: vars(component-heading-font-line-height),
+          $letter-spacing: vars(component-heading-font-letter-spacing),
+        );
+        text-align: vars(component-heading-font-heading-align);
+      };
+  
+      @include font(
+        $font-size: vars(component-mobile-text-font-size),
+        $color: vars(component-mobile-text-font-color),
+        $font-family: vars(component-mobile-text-font-family),
+        $font-weight: vars(component-mobile-text-font-weight),
+        $line-height: vars(component-mobile-text-font-line-height),
+        $letter-spacing: vars(component-mobile-text-font-letter-spacing),
+      );
+      text-align: vars(component-mobile-text-font-text-align);  
+    }
+  }
+}

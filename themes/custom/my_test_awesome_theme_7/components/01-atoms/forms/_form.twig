@@ -1,0 +1,17 @@
+{% import "@atoms/forms/_macro.twig" as inputs %}
+
+{% if not directory %}
+  {% for key, item in element.elements %}
+    {% set element = {
+      elements: element.elements|merge({(key): inputs.form_print_element({(key): item})}),
+    } %}
+  {% endfor %}
+{% endif %}
+
+{% block form %}
+  <form{{ attributes }}>
+    {{ title_prefix }}
+      {{ children }}
+    {{ title_suffix }}
+  </form>
+{% endblock %}

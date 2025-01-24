@@ -1,0 +1,44 @@
+test: /
+title: /title/title
+subtitle: /subtitle/title
+cards:
+  - image:
+      src: /cards/card/0/picture/media/src
+      alt: /cards/card/0/picture/media/alt
+    title: /cards/card/0/title/title
+    subtitle: /cards/card/0/subtitle/title
+    text: /cards/card/0/text/text
+    cta:
+      title: /cards/card/0/cta/title/title
+      icon: /cards/card/0/cta/attributes/icon
+      theme: /cards/card/0/cta/attributes/theme
+      type: /cards/card/0/cta/attributes/type
+    icon: /cards/card/0/icon/media/src_svg
+  - image:
+      src: /cards/card/1/picture/media/src
+      alt: /cards/card/1/picture/media/alt
+    title: /cards/card/1/title/title
+    subtitle: /cards/card/1/subtitle/title
+    text: /cards/card/1/text/text
+    cta:
+      title: /cards/card/1/cta/title/title
+      icon: /cards/card/1/cta/attributes/icon
+      theme: /cards/card/1/cta/attributes/theme
+      type: /cards/card/1/cta/attributes/type
+    icon: /cards/card/1/icon/media/src_svg
+  - image:
+      src: /cards/card/2/picture/media/src
+      alt: /cards/card/2/picture/media/alt
+    title: /cards/card/2/title/title
+    subtitle: /cards/card/2/subtitle/title
+    text: /cards/card/2/text/text
+    cta:
+      title: /cards/card/2/cta/title/title
+      icon: /cards/card/2/cta/attributes/icon
+      theme: /cards/card/2/cta/attributes/theme
+      type: /cards/card/2/cta/attributes/type
+    icon: /cards/card/2/icon/media/src_svg
+footnote: /footnote/text
+link:
+  url: /link/link/url
+  title: /link/link/title

@@ -1,0 +1,38 @@
+@import '@molecules/card/card-g/card-g-extension.scss';
+
+.card-counter-reset {
+  counter-reset: card-counter;
+}
+
+.card-g {
+  display: flex;
+  gap: 16px;
+
+  &::before {
+    counter-increment: card-counter;
+    content: counter(card-counter);
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 24px;
+    line-height: 40px;
+    color: #FFF;
+    background-color: #0665A3;
+    border-radius: 50%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    @include media-breakpoint-up(lg) {
+      gap: 8px;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 0;
+  }
+}

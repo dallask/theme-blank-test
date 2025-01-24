@@ -1,0 +1,196 @@
+paragraph_behavior_variant: 'grid-with-heading'
+element_extra: ['container-xl', 'text-center']
+grid:
+  title: You Are Not Alone
+  subtitle: Hear from other patients living with PBA and taking NUDEXTA
+  cards:
+    - link:
+        url: 'sms:741741'
+      title: 'Text <strong>HOME</strong> to <strong>741741</strong>'
+      text: 
+        '<p><strong>to reach the crisis text line</strong><br>
+        receive free, 24/7 mental health support in English and Spanish</p>'
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - top
+        grid_extra_classes: 
+          - col-30
+          - col-md-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'Call <strong><nobr>800-273-8255</nobr></strong>'
+      text: 
+        '<p><strong>to reach a 24-hour crisis center</strong><br>
+        operated by the national suicide prevention line</p>'
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - top
+        grid_extra_classes: 
+          - col-30
+          - col-md-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - card__link:
+        utl: 'sms:741741'
+      title: 'Call <strong><nobr>800-273-8255</nobr></strong>'
+      text: 
+        '<p><strong>to reach a 24-hour crisis center</strong><br>
+        operated by the national suicide prevention line</p>'
+      image:
+        src: 'https://picsum.photos/id/10/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'mental health america'
+      text: 
+        '<p>warmline database, screening test,&nbsp;&amp;&nbsp;self-help&nbsp;tools</p>'
+      image:
+        src: 'https://picsum.photos/id/20/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'national alliance on mental illness (NAMI)'
+      text: 
+        '<p>video resources, online discussion groups, &amp; more</p>'
+      image:
+        src: 'https://picsum.photos/id/30/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'depression and bipolar support alliance (DBSA)'
+      text: 
+        '<p>online support groups, resources, &amp; wellness tools</p>'
+      image:
+        src: 'https://picsum.photos/id/40/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'anxiety & depression association of america'
+      text: 
+        '<p>support groups near you as well as virtual meeting capabilities</p>'
+      image:
+        src: 'https://picsum.photos/id/50/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'calm'
+      text: 
+        '<p>free meditations</p>'
+      image:
+        src: 'https://picsum.photos/id/60/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+    - link:
+        url: 'sms:741741'
+      title: 'headspace'
+      text: 
+        '<p>free meditations</p>'
+      image:
+        src: 'https://picsum.photos/id/70/320/180'
+        alt: "This is the card image's alt text"
+      attributes:
+        path: molecules/card/card-b/card-b
+        variant: card-b
+        modifier:
+          - main
+        grid_extra_classes: 
+          - col-20
+          - col-md-30
+          - col-sm-60
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+  footnote: |
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+    industry.</p>
+  link:
+    url: '/meet-real-patients'
+    title: 'Meet Real Patients'

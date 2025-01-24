@@ -1,0 +1,23 @@
+{% set share_button__modifiers = share_button__modifiers|default(['inline']) %}
+{% set share_button__blockname = share_button__blockname|default('') %}
+{% set share_button__extra = share_button__extra|default([]) %}
+
+{% set button__additional_classes = button__additional_classes|default([]) %}
+
+<div {{ bem('share-button', share_button__modifiers, share_button__blockname, share_button__extra) }}>
+  {% block content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {% include "@atoms/buttons/button.twig" with {
+      button__content: ('Share')|t,
+      button__additional_classes: button__additional_classes|merge(['share-button-toggler']),
+      button__attributes: {
+        'type': 'button',
+        'aria-label': ('Toggle share links')|t,
+      }
+    } %}
+
+    {{ content }}
+
+  {% endblock %}
+</div>

@@ -1,0 +1,42 @@
+carousel_dark: false
+carousel:
+  - title: First slide label
+    caption: <p>Some representative placeholder content for the first slide.</p>
+    image:
+      src: https://picsum.photos/id/1/1024/768
+      attributes:
+        alt: 'Slide 1'
+        loading: 'lazy'
+  - title: Second slide label
+    caption: <p>Some representative placeholder content for the second slide.</p>
+    image:
+      src: https://picsum.photos/id/2/1024/768
+      attributes:
+        alt: 'Slide 2'
+        loading: 'lazy'
+  - title: Third slide label
+    caption: <p>Some representative placeholder content for the third slide.</p>
+    image:
+      src: https://picsum.photos/id/3/1024/768
+      attributes:
+        alt: 'Slide 3'
+        loading: 'lazy'
+carousel_options:
+  dots: true
+  infinite: true
+  slidesToShow: 2
+  slidesToScroll: 1
+  responsive:
+    - breakpoint: 600
+      settings:
+        slidesToShow: 1
+        slidesToScroll: 1
+carousel_options_bs:
+  'data-bs-ride': 'true'
+  'data-bs-interval': '2000'
+  'data-bs-wrap': 'true'
+docs:
+  source:
+    code: |
+      {% extends "@molecules/carousel/carousel.twig" %}
+

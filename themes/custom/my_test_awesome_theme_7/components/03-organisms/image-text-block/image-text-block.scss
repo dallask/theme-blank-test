@@ -1,0 +1,68 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.image-text-block {
+  --#{$prefix}image-text-block-content-padding: #{$image-text-block-content-padding};
+  --#{$prefix}image-text-block-content-gap: #{$image-text-block-content-gap};
+  --#{$prefix}image-text-block-bg-color: #{$image-text-block-bg-color};
+  --#{$prefix}image-text-block-padding-y: #{$image-text-block-padding-y};
+
+
+  @include make-container(1);
+  padding: vars(image-text-block-padding-y) 0;
+  background-color: vars(image-text-block-bg-color);
+  position: relative;
+
+  &__top-border {
+    @include top-border;
+  }
+
+  &__content {
+    @include make-row();
+
+    justify-content: space-evenly;
+    padding: vars(image-text-block-content-padding);
+
+    &--row {
+      flex-direction: row;
+    }
+
+    &--column {
+      flex-direction: column;
+      width: 100%;
+      gap: vars(image-text-block-content-gap);
+    }
+
+    &--row-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &--column-reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__content-column {
+    @include make-col(25);
+  }
+
+  &__image-wrapper {
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: fill;
+    }
+  }
+
+  &__title {
+  }
+
+  &__text {
+  }
+
+  &__cta {
+  }
+}

@@ -1,0 +1,199 @@
+gallery:
+  config:
+    gallery_head_extra_classes:
+      - col-60
+      - col-lg-20
+    gallery_items_extra_classes:
+      - col-60
+      - col-lg-40
+    'data-switch-event': 'mouseover'
+  cards:
+    - image:
+        src: 'https://picsum.photos/id/10/400/200'
+        attributes:
+          alt: "Beth Battaglino, RNC"
+          loading: "lazy"
+      body: |
+        <p>Chief Executive Officer, HealthyWomen</p>
+      title: 'Beth Battaglino, RNC'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/11/400/200'
+        attributes:
+          alt: "Jessica Edwards, MPS"
+          loading: "lazy"
+      body: |
+        <p>Chief Development Officer, Strategic Alliances and Development, National<br>Alliance on Mental Illness</p>
+      title: 'Jessica Edwards, MPS'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/12/400/200'
+        attributes:
+          alt: "Le Ondra Clark Harvey, PhD"
+          loading: "lazy"
+      body: |
+        <p>CEO, California Council of Community<br> Behavioral Health Agencies; Executive<br> Director, California Access Coalition</p>
+      title: 'Le Ondra Clark Harvey, PhD'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/13/400/200'
+        attributes:
+          alt: "Susan Gurley"
+          loading: "lazy"
+      body: |
+        <p>Executive Director, ADAA</p>
+      title: 'Susan Gurley'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/14/400/200'
+        attributes:
+          alt: "Gabe Howard"
+          loading: "lazy"
+      body: |
+        <p>Speaker, Author, and Host of Healthline Media’s Inside Mental Health Podcast</p><p><a href="https://www.gabehoward.com/">gabehoward.com</a><br><a href="https://www.gabehoward.com/podcasts/">https://www.gabehoward.com/podcasts/</a></p>
+      title: 'Gabe Howard'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/15/400/200'
+        attributes:
+          alt: "Rakesh Jain, MD, MPH"
+          loading: "lazy"
+      body: |
+        <p>Psychiatrist and Clinical Professor of<br> Psychiatry, Texas Tech University School<br> of Medicine</p>
+      title: 'Rakesh Jain, MD, MPH'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/16/400/200'
+        attributes:
+          alt: "Saundra Jain, MA, PsyD, LPC"
+          loading: "lazy"
+      body: |
+        <p>Psychotherapist; Adjunct Clinical Affiliate, The University of Texas at Austin School of Nursing</p>
+      title: 'Saundra Jain, MA, PsyD, LPC'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/17/400/200'
+        attributes:
+          alt: "Katie Russo"
+          loading: "lazy"
+      body: |
+        <p>Senior Director, Strategic Business<br> Development and Operations, ADA</p>
+      title: 'Katie Russo'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/18/400/200'
+        attributes:
+          alt: "Debbie Plotnick, MSS, MLSP"
+          loading: "lazy"
+      body: |
+        <p>Executive Vice President for State and Federal Advocacy, Mental Health America</p>
+      title: 'Debbie Plotnick, MSS, MLSP'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/19/400/200'
+        attributes:
+          alt: "Joe Pyle, MA"
+          loading: "lazy"
+      body: |
+        <p>President, Scattergood Foundation</p>
+      title: 'Joe Pyle, MA'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+    - image:
+        src: 'https://picsum.photos/id/70/400/200'
+        attributes:
+          alt: "Hannah Zeller, MSW"
+          loading: "lazy"
+      body: |
+        <p>Program Manager,<br> Depression and Bipolar Support Alliance</p>
+      title: 'Hannah Zeller, MSW'
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card-a
+        grid_extra_classes:
+          - col-20
+          - mt-15
+        config:
+          card__base_class: 'card'
+          card__image__output_image_tag: true
+
+docs:
+  source:
+    code: |
+      {% extends "@organisms/gallery/gallery.twig" %}

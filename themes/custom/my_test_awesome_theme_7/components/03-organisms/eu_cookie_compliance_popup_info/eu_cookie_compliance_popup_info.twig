@@ -1,0 +1,183 @@
+{#
+/**
+ * @file
+ * This is a template file for a banner prompting user to give their consent for
+ * the website to set cookies.
+ *
+ * When overriding this template it is important to note that jQuery will use
+ * the following classes to assign actions to buttons:
+ *
+ * agree-button      - agree to setting cookies
+ * find-more-button  - link to an information page
+ *
+ * Variables available:
+ * - message:  Contains the text that will be display whithin the banner
+ * - agree_button: Label for the primary/agree button. Note that this is the
+ *   primary button. For backwards compatibility, the name remains agree_button.
+ * - disagree_button: Contains Cookie policy button title. (Note: for historical
+ *   reasons, this label is called "disagree" even though it just displays the
+ *   privacy policy.)
+ * - secondary_button_label: Contains the secondary button label. The current
+ *   action depends on whether you're running the module in Opt-out or Opt-in
+ *   mode.
+ * - primary_button_class: Contains class names for the primary button.
+ * - secondary_button_class: Contains class names for the secondary button
+ *   (if visible).
+ * - cookie_categories: Contains a array with cookie categories that can be
+ *   agreed or disagreed to separately.
+ * - save_preferences_button_label: Label text for a button to save the consent
+ *   preferences.
+ *   category cannot be unchecked.
+ * - privacy_settings_tab_label: Label text for the Privacy settings tab.
+ * - withdraw_button_on_info_popup: Show the withdraw button on this popup.
+ * - method: Chosen consent method.
+ */
+#}
+{% set block_blockname = block_blockname|default('block') %}
+{% set block_base_class = block_base_class|default('ds-eu-cookie-compliance-popup-info') %}
+{% set block_extra = block_extra|default([]) %}
+{# generate block classes #}
+{% set block_class = bem(
+  block_base_class,
+  block_modifiers|default([]),
+  block_blockname,
+  [
+    attributes.class is defined ? (attributes.class is iterable ? attributes.class|join(' ') : attributes.class) : '',
+    block_extra|join(' '),
+  ]
+) %}
+{% set block_attributes = {
+  class: block_class,
+  'data-analytics-position': 'Cookie Banner',
+} %}
+
+{% set block_container_class = block_container_class|default('container') %}
+
+{% block content %}
+  {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+  {#
+  The library attached by means of hook_page_attachments_alter() in theme file
+  because attach_library() does not work for this certain module
+  #}
+
+  {% if privacy_settings_tab_label %}
+    {% include "@atoms/buttons/button.twig" with {
+      button__base_class: "ds-eu-cookie-withdraw-tab"|default('button'),
+      button__attributes: { 'type': 'button' },
+      button__content: privacy_settings_tab_label,
+    } %}
+  {% endif %}
+  {% set classes = [
+    'ds-eu-cookie-compliance-banner',
+    'ds-eu-cookie-compliance-banner-info',
+    'ds-eu-cookie-compliance-banner--' ~ method|clean_class,
+  ] %}
+
+  {% set block_inner_class = bem(
+    block_base_class,
+    block_modifiers|default([]),
+    block_blockname ~ '-inner',
+    [
+      attributes.class is defined ? (attributes.class is iterable ? attributes.class|join(' ') : attributes.class) : '',
+      classes|join(' '),
+    ]
+  ) %}
+  <div {{ add_attributes(block_attributes) }}>
+    <div {{ bem(block_container_class, [], 'container', [block_container_class]) }}>
+      <div role="alertdialog"
+           aria-labelledby="popup-text" {{ add_attributes(attributes.without('class')) }} {{ block_inner_class }}>
+        <div class="popup-content info ds-eu-cookie-compliance-content">
+          <div class="row">
+            <div id="popup-text" class="ds-eu-cookie-compliance-message col-60 col-md-45">
+              {% set eu_cookie_message %}
+                {{ message }}
+              {% endset %}
+
+              {{ eu_cookie_message }}
+              {% if more_info_button %}
+                {% include "@atoms/links/link/link.twig" with {
+                  link_base_class: "find-more-button",
+                  link_content: more_info_button,
+                  link_extra: [
+                  ]
+                } %}
+              {% endif %}
+            </div>
+            {% if cookie_categories %}
+              <div id="ds-eu-cookie-compliance-categories"
+                   class="ds-eu-cookie-compliance-categories col-60">
+                {% for key, category in cookie_categories %}
+                  <div class="ds-eu-cookie-compliance-category">
+                    <div>
+                      <input type="checkbox" name="cookie-categories"
+                             id="cookie-category-{{ key }}"
+                             value="{{ key }}"
+                        {% if category.checkbox_default_state in ['checked', 'required'] %} checked {% endif %}
+                        {% if category.checkbox_default_state == 'required' %} disabled {% endif %} >
+                      <label
+                        for="cookie-category-{{ key }}">{{ category.label }}</label>
+                    </div>
+                    {% if category.description %}
+                      <div
+                        class="ds-eu-cookie-compliance-category-description">{{ category.description }}</div>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+                {% if save_preferences_button_label %}
+                  <div class="ds-eu-cookie-compliance-categories-buttons">
+                    {% include "@atoms/buttons/button.twig" with {
+                      button__base_class: "ds-eu-cookie-compliance-save-preferences-button",
+                      button__content: save_preferences_button_label,
+                      button__attributes: {
+                        'type': 'button',
+                      },
+                      button__additional_classes: [
+                        'save_preferences_button_label',
+                        'btn',
+                        'btn-sm',
+                        'btn-secondary',
+                      ]
+                    } %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            <div id="popup-buttons"
+                 class="ds-eu-cookie-compliance-buttons{% if cookie_categories %} ds-eu-cookie-compliance-has-categories{% endif %} col-60 col-md-15 text-md-end">
+              {% include "@atoms/buttons/button.twig" with {
+                button__base_class: primary_button_class,
+                button__content: agree_button,
+                button__attributes: {
+                  'type': 'button',
+                },
+                button__additional_classes: [
+                  primary_button_class,
+                  'btn',
+                  'btn-sm',
+                  'btn-primary',
+                ]
+              } %}
+              {% if secondary_button_label %}
+                {% include "@atoms/buttons/button.twig" with {
+                  button__base_class: secondary_button_class,
+                  button__content: secondary_button_label,
+                  button__attributes: {
+                    'type': 'button',
+                  },
+                  button__additional_classes: [
+                    secondary_button_class,
+                    'btn',
+                    'btn-sm',
+                    'btn-warning',
+                  ]
+                } %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

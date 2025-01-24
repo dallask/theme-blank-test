@@ -1,0 +1,21 @@
+<div {{ bem('back-to-top', [], '', []) }}>
+  {% block content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {% include "@atoms/links/link/link.twig" with {
+      link_content: content,
+      link_base_class: 'back-to-top-button',
+      link_blockname: 'block',
+      link_extra: [
+        'btn',
+        'btn-lg',
+        'btn-warning',
+        'rounded-pill',
+        'position-fixed',
+      ],
+      link_attributes: {
+        'data-analytics-name': 'Back To Top',
+      }
+    } %}
+  {% endblock %}
+</div>

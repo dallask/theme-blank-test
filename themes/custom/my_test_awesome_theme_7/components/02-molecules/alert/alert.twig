@@ -1,0 +1,53 @@
+{#
+/**
+ * Available variables:
+ * - content - the content of the alert (typically text)
+ *
+ * Available blocks:
+ * - content - used to replace the content of the button with something other than text
+ *   for example: to insert an icon
+ */
+#}
+
+{% set alert_base_class = alert_base_class|default('alert') %}
+{% set alert_modifiers = alert_modifiers|default([]) %}
+{% set alert_blockname = alert_blockname|default('') %}
+{% set alert_variant = alert_variant|default('primary') %}
+{% set alert_dismissible = alert_dismissible|default(true) %}
+{% set alert_content = alert_content|default('Alert content') %}
+
+{% set alert_attributes = {
+  class: bem(
+    alert_base_class,
+    alert_modifiers,
+    alert_blockname,
+    [
+      'alert',
+      'alert-' ~ alert_variant,
+      alert_dismissible ? 'alert-dismissible' : '',
+      'fade',
+      'show',
+      alert_classes|join(' '),
+    ]
+  ),
+  'role': 'alert',
+}|merge(alert_attributes|default({})) %}
+
+<div {{ add_attributes(alert_attributes) }}>
+  {% block alert_content %}
+    {{ alert_content }}
+  {% endblock %}
+  {% if alert_dismissible %}
+    {% include "@atoms/buttons/button.twig" with {
+      button__base_class: 'btn-alert',
+      button__additional_classes: [
+        'btn-close',
+      ],
+      button__attributes: {
+        'type': 'button',
+        'data-bs-dismiss': 'alert',
+        'aria-label': 'Close',
+      }
+    } %}
+  {% endif %}
+</div>

@@ -1,0 +1,67 @@
+{% set navbar_base_class = navbar_base_class|default('navbar') %}
+{% set navbar_modifiers = navbar_modifiers|default([]) %}
+{% set navbar_blockname = navbar_blockname|default('') %}
+
+{% set navbar_variant = navbar_variant|default('primary') %}
+{% set navbar_container = navbar_container|default('container') %}
+{% set navbar_collapsible = navbar_collapsible|default('true') %}
+{% set navbar_expand_point = navbar_expand_point|default('md') %}
+
+{% set navbar_attributes = {
+  class: bem(
+    navbar_base_class,
+    navbar_modifiers,
+    navbar_blockname,
+    [
+      'navbar',
+      'navbar-' ~ navbar_background|default('dark'),
+      'bg-' ~ navbar_variant,
+      'navbar-expand-' ~ navbar_expand_point,
+      navbar_extra|join(' '),
+    ]
+  ),
+  'aria-label': navbar_variant,
+  'id': navbar_id|default(navbar_variant),
+}|merge(navbar_attributes|default({})) %}
+
+<nav {{ add_attributes(navbar_attributes) }}>
+  <div {{ bem(navbar_container, [], navbar_base_class, [navbar_container]) }}>
+    {% block navbar_content_logo %}
+      {{ navbar_content.navbar_logo }}
+    {% endblock %}
+
+    {% if navbar_collapsible and navbar_collapsible is not same as('false') %}
+      {% embed "@atoms/buttons/button.twig" with {
+        button__additional_classes: [
+          'navbar-toggler',
+          'data-analytics-click-link',
+        ],
+        button__attributes: {
+          'type': 'button',
+          'data-bs-toggle': 'collapse',
+          'data-bs-target': '#navbar_collapse-' ~ navbar_attributes.id,
+          'aria-expanded': 'false',
+          'aria-label': ('Toggle navigation')|t,
+          'aria-controls': 'navbar_collapse-' ~ navbar_attributes.id,
+          'data-test': 'mobile-menu-toggle',
+          'data-analytics-link': {
+            name: "Navbar Toggler",
+            position: data_analytics_position,
+            group: "Navbar",
+          }|json_encode(constant('JSON_UNESCAPED_SLASHES'))
+        }
+      } %}
+        {% block button__content %}
+          <span class="navbar-toggler-icon"></span>
+        {% endblock %}
+      {% endembed %}
+    {% endif %}
+
+    {% block navbar_content_menu %}
+    <div {{ bem(navbar_collapsible and navbar_collapsible is not same as('false') ? 'collapse' : '', [], navbar_base_class, [navbar_collapsible and navbar_collapsible is not same as('false') ? 'collapse' : '', 'navbar-collapse']) }}
+      id="navbar_collapse-{{ navbar_attributes.id }}">
+      {{ navbar_content.navbar_menu }}
+    </div>
+  </div>
+  {% endblock %}
+</nav>

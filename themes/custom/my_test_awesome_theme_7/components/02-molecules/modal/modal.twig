@@ -1,0 +1,27 @@
+{% set modal__blockname = modal__blockname|default('') %}
+{% set modal__base_class = modal__base_class|default('modal') %}
+{% set modal__modifiers = modal__modifiers|default([]) %}
+{% set modal__extra = modal__extra|default(['fade']) %}
+{% set modal__id = modal__id|default('modal-external-link') %}
+{% set modal__attributes = {
+  'class': bem(modal__base_class, modal__modifiers, modal__blockname, modal__extra),
+  'id': modal__id,
+  'tabindex': '-1',
+  'aria-label': modal_title|default('You Are Now Leaving This Site'),
+  'aria-hidden': 'true',
+  'data-test': 'modal',
+} %}
+
+{% block modal_trigger %}
+  {% include "@atoms/buttons/button.twig" with {
+    button__additional_classes: ['btn-primary'],
+    button__attributes: {
+      'data-bs-toggle': 'modal',
+      'data-bs-target': '#' ~ modal__id,
+      'data-test': 'modal-btn',
+    },
+    button__content: 'Launch static backdrop modal'
+  } %}
+{% endblock %}
+
+{% include "@molecules/modal/_modal.twig" %}

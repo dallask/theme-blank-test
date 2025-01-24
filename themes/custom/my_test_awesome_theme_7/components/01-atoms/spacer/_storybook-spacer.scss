@@ -1,0 +1,13 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.storybook-wrapper {
+  .spacer,
+  .spacer-custom {
+    background: $green;
+  }
+}
+

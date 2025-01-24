@@ -1,0 +1,103 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.videoReact {
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    overflow: hidden;
+
+    .thumbnail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      position: absolute;
+      inset: 0;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      cursor: pointer;
+      z-index: 1;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .thumbnail-image {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      .play-button {
+        position: relative;
+        width: 77px;
+        height: 77px;
+
+        .icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          &::before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            content: '';
+            background: url('./img/icon-video-play.svg');
+            background-size: 77px 77px;
+            height: 77px;
+            width: 77px;
+            z-index: 2;
+          }
+        }
+      }
+
+      &:hover {
+        .play-button {
+          .icon {
+            &::before {
+              transform: translate(-50%, -50%) scale(1.05);
+            }
+          }
+        }
+      }
+    }
+
+    .react-player-video {
+      display: none;
+
+      & > div {
+        position: absolute;
+        inset: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &.play {
+      .thumbnail {
+        display: none;
+      }
+
+      .react-player-video {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Theme implementation for a 'webform' element.
+ *
+ * This is an copy of the webform.html.twig theme_wrapper which includes the
+ * 'title_prefix' and 'title_suffix' variables needed for
+ * contextual links to appear.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the webform.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_webform()
+ * @see _webform_form_after_build()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default([])|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [''])
+  ) %}
+
+{% extends "@atoms/forms/_form.twig" %}
+
+{% block form %}
+  <form {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+    {{ element.form_id }}
+    {{ element.form_token }}
+    {{ element.form_build_id }}
+    {{ element.ceid }}
+    <div class="container">
+      {{ title_prefix }}
+      <div class="col-60">
+        {% set errors_message = [] %}
+        {% if element.elements['#children_errors'] %}
+          {% for error in element.elements['#children_errors'] %}
+            {% set errors_message = errors_message|merge([{
+              list__item__content: error,
+              list__item__attributes: {
+                'data-analytics-form-error': error,
+              }
+            }]) %}
+          {% endfor %}
+
+          {% embed "@molecules/alert/alert.twig" with {
+            alert_content: error,
+            alert_dismissible: true,
+            alert_variant: 'danger'
+          }%}
+            {% block alert_content %}
+              {% include "@atoms/lists/list.twig" with {
+                list__items: errors_message,
+              }%}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
+      </div>
+      <div class="row">
+        <div class="col-60 col-lg-30">
+          {{ element.elements.name }}
+          {{ element.elements.email }}
+          {{ element.elements.subject }}
+          {{ element.elements.message }}
+          {{ element.elements.checkbox_sample }}
+        </div>
+        <div class="col-60 col-lg-30">
+          {{ element.elements.radios_sample }}
+          {{ element.elements.select_sample }}
+          {{ element.elements.test_fieldset }}
+          {{ element.elements.captcha }}
+        </div>
+        <div class="col-60 text-center mt-30">
+          {{ element.elements.actions }}
+        </div>
+      </div>
+      {{ title_suffix }}
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+@import '@molecules/tabs/tabs-extension.scss';
+
+.tabs {
+    margin: auto;
+
+    .nav__tabs {
+        display: flex;
+        justify-content: center;
+    }
+}

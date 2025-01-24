@@ -1,0 +1,92 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Accessibility/CTA"/>
+
+## catch, Dropdown/Tooltip
+
+
+### CTA
+
+Design System propose several type of markup as a button or link type, with only icon or text and icon.
+CTA with link should only be user for proper link. In other case preferred to use button tag.
+
+Anti-pattern is use of "javascript:" "#" or similar as the value of an href attribute. Never do this.
+The purpose of the href attribute is to specify a URL only. If you wish to run JavaScript on an element click, use a button instead.
+https://ebay.gitbook.io/mindpatterns/antipatterns/javascript-href
+
+Text inside button or link tag describe component. In case CTA wrap only image/icon description for CTA should be prepared with 'aria-label' attribute.
+
+Using a hamburger menu as an example, for button behaviour:
+
+```html
+<button class="icon-btn" type="button" aria-label="Menu">
+    <svg class="icon icon--menu" focusable="false" width="16" height="16" aria-hidden="true">
+        <use xlink:href="icons.svg#icon-menu"></use>
+    </svg>
+</button>
+```
+
+For link behaviour:
+
+```html
+<a class="icon-link" href="http://www.ebay.com" aria-label="Menu">
+    <svg class="icon icon--menu" focusable="false" width="16" height="16" aria-hidden="true">
+        <use xlink:href="icons.svg#icon-menu"></use>
+    </svg>
+</a>
+```
+
+
+### Dropdown
+
+A dropdown might open on click, focus or hover, on any kind of host button, input or link.
+
+For correct reading order, and to minimize accessibility defects, the overlay element and its content should always immediately follow the host element in the DOM.
+
+```html
+<div class="dropdown">
+    <button class="dropdown__host" aria-expanded="false">Host Button</button>
+    <div class="dropdown__overlay">
+        <!-- overlay content -->
+    </div>
+</div>
+```
+
+If the overlay element cannot be immediately adjacent to the button element, then an additional class will be required for styling purposes:
+
+```html
+<div class="dropdown dropdown--expanded">
+    <div>
+        <button class="dropdown__host" aria-expanded="true">Host Button</button>
+    </div>
+    <div class="dropdown__overlay">
+        <!-- overlay content -->
+    </div>
+</div>
+```
+
+
+### Tooltip
+
+A tooltip is expanded and visible on hover and focus of host element.
+
+Tooltip structure is almost identical to dropdown structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+
+```html
+<label for="password">Password:</label>
+<input aria-describedby="passwordrules" id="password" type="password" />
+<div role="tooltip" id="passwordrules">
+  <p>Password Rules:</p>
+  <ul>
+    <li>Minimum of 8 characters</li>
+    <li>
+      Include at least one lowercase letter, one uppercase letter, one number
+      and one special character
+    </li>
+    <li>Unique to this website</li>
+  </ul>
+</div>
+```
+
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role

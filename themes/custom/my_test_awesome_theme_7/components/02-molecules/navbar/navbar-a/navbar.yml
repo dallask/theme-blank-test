@@ -1,0 +1,107 @@
+navbar_content:
+  navbar_logo: 'logo.png'
+  navbar_menu_switcher:
+    - title: 'Schizophrenia'
+      below:
+        - title: 'Bipolar I Disorder'
+          url: '#'
+        - title: 'Schizophrenia'
+          url: '#'
+  navbar_menu:
+    - title: 'About </br>ABILIFY ASIMTUFII'
+      url: '#'
+      below:
+        - title: 'Learn about ABILIFY ASIMTUFII'
+          url: '#'
+        - title: 'How ABILIFY ASIMTUFII may help'
+          url: '#'
+        - title: 'Side effects of ABILIFY ASIMTUFII'
+          url: '#'
+    - title: 'Getting </br>started'
+      url: '#'
+      below:
+        - title: 'Talking to your healthcare provider'
+          url: '#'
+        - title: 'What to know about ABILIFY ASIMTUFII'
+          url: '#'
+    - title: 'Savings </br>& support'
+      url: '#'
+      below:
+        - title: 'Cost & savings'
+          url: '#'
+        - title: 'Support for care partners'
+          url: '#'
+        - title: 'Tools & resources'
+          url: '#'
+        - title: 'Share your story'
+          url: '#'
+    - title: 'ABILIFY ASIMTUFII </br>stories'
+      url: '#'
+      below:
+        - title: 'Personal stories'
+          url: '#'
+        - title: 'Share your story'
+          url: '#'
+    - title: 'Common </br>questions'
+      url: '#'
+  navbar_menu_docs:
+    - title: 'U.S. <u>Prescribing information</u>, including <u>BOXED WARNING</u>'
+      url: '#'
+      below:
+        - title: 'ABILIFY ASIMTUFII<sup>®</sup> (aripiprazole)'
+          url: '#'
+        - title: 'ABILIFY MAINTENA<sup>®</sup> (aripiprazole)'
+          url: '#'
+    - title: '<u>Medication Guide</u>'
+      url: '#'
+      below:
+        - title: 'ABILIFY ASIMTUFII<sup>®</sup> (aripiprazole)'
+          url: '#'
+        - title: 'ABILIFY MAINTENA<sup>®</sup> (aripiprazole)'
+          url: '#'
+    - title: '<u>U.S. Healthcare Providers Website</u>'
+      url: '#'
+      link_attributes:
+        classes: 'desktop-only'
+    - title: '<u>Learn about a once-monthly treatment</u>'
+      url: '#'
+      below:
+        - title: 'ABILIFY MAINTENA® (aripiprazole) for bipolar I disorder in adults'
+          url: '#'
+        - title: 'ABILIFY MAINTENA® (aripiprazole) for schizophrenia in adults'
+          url: '#'
+  navbar_actions:
+    - title: 'get the saving card'
+      url: '/'
+variant:
+  - primary
+  - secondary
+  - success
+  - danger
+  - warning
+  - info
+  - dark
+  - light
+background:
+  - dark
+  - light
+expand_point:
+  - sm
+  - md
+  - lg
+  - xl
+  - xxl
+container:
+  - container
+  - container-fluid
+classes: []
+attributes: {}
+docs:
+  source:
+    code: |
+      {% include '@molecules/navbar/navbar-a/navbar-a.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

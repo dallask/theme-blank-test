@@ -1,0 +1,99 @@
+{% set accordion_id = custom_attributes.id|default('customBSAccordion') %}
+{% set accordion_base_class = accordion_base_class|default('accordion') %}
+{% set accordion_modifiers = accordion_modifiers|default([]) %}
+{% set accordion_blockname = accordion_blockname|default('') %}
+{% set accordion_extra_attributes = accordion_extra_attributes|default({id: paragraph_behavior_custom_id|default('default_id')}) %}
+{% set accordion__data_analytics_group = attributes.data_analytics_group|default('Accordion') %}
+
+{% set accordion_attributes = {
+  class: bem(
+    accordion_base_class,
+    accordion_modifiers,
+    accordion_blockname,
+    [
+      'container',
+      accordion_flush ? 'accordion-flush' : '',
+      accordion_classes|join(' '),
+    ]
+  ),
+}|merge(accordion_extra_attributes|default({
+  id: accordion_id
+})) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: 'accordion',
+  element_extra: [
+    'accordion',
+    'container',
+    accordion_flush ? 'accordion-flush' : '',
+    accordion_classes|join(' '),
+  ],
+  element_attributes: {
+    id: paragraph_behavior_custom_id|default(accordion_extra_attributes.id),
+    'data-test': 'accordion',
+    'data-analytics-group': accordion__data_analytics_group|render is not empty ? accordion__data_analytics_group|striptags : 'Accordion',
+  }
+} %}
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+    {% for item in accordion['accordion-item']|default(accordion) %}
+      <div {{ bem('accordion-item') }} {{ add_attributes({'data-test': 'accordion-item'}) }}>
+        {% set title = item.title.title %}
+        {% set media = item.title.media %}
+        {% set heading_button_content %}
+          {% if media %}
+            {% include "@atoms/images/image/responsive-image.twig" with {
+              responsive_image_blockname: element_base_class,
+              image_src: media.media.src|default(media.src),
+              image_alt: media.media.alt|default(media.alt),
+              output_image_tag: true,
+            } %}
+          {% endif %}
+          {% if title %}
+            {% include "@atoms/text/headings/_heading.twig" with {
+              heading__base_class: config.card__heading__base_class|default('heading'),
+              heading__modifiers: config.card__heading__modifiers,
+              heading__blockname: card__base_class,
+              heading_level: 3,
+              heading: title.title|default(title),
+            } %}
+          {% endif %}
+        {% endset %}
+        {% set heading_content %}
+          {% include "@atoms/buttons/button.twig" with {
+            button__content: heading_button_content,
+            button__base_class: 'accordion-button',
+            button__additional_classes: [
+              item.attributes.expanded ? ' ' : 'collapsed',
+            ],
+            button__attributes: {
+              'type': 'button',
+              'data-bs-toggle': 'collapse',
+              'data-bs-target': '#collapse' ~ accordion_attributes.id ~ loop.index0,
+              'aria-expanded': item.attributes.expanded ? 'true' : 'false',
+              'aria-controls': 'collapse' ~ accordion_attributes.id ~ loop.index0,
+              'data-analytics-name': item.title.title|default(item.title)|trim|striptags,
+            }
+          } %}
+        {% endset %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          "heading_level": 2,
+          'heading__base_class': 'accordion-header',
+          "heading": heading_content,
+          'heading_attributes': {
+            'id': 'heading' ~ accordion_attributes.id ~ loop.index0
+          }
+        } %}
+        <div id="collapse{{ accordion_attributes.id ~ loop.index0 }}"
+          {{ bem('collapse', [], '', ['accordion-collapse', 'collapse', item.expanded ? "show" : ""]) }}
+             role="region"
+             aria-labelledby="heading{{ accordion_attributes.id ~ loop.index0 }}"
+          {% if not accordion_always_opened %}data-bs-parent="#{{ accordion_attributes.id }}"{% endif %}>
+          <div {{ bem('accordion-body') }}>
+            {{ (item.content.text.text|default(item.content))|raw }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

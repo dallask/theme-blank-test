@@ -1,0 +1,48 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.card-video {
+  .videoReact {
+    margin-bottom: 8px;
+
+    .container {
+      padding: 0;
+    }
+  }
+
+  &__heading {
+    color: #103a71;
+    margin: 0 0 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: $line-heights-sm;
+  }
+
+  &__subheading {
+    display: none;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: $line-heights-sm;
+  }
+
+  &__body {
+    margin-bottom: 5px;
+
+    p {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      line-height: $line-heights-sm;
+      color: $body-color;
+    }
+  }
+
+  &__video_time {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: $line-heights-base;
+    color: $body-color;
+  }
+}

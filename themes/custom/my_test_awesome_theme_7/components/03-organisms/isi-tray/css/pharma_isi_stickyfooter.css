@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/*
+ * @file:  pharma_isi_stickyfooter.css
+ * boilerplate css for the sticky footer jump link that appears when the "Enable ISI Footers Behavior" setting is enabled and "Enable Drawer UX Behavior" setting is disabled
+ *
+ */
+
+.isi-tray {
+  background: #ffffff;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  transition: opacity .25s ease;
+  width: 100%;
+  z-index: 500;
+}
+.isi-tray.hide-tray {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.isi-header-wrap {
+  margin: 0 auto;
+  max-width: 840px;
+  position: relative;
+}
+
+.isi-header {
+  background-color: #e6e7e8;
+  padding: 10px 15px;
+  position: relative;
+}
+@media all and (min-width: 768px) {
+  .isi-header {
+    padding: 9px 15px 11px;
+} }
+.isi-header .drawer-title {
+  margin: 0;
+  text-align: center;
+}
+.isi-header .drawer-title a {
+  font: 22px/26px Arial, ​sans-serif;
+  color: #f7941d;
+  text-decoration: none;
+  border-bottom: 1px dotted;
+}
+@media all and (min-width: 768px) {
+  .isi-header .drawer-title a {
+    font-size: 24px;
+    line-height: 28px;
+} }
+.isi-header .drawer-title a:hover,
+.isi-header .drawer-title a:active,
+.isi-header .drawer-title a:focus {
+  color: #f7941d;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}

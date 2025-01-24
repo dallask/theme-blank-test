@@ -1,0 +1,26 @@
+{#
+/*
+* @file:  block--pharma-isi.twig.html
+* @description: ISI block twig template
+*
+*/
+#}
+
+{% set block_title %}
+  {{ elements.content.title }}
+{% endset %}
+
+{% set block_markup %}
+  {{ elements.content.bodyContent }}
+{% endset %}
+
+<a id="isi-top" name="isi-top"></a>
+<section id="inline-isi-wrapper" class="section isi-section container" data-analytics-position = 'ISI'>
+
+  <div class="isi isi-block">
+    <div class="isi-inline-title-wrap"><span class="isi-block-title">{{ block_title }}</span></div>
+
+    <div class="isi-inline-inner-wrap">{{ block_markup }}</div>
+  </div>
+
+</section>

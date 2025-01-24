@@ -1,0 +1,122 @@
+element_extra: ['container-md', 'text-center']
+grid:
+  title: You Are Not Alone
+  subtitle: Hear from other patients living with PBA and taking NUDEXTA
+  cards:
+    - image:
+        src: 'https://picsum.photos/320/180'
+        alt: "This is the card image's alt text"
+      title: 'Connie, patient living with MS and PBA'
+      blockquote: 
+        text: '[At my great aunt’s funeral], I was trying to get [my laughing] under control, and I just couldn’t.'
+        cite: 
+          text: 'Connie, patient with MS and PBA'
+      cta:
+        title: "Read Connie's Story"
+        url: 'sms:741741'
+      # text: | 
+      #   <ul class="ul">
+      #   <li>Answer 7 short questions about your loved one’s crying and/or laughing episodes here: <a href="/pba-quiz#quiz"><span>take the PBA Quiz</span></a>.</li>
+      #   <li>Encourage your loved one to take the PBA Quiz.</li>
+      #   <li><a href="https://www.facebook.com/groups/ourpbasupportgroup/"><span>Join Our PBA Support Group</span></a> on Facebook, where you can meet people living with or affected by PBA.</li>
+      #   <li><a href="/educate"><span>Learn more with our PBA FAQs</span></a></li>
+      #   </ul>
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card
+        modifier: 
+          - top-side
+        grid_extra_classes: 
+          - col-60
+          - col-lg-30
+          - col-xl-20
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+          card__blockquote__divider: true
+          card__cta__icon: 'arrow-white-right'
+          card__cta__modifiers:
+            - icon-right
+            - lg
+            - link
+    - image:
+        src: 'https://picsum.photos/320/180'
+        alt: "This is the card image's alt text"
+      title: 'Connie, patient living with MS and PBA'
+      blockquote:
+        text: '[At my great aunt’s funeral], I was trying to get [my laughing] under control, and I just couldn’t.'
+        cite: 
+          text: 'Connie, patient with MS and PBA'
+      cta:
+        title: "Read Connie's Story"
+        url: 'sms:741741'
+      # text: | 
+      #   <ul class="ul">
+      #   <li>Answer 7 short questions about your loved one’s crying and/or laughing episodes here: <a href="/pba-quiz#quiz"><span>take the PBA Quiz</span></a>.</li>
+      #   <li>Encourage your loved one to take the PBA Quiz.</li>
+      #   <li><a href="https://www.facebook.com/groups/ourpbasupportgroup/"><span>Join Our PBA Support Group</span></a> on Facebook, where you can meet people living with or affected by PBA.</li>
+      #   <li><a href="/educate"><span>Learn more with our PBA FAQs</span></a></li>
+      #   </ul>
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card
+        modifier: 
+          - top-side
+        grid_extra_classes: 
+          - col-60
+          - col-lg-30
+          - col-xl-20
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+          card__blockquote__divider: true
+          card__cta__icon: 'arrow-white-right'
+          card__cta__modifiers:
+            - icon-right
+            - lg
+            - link
+    - image:
+        src: 'https://picsum.photos/320/180'
+        alt: "This is the card image's alt text"
+      title: 'Connie, patient living with MS and PBA'
+      blockquote:
+        text: '[At my great aunt’s funeral], I was trying to get [my laughing] under control, and I just couldn’t.'
+        cite: 
+          text: 'Connie, patient with MS and PBA'
+      cta:
+        title: "Read Connie's Story"
+        url: 'sms:741741'
+      # text: | 
+      #   <ul class="ul">
+      #   <li>Answer 7 short questions about your loved one’s crying and/or laughing episodes here: <a href="/pba-quiz#quiz"><span>take the PBA Quiz</span></a>.</li>
+      #   <li>Encourage your loved one to take the PBA Quiz.</li>
+      #   <li><a href="https://www.facebook.com/groups/ourpbasupportgroup/"><span>Join Our PBA Support Group</span></a> on Facebook, where you can meet people living with or affected by PBA.</li>
+      #   <li><a href="/educate"><span>Learn more with our PBA FAQs</span></a></li>
+      #   </ul>
+      attributes:
+        path: molecules/card/card-a/card-a
+        variant: card
+        modifier: 
+          - top-side
+        grid_extra_classes: 
+          - col-60
+          - col-lg-30
+          - col-xl-20
+          - d-inline-flex
+          - justify-content-center
+        config:
+          card__image__output_image_tag: true
+          card__blockquote__divider: true
+          card__cta__icon: 'arrow-white-right'
+          card__cta__modifiers:
+            - icon-right
+            - lg
+            - link
+  footnote: |
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+    industry.</p>
+  link:
+    url: '/meet-real-patients'
+    title: 'Meet Real Patients'

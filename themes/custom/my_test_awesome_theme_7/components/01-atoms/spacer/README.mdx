@@ -1,0 +1,33 @@
+## The component that allows to add custom margins paddings to your wrapper.
+
+To utilize this feature you should:
+1. extend/embed the common wrapper from `components/00-base/06-common/_wrapper.twig`.
+1. Add the next code to your wrapper paragraph behaviors:
+```
+spacing:
+  pt: 30rem
+  pt-md: 25px
+  mb: 10px
+  mb-md: 140px
+```
+
+Component covers the next options:
+- `pt` - padding-top
+- `pb` - padding-bottom
+- `ps` - padding-left
+- `pe` - padding-right
+- `pt-md` - padding-top for desktop
+- `pb-md` - padding-bottom for desktop
+- `ps-md` - padding-left for desktop
+- `pe-md` - padding-right for desktop
+- `mt` - margin-top
+- `mb` - margin-bottom
+- `ms` - margin-left
+- `me` - margin-right
+- `mt-md` - margin-top for desktop
+- `mb-md` - margin-bottom for desktop
+- `ms-md` - margin-left for desktop
+- `me-md` - margin-right for desktop
+
+To `md` breakpoint is defined in the `components/00-base/00-defaults/_01-variables.scss` file `$main-breakpoint` variable.
+All utilities use the Bootstrap breakpoints.

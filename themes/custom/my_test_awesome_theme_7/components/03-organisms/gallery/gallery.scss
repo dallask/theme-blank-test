@@ -1,0 +1,98 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+.gallery {
+  --#{$prefix}gallery-border-bottom-color: #{$gallery-border-bottom-color};
+  --#{$prefix}gallery-color-hover: #{$gallery-color-hover};
+  --#{$prefix}gallery-color-active: #{$gallery-color-active};
+
+  &__head {
+    .gallery__card-wrapper {
+      &:not(.active) {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    .container-fluid {
+      padding: 0;
+    }
+  }
+
+  &--images {
+    .card {
+      border: none;
+    }
+
+    .gallery__list {
+      .card__content {
+        display: none;
+      }
+    }
+  }
+
+  &--videos {
+    .gallery__head {
+      position: relative;
+
+      @include media-breakpoint-down(lg) {
+        padding-bottom: 15px;
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          width: calc(100% - 32px);
+          border-bottom: 1px solid vars(gallery-border-bottom-color);
+        }
+      }
+    }
+
+    .gallery__list {
+      .card-wrapper {
+        display: block;
+        position: relative;
+        padding: 20px 15px 20px 45px;
+        text-decoration: none;
+
+        &.active {
+          pointer-events: none;
+          background-color: vars(gallery-color-active);
+        }
+
+        &:hover {
+          background-color: vars(gallery-color-hover);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20px;
+          left: 10px;
+          width: 25px;
+          height: 25px;
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI1IDI2IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTI0LjI1IDEzLjE4NzVDMjQuMjUgMTkuNjc2OCAxOC45ODkzIDI0LjkzNzUgMTIuNSAyNC45Mzc1QzYuMDEwNjUgMjQuOTM3NSAwLjc1IDE5LjY3NjggMC43NSAxMy4xODc1QzAuNzUgNi42OTgxNSA2LjAxMDY1IDEuNDM3NSAxMi41IDEuNDM3NUMxOC45ODkzIDEuNDM3NSAyNC4yNSA2LjY5ODE1IDI0LjI1IDEzLjE4NzVaIiBzdHJva2U9IiMwMEIwQTkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxwYXRoIGQ9Ik0xOC4wMDM2IDEzLjEzMTdMOS4yMTA5NCAxOC4yODEyTDkuMDQxNiA4LjI4MDA0TDE4LjAwMzYgMTMuMTMxN1oiIGZpbGw9IiMwMEIwQTkiLz4KPC9zdmc+");
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+
+      .card-video {
+        text-decoration: none;
+
+        &__body {
+          display: none;
+        }
+
+        &__subheading {
+          display: block;
+        }
+      }
+    }
+  }
+}

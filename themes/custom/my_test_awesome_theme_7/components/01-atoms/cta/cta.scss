@@ -1,0 +1,62 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+
+:root {
+  --#{$prefix}btn-icon-width: #{$btn-icon-width};
+  --#{$prefix}btn-icon-height: #{$btn-icon-height};
+  --#{$prefix}btn-icon-gap: #{$btn-icon-gap};
+  --#{$prefix}btn-icon-margin: #{$btn-icon-margin};
+}
+
+[class*='cta--primary'] {
+  @include button-variant($primary, $primary);
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+}
+
+[class*='cta--secondary'] {
+  @include button-variant($secondary, $secondary);
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+}
+
+[class*='cta--icon-right'] {
+  flex-direction: row-reverse;
+}
+
+[class*='__cta--link'] {
+  span {
+    background-image: linear-gradient(currentcolor, currentcolor);
+    border-radius: 0;
+    padding: 0 0 0.3rem;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 0.2rem;
+    transition: background-size 0.3s;
+
+    &:hover {
+      margin-right: 0.3rem;
+      background-size: 100% 0.2rem;
+    }
+  }
+}
+
+[class*='__cta'] {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: vars(btn-icon-gap);
+  @include font-size($btn-font-size-sm);
+
+  @include media-breakpoint-up(lg) {
+    @include font-size($btn-font-size-lg);
+  }
+
+  svg {
+    height: vars(btn-icon-width);
+    width: vars(btn-icon-height);
+    margin: vars(btn-icon-margin);
+  }
+}

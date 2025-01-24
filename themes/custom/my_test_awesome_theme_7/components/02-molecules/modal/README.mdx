@@ -1,0 +1,85 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import {
+  Parent,
+  Templates,
+  Libraries,
+  Behaviors,
+  Code
+} from '@base/06-common/ComponentDocSections';
+
+import data from './modal.yml';
+
+<Title/>
+<Subtitle/>
+
+## External link popup
+
+### Templates
+<Templates text="block/bootstrap-external-link-popup.html.twig"/>
+
+### Libraries
+<Libraries libraries={[
+    '[theme_name]/block.external-link-popup'
+  ]}/>
+
+### Drupal fields
+| Label                      | Machine name            | Field type       | Field Widget | Display format |
+|----------------------------|-------------------------|------------------|--------------|----------------|
+| Modal ID                   | modalID                 | Text (plain)     | Text field   | Default        |
+| Modal Label ID             | modalLabelID            | Text (plain)     | Text field   | Default        |
+| Modal Body ID              | modalBodyID             | Text (plain)     | Text field   | Default        |
+| Modal Close Button ID      | modalCloseButtonID      | Text (plain)     | Text field   | Default        |
+| Modal Continue Button ID   | modalContinueButtonID   | Text (plain)     | Text field   | Default        |
+| Modal Title                | modalTitle              | Text (formatted) | Text field   | Default        |
+| Modal Content              | modalContent            | Text (formatted) | Text field   | Default        |
+| Modal Close Button Text    | modalCloseButtonText    | Text (formatted) | Text field   | Default        |
+| Modal Continue Button Text | modalContinueButtonText | Text (formatted) | Text field   | Default        |
+
+### Dependencies
+
+#### - Bootstrap components
+- [Modal](?path=/docs/bootstrap-components--modal)
+
+#### - Drupal Libraries:
+- [theme_name]/bootstrap.modal
+- external_link_popup/dialog
+- bootstrap_external_link_popup/dialog
+
+#### - Drupal Contrib modules:
+- External Link Popup `external_link_popup` (https://www.drupal.org/project/external_link_popup)
+- Bootstrap External Link Popup `bootstrap_external_link_popup` (https://www.drupal.org/project/bootstrap_external_link_popup)
+
+### Settings
+<ArgsTable story={PRIMARY_STORY}/>
+
+## How to use it in a Drupal site:
+
+**Template**: `themes/custom/[theme_name]/templates/block/bootstrap-external-link-popup.html.twig`
+
+1. Enable the theme `[theme_name]` or a sub-theme based on it.
+2. Enable the contributed
+   modules `External Link Popup` and `Bootstrap External Link Popup`.
+3. Configure External link popup settings (`/admin/config/content/external_link_popup`).
+
+### Code to use
+<Code text={data.docs.source.code}/>
+
+### View
+<Primary/>
+
+### Additional info
+<Description/>
+<Stories/>
+
+### References
+- ...
+- ...

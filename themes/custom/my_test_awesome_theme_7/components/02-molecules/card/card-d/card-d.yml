@@ -1,0 +1,13 @@
+card__heading: 'Health and Self-Care >'
+card__image:
+    src: 'https://picsum.photos/575/578'
+card__body: 
+  - '<p>Take care of your body. Exercise, eat a balanced diet, and get enough sleep.<sup>1</sup> </p>'
+  - '<p>Have a physical outlet for intense emotions of grief, rage, and hurt in the aftermath of trauma. Some ideas include kickboxing, yoga, dance cardio, and running. Use exercise as an act of self-care, not self-destruction.<sup>2</sup></p>'
+config:
+  card__image__output_image_tag: true
+
+docs:
+  source:
+    code: |
+      {% extends "@molecules/card/card-d/card-d.twig" %}

@@ -1,0 +1,15 @@
+element_extra:
+  - py-16
+tile__body:
+    - <p>The AASC™ can be completed in less than a minute at home, waiting room,
+      or in the doctor’s office and uses a straightforward scoring method.</p>
+tile__image:
+    src: 'https://picsum.photos/80/80'
+    attributes:
+      alt: "This is the card image's alt text"
+      loading: "lazy"
+
+docs:
+  source:
+    code: |
+      {% include "@molecules/tile/tile.twig" %}

@@ -1,0 +1,16 @@
+modal__blockname: ''
+modal__base_class: 'modal'
+modal__extra:
+  - fade
+modal_dialog__extra:
+  - modal-dialog-centered
+modal__id: 'externalLinkPopupModal'
+modal_title: 'You Are Now Leaving This Site'
+modal_content: 'Would you like to leave this site?'
+modal_continue_text: 'OK'
+modal_cancel_text: 'Cancel'
+
+docs:
+  source:
+    code: |
+      {% extends "@molecules/modal/modal.twig" %}

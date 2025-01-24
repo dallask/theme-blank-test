@@ -1,0 +1,16 @@
+content:
+  modalID: 'externalLinkPopupModal'
+  modalLabelID: 'externalLinkPopupModalLabel'
+  modalBodyID: 'externalLinkPopupModalBody'
+  modalCloseButtonID: 'externalLinkPopupModalCloseButton'
+  modalContinueButtonID: 'externalLinkPopupModalContinueButton'
+  modalTitle: 'You are now leaving nexusmentalhealth.com'
+  modalContent: |
+    <p>You are about to leave this Otsuka America Pharmaceutical, Inc. (OAPI) site. You are being redirected to another OAPI site.</p>
+    <p>Would you like to leave this site?</p>
+  modalCloseButtonText: 'Back'
+  modalContinueButtonText: 'Continue'
+docs:
+  source:
+    code: |
+      {% extends "@organisms/external-link-popup/external-link-popup.twig" %}

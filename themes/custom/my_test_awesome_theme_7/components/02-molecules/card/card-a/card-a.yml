@@ -1,0 +1,28 @@
+config:
+  card__image__output_image_tag: false
+  card__blockquote__divider: true
+  card__cta__icon: 'arrow-white-right'
+  card__cta__modifiers:
+    - icon-right
+    - lg
+    - link
+card__image:
+  src: 'https://picsum.photos/320/180'
+  attributes:
+    alt: "This is the card image's alt text"
+    loading: "lazy"
+card__heading: 'Connie, patient living with MS and PBA'
+card__blockquote: 
+  text: '[At my great aunt’s funeral], I was trying to get [my laughing] under control, and I just couldn’t.'
+  cite:
+    text: 'Connie, patient with MS and PBA'
+card__cta:
+  title: "Read Connie's Story"
+  url: 'sms:741741'
+card__body__text: | 
+  <ul class="ul">
+  <li>Answer 7 short questions about your loved one’s crying and/or laughing episodes here: <a href="/pba-quiz#quiz"><span>take the PBA Quiz</span></a>.</li>
+  <li>Encourage your loved one to take the PBA Quiz.</li>
+  <li><a href="https://www.facebook.com/groups/ourpbasupportgroup/"><span>Join Our PBA Support Group</span></a> on Facebook, where you can meet people living with or affected by PBA.</li>
+  <li><a href="/educate"><span>Learn more with our PBA FAQs</span></a></li>
+  </ul>

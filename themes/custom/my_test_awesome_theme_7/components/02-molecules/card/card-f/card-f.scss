@@ -1,0 +1,91 @@
+@import '@molecules/card/card-f/card-f-extension.scss';
+
+.card-f {
+  position: relative;
+  background-color: #e9ecef;
+  display: flex;
+  padding: 40px 20px;
+
+  @include media-breakpoint-up(md) {
+    align-items: center;
+    padding: 42px 30px;
+  }
+  @include media-breakpoint-up(lg) {
+    padding-left: 105px;
+    padding-right: 120px;
+  }
+
+  &--top-side {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &--left-side {
+    flex-direction: column-reverse;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &--right-side {
+    flex-direction: column-reverse;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+  }
+
+  &--bottom-side {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .card-f {
+    &__content {
+      &--top-side {
+        margin-top: 25px;
+  
+        @include media-breakpoint-up(md) {
+          width: 100%;
+        }
+      }
+  
+      &--left-side,
+      &--right-side {
+        margin-bottom: 25px;
+  
+        @include media-breakpoint-up(md) {
+          width: calc(100% - 220px);
+          margin-bottom: 0;
+        }
+      }
+  
+      &--bottom-side {
+        margin-bottom: 25px;
+  
+        @include media-breakpoint-up(md) {
+          width: 100%;
+        }
+      }
+  
+      h3 {
+        font-weight: $font-weights-bold;
+        margin: 0 0 16px 0;
+      }
+    }
+  
+    &__cta {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+  
+      @include media-breakpoint-up(lg) {
+        align-items: center;
+        margin: 0;
+      }
+    }
+  }
+}

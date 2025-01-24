@@ -1,0 +1,25 @@
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('videoReact'),
+} %}
+  {% block element_content %}
+    <div class="container">
+      <div {{ bem('wrapper', element_modifiers, element_base_class) }}>
+        <div class="thumbnail play-video container">
+          {% include "@atoms/images/image/_image.twig" with {
+            image_src: videoReact.media.1.media.src|default(video.thumbnail),
+            image_base_class: 'thumbnail-image',
+            image_extra: [
+              'position-absolute'
+            ],
+          } %}
+          <div class="play-button play-video data-analytics-click-link" tabindex="0" role="button" title="Play video" {{ analytics({"name": "Video play button", "position": "body", "href": "n/a", "group": "Video Player"}, true) }}>
+            <div class="icon"></div>
+          </div>
+        </div>
+        <div class="react-player-video"
+             data-url="{{ videoReact.media.0.media|default(video.url) }}"></div>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}

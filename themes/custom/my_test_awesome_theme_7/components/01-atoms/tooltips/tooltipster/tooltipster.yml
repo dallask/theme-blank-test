@@ -1,0 +1,16 @@
+content:
+  button_title: 'Hover to view tooltip'
+  title: |
+    Try clicking <a href="http://google.com/" class="text-danger" target="_blank">this link</a>
+classes:
+  - 'btn'
+  - 'btn-lg'
+  - 'btn-danger'
+attributes:
+  id: 'tooltip_id'
+  tabindex: 1
+tooltips_options:
+  side: left
+  animation: slide
+  theme: tooltipster-noir
+  interactive: true

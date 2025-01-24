@@ -1,0 +1,95 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Webforms"/>
+
+# Webforms
+
+## Overview
+
+In the boundaries of our projects we usually utilize Drupal Webform module as a composit data and behaviors provider.
+So, most of forms functionality provided by means of Drupal front/back end sides out of the box.
+To have the possibility of splitting back-end and front-end parts of the Webforms some additional functionality on the
+Storybook side were created. This part emulates form view inside the Storybook (form inputs, front-end validation, part
+of form behavior and form layout).
+
+## Structure
+
+All forms should be placed inside the `03-organisms/webforms` folder.
+
+```
+├── 03-organisms/
+│   ├── webforms
+│       ├── questionnaire (folder name and files name should refer to form id)
+│         ├── questionnaire.js - behavior and front-end validation script
+│         ├── questionnaire.scss - style
+│         ├── questionnaire.twig - main form layout template
+│         ├── questionnaire.yml - structure
+│       ├── forms.stories.jsx - form stories
+```
+
+## Fields structure
+
+This structure recreates Webform fields YML structure and can be built on its basis or upfront of creating the form
+ on the Drupal side:
+
+[<img src="/docs/webforms/webforms-structure.png" width="100%"/>](/docs/webforms/webforms-structure.png)
+
+```yml
+element:
+  elements:
+    some_element_id:
+      '#type': 'textfield'
+      '#title': 'Your Name'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_attribute1: '1'
+        wrapper_attribute2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - some_element_class
+        element_attribute1: '1'
+        element_attribute2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'placeholder'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_attribute1: '1'
+        label_attribute2: '2'
+...
+...
+...
+    some_checkbox_sample:
+      '#type': checkbox
+      '#title': Checkbox sample
+      '#wrapper_attributes':
+        class:
+          - form-check
+        label_display: 'after'
+      '#attributes':
+        class:
+          - form-check-input
+      '#label_attributes':
+        class:
+          - form-check-label
+```
+
+## Drupal template
+
+The main Drupal Webform template is `templates/form/webform.html.twig` it includes form component from the `03-organisms/webforms`
+ folder by means form id. So, folder name and files name should refer to form id.
+
+## Form layout template
+
+Webform itself should not have any layout elements (containers, wrappers, etc.). It should consist from form elements (inputs and actions).
+Form layout should be present inside form component template and should utilize the webform particles as `{{ element.elements.element_name }}`.
+
+See the form examples inside `03-organisms/webforms` folder.
+
+## References:
+- https://getbootstrap.com/docs/5.2/forms/overview/

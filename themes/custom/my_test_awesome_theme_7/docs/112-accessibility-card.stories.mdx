@@ -1,0 +1,76 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Accessibility/Card"/>
+
+## Modal popup and Card element
+
+
+### Modal
+
+A fullscreen dialog takes over the entire screen.
+
+Try to bucket the main page content in an element that is not an ancestor of the dialog. This will vastly simplify the amount of DOM manipulation when implementing modal behaviour.
+
+```html
+<body>
+    <div>
+        <!-- main page content -->
+    </div>
+    <div class="fullscreen-dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true" hidden>
+        <div class="fullscreen-dialog__window">
+            <div id="dialog-title" class="fullscreen-dialog__header">
+                <button aria-label="Close dialog" class="fullscreen-dialog__close" type="button">
+                    <svg aria-hidden="true" focusable="false" height="16" width="16">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </button>
+                <h2 class="large-text-1 bold-text">Fullscreen Dialog Title</h2>
+            </div>
+            <div class="fullscreen-dialog__main">
+                <!-- dialog copy -->
+            </div>
+        </div>
+    </div>
+</body>
+```
+
+Dialogs are generally placed on top of the rest of the page content using an overlay. Dialogs can be either non-modal (it's still possible to interact with content outside of the dialog) or modal (only the content in the dialog can be interacted with).
+Dialog should be marked with role "dialog" and aria-modal to "true". Other available dialog roles:
+- dialog
+- alertdialog
+
+For more details 
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role
+
+
+### Card
+
+A card is a large, touch-friendly area that provides a small summary-like experience of a single target URL.
+
+#### Best practices 
+
+Card should have a solid outline to identify the touch region.
+
+Light card is simply an anchor wrapping the contents of the card.
+
+Light card can not contain any interactive elements. This ensures that the card is a single stop in the tab order.
+
+Light card must not contain long descriptive text or structural elements such as lists, tables and widgets.
+
+Heavy card must only contain one hyperlink or has root element `<section>`. This ensures that the card is a single stop in the tab order.
+
+```html
+<section aria-label="article with short description">
+    <h3>...</h3>
+    ...
+    <div role="group">
+      <a>...</a>
+      <a>...</a>
+    </div>
+</section>
+
+<a aria-label="article with short description">
+    <h3>...</h3>
+    ...
+</a>

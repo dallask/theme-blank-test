@@ -1,0 +1,21 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+@import '@molecules/tile/tile-extension.scss';
+
+.tile {
+  display: flex;
+  flex-direction: row;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  &__body {
+    text-align: center;
+  }
+}

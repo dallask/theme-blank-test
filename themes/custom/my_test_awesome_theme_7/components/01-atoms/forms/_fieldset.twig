@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Theme override for a fieldset element and its children.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the fieldset element.
+ * - errors: (optional) Any errors for this fieldset element, may not be set.
+ * - required: Boolean indicating whether the fieldeset element is required.
+ * - legend: The legend element containing the following properties:
+ *   - title: Title of the fieldset, intended for use as the text of the legend.
+ *   - attributes: HTML attributes to apply to the legend.
+ * - description: The description element containing the following properties:
+ *   - content: The description content of the fieldset.
+ *   - attributes: HTML attributes to apply to the description container.
+ * - children: The rendered child elements of the fieldset.
+ * - prefix: The content to add before the fieldset children.
+ * - suffix: The content to add after the fieldset children.
+ *
+ * @see template_preprocess_fieldset()
+ */
+#}
+{%
+  set classes = [
+    'form-fieldset',
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+  ]
+%}
+{% set bem_class = bem(
+  additional_attributes.bem_base_class|default(''),
+  additional_attributes.bem_modifiers|default([]),
+  additional_attributes.bem_blockname|default(''),
+  additional_attributes.bem_extra|default(classes)|merge(attributes.class is defined ? (attributes.class is iterable ? attributes.class : [attributes.class]) : [''])|merge(additional_attributes.class is defined ? (additional_attributes.class is iterable ? additional_attributes.class : [additional_attributes.class]) : [''])
+  ) %}
+<fieldset {{ add_attributes(additional_attributes|without('class', 'bem_base_class', 'bem_blockname', 'bem_modifiers', 'bem_extra')) }} {{ bem_class }}>
+  {%
+    set legend_classes = [
+      'h2',
+      required ? 'js-form-required' : '',
+      required ? 'form-required' : '',
+    ]
+  %}
+  {% set additional_attributes_legend = additional_attributes_legend|default({})|merge({
+    class: legend_classes,
+  }) %}
+  {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
+  <legend {{ add_attributes(additional_attributes_legend) }}>{{ legend.title }}</legend>
+  {% if errors %}
+    <div>
+      {{ errors }}
+    </div>
+  {% endif %}
+  {% if prefix %}
+    <span class="field-prefix">{{ prefix }}</span>
+  {% endif %}
+  {% block children %}
+    {{ children }}
+  {% endblock %}
+  {% if suffix %}
+    <span class="field-suffix">{{ suffix }}</span>
+  {% endif %}
+  {% if description.content %}
+    <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
+  {% endif %}
+</fieldset>

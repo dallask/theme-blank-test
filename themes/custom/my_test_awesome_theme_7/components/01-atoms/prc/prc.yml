@@ -1,0 +1,8 @@
+content:
+  '#prc_code_markup': '10US21EUC0004'
+  '#prc_date_markup': 'May 2022'
+docs:
+  source:
+    code: |
+      {% include "@atoms/prc/prc.twig" %}
+

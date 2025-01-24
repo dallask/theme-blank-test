@@ -1,0 +1,18 @@
+content:
+  message: '<h2>We use cookies on this site to enhance your user experience</h2><p>By clicking the Accept button, you agree to us doing so.</p>'
+  agree_button: 'Accept'
+  disagree_button: 'More info'
+  more_info_button: 'More info'
+  secondary_button_label: 'No, thanks'
+  primary_button_class: 'agree-button eu-cookie-compliance-default-button'
+  secondary_button_class: 'decline-button eu-cookie-compliance-default-button'
+  cookie_categories: false
+  save_preferences_button_label: ''
+  privacy_settings_tab_label: false
+  withdraw_button_on_info_popup: false
+  method: 'opt_in'
+  settings_tab_enabled: false
+docs:
+  source:
+    code: |
+      {% include "@organisms/eu_cookie_compliance_popup_info/eu_cookie_compliance_popup_info.twig" %}

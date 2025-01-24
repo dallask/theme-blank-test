@@ -1,0 +1,34 @@
+card__header__image: false
+card__header__image__inline: '<svg class="bd-placeholder-img" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>'
+card__header: 'Featured'
+card__body__text: '<h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>'
+card__footer: '2 days ago'
+card__footer__image: false
+card__footer__image__inline: '<svg class="bd-placeholder-img" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>'
+variant:
+  - none
+  - light
+  - primary
+  - secondary
+  - success
+  - danger
+  - warning
+  - info
+  - dark
+text_alignment:
+  - start
+  - center
+  - end
+classes: [ ]
+attributes: {}
+docs:
+  source:
+    code: |
+      {% include '@molecules/card/bs/card.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

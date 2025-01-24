@@ -1,0 +1,310 @@
+tabs:
+  - title:
+      title: IPA Definition
+    content:
+      - attributes:
+          type: "tile"
+        text: 
+          text: <p>The IPA set a new standard for the definition of agitation in cognitive disorders and provided recommendations for the implementation of the criteria in research and clinical care, and offered a solid foundation for the recognition of agitation.<sup>4</sup></p>
+      - attributes:
+          type: "grid_card_g"
+        cards:
+          - attributes:
+              type: "card_g"
+            text:
+              text: <p>The patient meets the criteria for cognitive impairment or dementia syndrome</p>
+          - attributes:
+              type: "card_g"
+            text:
+              text: <p>The patient exhibits ≥1 agitation behavior(s) with emotional duress that is persistent or frequently recurrent for ≥2 weeks or the behavior represents a dramatic change from the patient’s usual behavior*</p>
+          - attributes:
+              type: "card_g"
+            text:
+              text: <p>The behaviors are severe and associated with excess distress or produce disability beyond that due to cognitive impairment</p>
+          - attributes:
+              type: "card_g"
+            text:
+              text: <p>The behaviors cannot be attributed to another psychiatric disorder or medical condition, including delirium, suboptimal care conditions, or the physiological effects of a substance</p>
+      - attributes:
+          type: "grid_card_c_carousel"
+          element_base_class: "carousel-slick"
+          carousel_options:
+            dots: false
+            infinite: false
+            arrows: false
+            slidesToShow: 1.1
+            slidesToScroll: 1
+            mobileFirst: true
+            responsive:
+              - breakpoint: 390
+                settings:
+                  slidesToShow: 1.3
+                  slidesToScroll: 1
+              - breakpoint: 480
+                settings:
+                  slidesToShow: 1.6
+                  slidesToScroll: 1
+              - breakpoint: 600
+                settings:
+                  slidesToShow: 2
+                  slidesToScroll: 1
+              - breakpoint: 768
+                settings:
+                  slidesToShow: 3
+                  slidesToScroll: 1
+        cards:
+          - attributes:
+              type: "card_c"
+            media:
+              src: 'https://picsum.photos/370/410'
+              attributes:
+                alt: ''
+            title: Excessive Motor Activity Behaviors:<sup>4</sup>
+            text:
+                - text: |
+                    <p>Pacing</p>
+                    <p>Restlessness</p>
+                    <p>Rocking</p>
+                    <p>Pointing fingers</p>
+                - text: |
+                    <p>Gesturing</p>
+                    <p>Performing repetitious mannerisms</p>
+          - attributes:
+              type: "card_c"
+            media:
+              src: 'https://picsum.photos/370/410'
+              attributes:
+                alt: ''
+            title: Verbal Aggression Behaviors:<sup>4</sup>
+            text:
+              - text: |
+                  <p>Yelling</p>
+                  <p>Speaking in an excessively loud voice</p>
+                  <p>Using profanity</p>
+              - text: |
+                  <p>Screaming</p>
+                  <p>Shouting</p>
+          - attributes:
+              type: "card_c"
+            media:
+              src: 'https://picsum.photos/370/410'
+              attributes:
+                alt: ''
+            title: Physical Aggression Behaviors:<sup>4</sup>
+            text:
+              - text: |
+                  <p>Grabbing</p>
+                  <p>Shoving</p>
+                  <p>Pushing</p>
+                  <p>Hitting others</p>
+              - text: |
+                  <p>Resisting</p>
+                  <p>Kicking objects or people</p>
+                  <p>Scratching</p>
+                  <p>Biting</p>
+                  <p>Throwing objects</p>
+                  <p>Hitting self</p>
+                  <p>Slamming doors</p>
+                  <p>Tearing things</p>
+                  <p>Destroying property</p>
+  - title:
+      title: CMAI Scale
+    content:
+      - attributes:
+          type: "tile"
+        text:
+          text: <p>The Cohen-Mansfield Agitation Inventory (CMAI) is a clinically validated scale commonly utilized in clinical trials. It measures the frequency of 29 specific behaviors associated with agitation, as defined by the International Psychogeriatric Association (IPA).<sup>6,7</sup></p>
+      - attributes:
+          type: "accordion"
+        accordion:
+          - title:
+              media:
+                src: 'https://picsum.photos/320/180'
+                attributes:
+                  alt: ''
+              title: <span>Aggressive Behaviors<sup>5,7</sup></span>
+            content:
+              text: 
+                text: |
+                  <div>
+                    <ul>
+                      <li>Hitting (including self)</li>
+                      <li>Kicking</li>
+                      <li>Scratching</li>
+                      <li>Grabbing people or things inappropriately</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>Pushing</li>
+                      <li>Hurting self or others</li>
+                      <li>Throwing things</li>
+                      <li>Cursing or verbal aggression</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>Spitting (including at meals)</li>
+                      <li>Tearing things/destroying property</li>
+                      <li>Screaming</li>
+                      <li>Biting</li>
+                    </ul>
+                  </div>
+          - title:
+              media:
+                src: 'https://picsum.photos/320/180'
+                attributes:
+                  alt: ''
+              title: <span>Physically Non-Aggressive Behaviors<sup>5,7</sup></span>
+            content:
+              text: 
+                text: |
+                  <div>
+                    <ul>
+                      <li>Pacing, aimless wandering</li>
+                      <li>Trying to get to a different place</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>Inappropriate dressing or disrobing</li>
+                      <li>Handling things inappropriately</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>General restlessness</li>
+                      <li>Performing repetitious mannerisms</li>
+                    </ul>
+                  </div>
+          - title:
+              media:
+                src: 'https://picsum.photos/320/180'
+                attributes:
+                  alt: ''
+              title: <span>Verbally Agitated Behaviors<sup>5,7</sup></span>
+            content:
+              text:
+                text: |
+                  <div>
+                    <ul>
+                      <li>Complaining</li>
+                      <li>Constant unwarranted requests for attention/help</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>Repetitive sentences or questions</li>
+                      <li>Negativism</li>
+                    </ul>
+                  </div>
+          - title:
+              media:
+                src: 'https://picsum.photos/320/180'
+                attributes:
+                  alt: ''
+              title: <span>Other Behaviors<sup>5,7</sup></span>
+            content:
+              text: 
+                text: |
+                  `<div>
+                    <ul>
+                      <li>Making physical sexual advances or exposing genitals</li>
+                      <li>Eating or drinking inappropriate substances</li>
+                      <li>Making strange noises</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>Intentional falling</li>
+                      <li>Making verbal advances</li>
+                      <li>Hoarding things</li>
+                      <li>Hiding things</li>
+                    </ul>
+                  </div>
+      - attributes:
+          type: "grid_card_g"
+        grid-header:
+          title: The CMAI Scale<sup>7</sup>
+        cards:
+          - attributes:
+              type: "card_g"
+            text:
+              text: | 
+                <h3>29 Agitated Behaviors:</h3>
+                <p>The CMAI measures the frequency of 29 agitated behaviors within the previous 2 weeks, rated on a 7-point scale.</p>
+          - attributes:
+              type: "card_g"
+            text:
+              text: | 
+                <h3>Administering:</h3>
+                <p>The CMAI can be self-administered by caregivers or completed by healthcare practitioners.</p>
+          - attributes:
+              type: "card_g"
+            text:
+              text: | 
+                <h3>Total Score:</h3>
+                <p>Sum of individual behavior scores. Higher score indicates more frequent agitation.</p>
+      - media:
+          srcset: "https://picsum.photos/320/180 320w, https://picsum.photos/1000/280 1000w"
+          src: 'https://picsum.photos/1000/280'
+          attributes:
+            alt: ''
+  - title:
+      title: ICD-10 Codes
+    content:
+      - attributes:
+          type: "tile"
+        text:
+          text: <p>ICD Codes allow providers to capture additional information on dementia conditions, including presence of&nbsp;agitation.</p>
+      - attributes:
+          type: "grid_card_b"
+        cards:
+          - attributes:
+              type: "card_b"
+              modifier: primary
+            title: |
+              <h3>Primary Diagnosis Code<sup>43</sup></h3>
+              <p>A primary diagnosis code for Alzheimer’s Disease may not always be required with the secondary diagnosis code for Agitation Associated with Dementia.</p>
+            text: 
+              text: |
+                <p><strong>If required, code <span>Alzheimer’s Disease</span> using one of the following diagnosis codes:</strong></p>
+                <dl>
+                  <dt><p>G30.0</p></dt>
+                  <dd><p>Alzheimer’s disease with early onset</p></dd>
+                  <dt><p>G30.1</p></dt>
+                  <dd><p>Alzheimer’s disease with late onset</p></dd>
+                </dl>
+                <dl>
+                  <dt><p>G30.8</p></dt>
+                  <dd><p>Other Alzheimer’s disease</p></dd>
+                  <dt><p>G30.9</p></dt>
+                  <dd><p>Alzheimer’s disease, unspecified</p></dd>
+                </dl>
+          - attributes:
+              type: "card_b"
+              modifier: secondary
+            title: |
+              <h3>Secondary Diagnosis Code<sup>44</sup></h3>
+            text: 
+              text: |
+                <p><strong>Code <span>Agitation Associated with Dementia</span> using one of the following diagnosis codes:</strong></p>
+                <dl>
+                  <dt><p>F02.811</p></dt>
+                  <dd><p>Dementia in other diseases classified elsewhere, unspecified severity, with agitation:</p></dd>
+                  <dt><p>F02.A11</p></dt>
+                  <dd><p>Dementia in other diseases classified elsewhere, mild, with agitation</p></dd>
+                </dl>
+                <dl>
+                  <dt><p>F02.B11</p></dt>
+                  <dd><p>Dementia in other diseases classified elsewhere, moderate, with agitation</p></dd>
+                  <dt><p>F02.C11</p></dt>
+                  <dd><p>Dementia in other diseases classified elsewhere, severe, with agitation</p></dd>
+                </dl>
+      - link:
+          title: Learn <span>More</span>&nbsp;About AAD ICD-10 Codes
+          url: https://psychu.org/?content-removed=true#038;orig=https://psychu.org/new-icd-10-codes-for-dementia-agitation-go-into-effect-october-1-2022/
+          attributes:
+            target: '_blank'
+      - text:
+          text: <p>These ICD-10-CM codes went into effect on October 1, 2022 to add specificity on the stage of dementia severity and more fully identify types of behavioral and psychological symptoms of dementia, including symptoms of dementia-related agitation.</p>

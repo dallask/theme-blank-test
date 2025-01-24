@@ -1,0 +1,34 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('error404'),
+  element_extra: element_extra|default([
+    'text-center',
+  ]),
+} %}
+  {% block element_content %}
+    <div class="container">
+      {% include "@atoms/text/headings/_heading.twig" with {
+        heading_level: 1,
+        heading: title|default(error404.title.title),
+      } %}
+
+      {% include "@atoms/text/text/08-section.twig" with {
+        section_content: text|raw|default(error404.text.text),
+      } %}
+
+      {% include "@atoms/links/link/link.twig" with {
+        link_base_class: 'btn',
+        link_blockname: 'link',
+        link_extra: [
+          'btn',
+          'btn-lg',
+          'btn-primary',
+        ],
+        link_url: link.url|default(error404.link.link.url),
+        link_content: link.title|default(error404.link.link.title),
+        link_attributes: link_attributes|default({}),
+        data_analytics_group: "Go to home block",
+      } %}
+    </div>
+  {% endblock %}
+{% endembed %}
+

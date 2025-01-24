@@ -1,0 +1,59 @@
+{% set layout_modifiers = [] %}
+
+{% set main_base_class = main_base_class|default('main') %}
+{% set main_modifiers = [] %}
+
+{% set main_content_base_class = main_content_base_class|default('main-content') %}
+{% set main_content_modifiers = [] %}
+
+{% if sidebar %}
+  {% set main_modifiers = main_modifiers|merge(['with-sidebar']) %}
+  {% set main_content_modifiers = main_content_modifiers|merge(['with-sidebar']) %}
+{% endif %}
+
+<div {{ bem('layout-container', layout_modifiers) }}>
+  {% block page_header %}
+    {% if page_header %}
+      {{ page_header }}
+    {% endif %}
+  {% endblock %}
+  {% block page_system %}
+  {% endblock %}
+  {% block content_before %}
+    {{ content_before }}
+  {% endblock %}
+  <div {{ bem(main_base_class, main_modifiers, main_blockname) }}>
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    {% if sidebar %}
+      <aside class="main-sidebar" role="complementary">
+        {% block page_sidebar %}
+          {% if page_sidebar %}
+            {{ page_sidebar }}
+          {% endif %}
+        {% endblock %}
+      </aside>
+    {% endif %}
+    <main role="main" {{ add_attributes({
+      class: bem(
+        main_content_base_class,
+        main_content_modifiers,
+        main_content_blockname
+      ),
+      'data-analytics-position': 'Body',
+    }) }}>
+      {% block page_content %}
+        {% if page_content %}
+          {{ page_content }}
+        {% endif %}
+      {% endblock %}
+    </main>
+  </div>
+  {% block content_after %}
+    {{ content_after }}
+  {% endblock %}
+  {% block page_footer %}
+    {% if page_footer %}
+      {{ page_footer }}
+    {% endif %}
+  {% endblock %}
+</div>

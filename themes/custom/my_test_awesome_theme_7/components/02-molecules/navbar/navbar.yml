@@ -1,0 +1,35 @@
+content:
+  navbar_logo: ''
+  navbar_menu: ''
+variant:
+  - primary
+  - secondary
+  - success
+  - danger
+  - warning
+  - info
+  - dark
+  - light
+background:
+  - dark
+  - light
+expand_point:
+  - sm
+  - md
+  - lg
+  - xl
+  - xxl
+container:
+  - container
+  - container-fluid
+classes: []
+attributes: {}
+docs:
+  source:
+    code: |
+      {% include '@molecules/navbar/navbar.twig' with {
+        parameter_name: parameter_value,
+        parameter_name_1: parameter_value_1,
+        ...
+        parameter_name_N: parameter_value_N,
+      } %}

@@ -1,0 +1,103 @@
+{% set navbar_base_class = navbar_base_class|default('navbar') %}
+{% set navbar_modifiers = navbar_modifiers|default([]) %}
+{% set navbar_blockname = navbar_blockname|default('') %}
+
+{% set navbar_variant = navbar_variant|default('primary') %}
+{% set navbar_container = navbar_container|default('container') %}
+{% set navbar_expand_point = navbar_expand_point|default('md') %}
+
+{% set navbar_attributes = {
+  class: bem(
+    navbar_base_class,
+    navbar_modifiers,
+    navbar_blockname,
+    [
+      'navbar',
+      'navbar-' ~ navbar_background|default('dark'),
+      'navbar-expand-' ~ navbar_expand_point,
+      navbar_extra|join(' '),
+    ]
+  ),
+  'aria-label': navbar_variant,
+  'id': navbar_id|default(navbar_variant),
+}|merge(navbar_attributes|default({})) %}
+
+<nav {{ add_attributes(navbar_attributes) }}>
+  <div {{ bem(navbar_container, [], navbar_base_class, [navbar_container]) }}>
+    {% block navbar_content_logo %}
+      {% if navbar_content.navbar_logo %}
+        <div {{ add_attributes({ 'class': bem('logo', [], 'navbar'), 'data-test': 'navbar-logo'}) }}>
+          {% embed "@atoms/links/link/link.twig" with {
+            link_base_class: 'logo__link',
+            link_url: '/',
+          } %}
+            {% block link_content %}
+              {% include "@atoms/images/image/responsive-image.twig" with {
+                output_image_tag: true,
+                image_src: navbar_content.navbar_logo,
+                image_attributes: {
+                  alt: 'Logo',
+                },
+                responsive_image_blockname: 'logo',
+              } %}
+            {% endblock %}
+          {% endembed %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block navbar_menu_switcher %}
+      {% if navbar_content.navbar_menu_switcher %}
+        {% include "@molecules/menus/site-switcher/site-switcher.twig"  with {
+          items: navbar_content.navbar_menu_switcher,
+        } %}
+      {% endif %}
+    {% endblock %}
+
+    {% block navbar_menu_docs %}
+      {% if navbar_content.navbar_menu_docs %}
+        {% include "@molecules/menus/top-menu/top-menu.twig"  with {
+          items: navbar_content.navbar_menu_docs,
+        } %}
+      {% endif %}
+    {% endblock %}
+
+    {% block navbar_main_menu %}
+      {% if navbar_content.navbar_main_menu %}
+        <div {{ bem('main', [], navbar_blockname) }}>
+          {% include "@molecules/menus/main-menu/main-menu.twig"  with {
+            menu_items: navbar_content.navbar_main_menu,
+          } %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block navbar_social_menu %}
+      {% if navbar_content.navbar_main_menu %}
+        <div {{ bem('social-menu', [], navbar_blockname) }}>
+          {% include "@molecules/menus/main-menu/main-menu.twig"  with {
+            menu_items: navbar_content.navbar_social_menu
+          } %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block navbar_actions %}
+      {% if navbar_content.navbar_actions %}
+        {% for item in navbar_content.navbar_actions %}
+          {% include "@atoms/cta/cta-b.twig" with {
+            cta_base_class: 'cta',
+            cta_blockname: 'navbar',
+            cta_modifiers: ['primary', 'lg'],
+            cta_attributes: {'data-test': 'menu-cta'},
+            cta_content: item.title|raw,
+            cta_url: item.url,
+            cta_icon_left: 'dollar-a',
+            cta_icon_right: 'arrow-e',
+          } %}
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
+  </div>
+</nav>
+

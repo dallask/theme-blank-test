@@ -1,0 +1,31 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: 'carousel-slick',
+  element_extra: ['container'],
+  element_attributes: {
+    'data-carousel-options': carousel.attributes.carousel_options ? carousel.attributes.carousel_options|json_encode() : carousel_options|json_encode()|escape,
+    'data-test': 'slider',
+    'data-analytics-group': carousel.attributes.data_analytics_group|render is not empty ? carousel.attributes.data_analytics_group|striptags : 'Slideshow',
+  }
+} %}
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {% for item in carousel['carousel-slide']|default(carousel) %}
+
+      {% block carousel_slide %}
+        {% include "@atoms/images/image/responsive-image.twig" with {
+          output_image_tag: true,
+          image_src: item.media.media.src|default(item.image.src),
+          image_attributes: item.media.media.attributes|default(item.image.attributes),
+          image_extra: [
+            'm-auto',
+            'w-100',
+            'h-auto',
+          ],
+          responsive_image_blockname: 'slide',
+        } %}
+      {% endblock %}
+
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

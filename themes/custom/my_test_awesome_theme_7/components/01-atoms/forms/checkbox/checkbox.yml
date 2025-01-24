@@ -1,0 +1,39 @@
+elements:
+  - checkbox_sample:
+      '#type': checkbox
+      '#title': Checkbox  Sample
+      '#wrapper_attributes':
+        class:
+          - form-check
+        label_display: 'after'
+      '#attributes':
+        class:
+          - form-check-input
+        checked: 'true'
+      '#label_attributes':
+        class:
+          - form-check-label
+
+  - checkboxes:
+      '#type': checkboxes
+      '#title': 'Select the questions you would like to ask your healthcare provider:'
+      '#options':
+        1: 'Could once every-2-months ABILIFY ASIMTUFII® (aripiprazole) be an appropriate option for me?'
+        2: 'What are the possible side effects of ABILIFY ASIMTUFII?'
+        3: 'Can ABILIFY ASIMTUFII help give me more time without a mood episode?'
+        4: 'Do my bipolar I disorder symptoms need to be under control before starting ABILIFY ASIMTUFII?'
+        5: 'Do I need to stay on my current treatment after starting ABILIFY ASIMTUFII?'
+        6: 'Do I need to be on ABILIFY MAINTENA® (aripiprazole) before starting ABILIFY ASIMTUFII?'
+        7: 'How is ABILIFY ASIMTUFII given?'
+        8: 'What are the potential advantages and disadvantages of a once every-2-months long-acting injectable treatment?'
+        9: "How could a long-acting injectable treatment help keep my symptoms stable over the course of\L2 months?"
+        10: 'How does an LAI deliver medicine consistently over 2 months?'
+        11: 'How could ABILIFY ASIMTUFII help me work toward my treatment goals?'
+        12: 'Is financial assistance available?'
+      '#default_value':
+        - '4'
+        - '5'
+        - '6'
+      '#wrapper_attributes':
+        class:
+          - form-check

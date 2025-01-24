@@ -1,0 +1,50 @@
+[class*='--expandable'] {
+
+  [class*='__body'] {
+    height: auto;
+  }
+
+  [class*='__blockquote'] {
+    height: auto;
+  }
+
+  &.show {
+    height: auto;
+
+    [class*='__content'] {
+      height: auto;
+    }
+      
+    [class*='__expander'] {
+      .btn-view-more {
+        display: none;
+      }
+    }
+  }
+
+  &:not(.show) {
+    [class*='__content'] {
+      height: 350px;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    [class*='__expander'] {
+      .btn-view-less {
+        display: none;
+      }
+    }
+  }
+}
+
+[class*='__expander'] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(transparent, vars(primary) 35%);
+
+  button {
+    margin: 0 auto;
+  }
+}
+

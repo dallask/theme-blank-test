@@ -1,0 +1,28 @@
+{#
+/**
+ * Available variables:
+ * - section_base_class - the base classname
+ * - section_modifiers - array of modifiers to add to the base classname
+ * - section_blockname - blockname prepended to the base classname
+ * - section_content - the content of the paragraph (typically text)
+ *
+ * Available blocks:
+ * - section_content - used to replace the content of the paragraph with something other than plain text
+ *   for example: A formatted text field in Drupal
+ */
+#}
+{% set section_base_class = section_base_class|default('section') %}
+{% set section_extra = section_extra|default([]) %}
+{% set section_tag = section_tag|default('div') %}
+{% set section_attributes = section_attributes|default({}) %}
+
+<{{ section_tag }}
+  {{ bem(section_base_class, section_modifiers, section_blockname, section_extra) }}
+  {% for attribute, value in section_attributes %}
+    {{ attribute }}="{{ value }}"
+  {% endfor %}
+>
+  {% block section_content %}
+    {{ section_content|raw }}
+  {% endblock %}
+</{{ section_tag }}>

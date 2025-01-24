@@ -1,0 +1,25 @@
+elements:
+  - select_sample:
+      '#type': 'select'
+      '#title': 'Select Sample'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-select
+        element_test1: '1'
+        element_test2: '2'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+      '#options':
+        111: 'One'
+        222: 'Two'
+        333: 'Three'
+      '#default_value': '222'

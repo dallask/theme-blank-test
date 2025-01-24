@@ -1,0 +1,76 @@
+@import '@molecules/card/card-a/card-a-extension.scss';
+
+.card-a {
+
+  img {
+    object-fit: cover;
+  }
+
+  &--left {
+    display: flex;
+  }
+
+  &--right {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &--bottom {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .card-a {
+    &__content {
+      position: relative;
+      background-color: vars(primary);
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+  
+      &--no-background {
+        text-align: start;
+        justify-content: space-evenly;
+        align-items: start;
+      }
+  
+      &--top {
+        &::before {
+          @include icon-top;
+        }
+      }
+  
+      &--left {
+        &::before {
+          @include icon-left;
+        }
+      }
+  
+      &--right {
+        &::before {
+          @include icon-right;
+        }
+      }
+  
+      &--bottom {
+        &::before {
+          @include icon-bottom;
+        }
+      }
+  
+      &--bottom-line {
+        border-bottom: 5px solid vars(secondary);
+      }
+    }
+  
+    &__eyebrow {
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }  
+  }
+}

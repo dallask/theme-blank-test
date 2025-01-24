@@ -1,0 +1,165 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Known Issues"/>
+
+# Known Issues
+
+## Menu with the subitems does not work with default Drupal menus (like Main, Footer, etc.)
+
+### Reason
+- no data
+
+### Solutions
+- Create the new custom menu for the complex menus with the subitems
+(do not use the default ones)
+
+### Proposals
+- no data
+
+## Drupal crashes due to the absence of the `behavior` plugin
+
+### Description
+Drupal crashes with the:
+`Drupal\Component\Plugin\Exception\PluginNotFoundException` exception.
+It can happen right after the installation or after cache rebuild.
+[<img src="/docs/known-issues/drupal-crashes-plugin-not-found.png" width="100%"/>](/docs/known-issues/drupal-crashes-plugin-not-found.png)
+
+### Reason
+- Drupal ignores the theme folder when it seeks for the modules.
+
+### Solutions
+1. Solution:
+    - clear all tables in the db that have the `cache_` prefix
+    ```
+    TRUNCATE `cache_bootstrap`;
+    TRUNCATE `cache_config`;
+    TRUNCATE `cache_container`;
+    TRUNCATE `cache_data`;
+    TRUNCATE `cache_default`;
+    TRUNCATE `cache_discovery`;
+    TRUNCATE `cache_dynamic_page_cache`;
+    TRUNCATE `cache_entity`;
+    TRUNCATE `cache_menu`;
+    TRUNCATE `cache_page`;
+    TRUNCATE `cache_render`;
+    TRUNCATE `cache_toolbar`;
+    ```
+2. Solution:
+    - Place your modules into `otsk-drupal/docroot/modules/custom` folder
+    - Run cache rebuild after that
+3. Solution:
+    ```
+    fin drush -l {sitename}.otsk.docksal.site sqlq “TRUNCATE cache_discovery;”
+    ```
+4. Solution:
+    - https://www.drupal.org/project/drupal/issues/2985199
+   (https://www.drupal.org/project/drupal/issues/2985199#comment-14152772)
+
+### Proposals
+- no data
+
+## Menu links turn all `#` link anchors to empty anchors
+
+### Description
+If link contains only `#` symbol as a link destination, menu on the front-end
+turns it to the empty destination.
+
+Expected:
+`<a href="#">Link</a>`
+
+Actual:
+`<a href="">Link</a>`
+
+### Reason
+- no data
+
+### Solutions
+- Add some suffix to the `#` symbol (`#[suffix]`, e.g. `#main`, `#top`)
+
+### Proposals
+The issue should be investigated and fixed.
+
+## Media is not rendered on the front end in anonymous mode
+
+### Description
+It is because by default anonymous user has no permission to see All media.
+
+### Reason
+- possible issue with the media feature
+
+### Solutions
+- Visit `/admin/people/permissions`, check `View media` for `ANONYMOUS USER`
+and `AUTHENTICATED USER`, and save changes.
+
+### Proposals
+The issue should be investigated and fixed.
+
+## Storybook Component rendering issue
+
+### Description
+In complecated components like Layouts, Pages or Complex paragraphs is the issue
+with rendering components in Storybook.
+
+It usually looks like this:
+
+[<img src="/docs/known-issues/Paragraph-rendering-issue.png" width="320px"/>](/docs/known-issues/Paragraph-rendering-issue.png)
+
+### Reason
+- no data
+
+### Solutions
+- Switch to another Storybook component
+- Reload browser tab with the Storybook
+- Make any corrections in component style/data/story and wait till storybook
+rebuilds the component
+
+### Proposals
+The issue should be investigated and fixed.
+
+## Component JS does not work
+
+### Description
+Sometimes any part of component JS functionality does not work properly
+without any issues in console.
+E.g. ISI tray does not expand content after click the `See more` button:
+
+[<img src="/docs/known-issues/isi-expand-issue.png" width="100%"/>](/docs/known-issues/isi-expand-issue.png)
+
+### Reason
+- possible JS conflicts
+
+### Solutions
+- Switch to another Storybook component
+- Reload browser tab with the Storybook
+- Make any corrections in component style/data/story and wait till storybook
+rebuilds the component
+
+### Proposals
+The issue should be investigated and fixed.
+
+## `otsk_ds_media_responsive_image` module Installation issue
+
+### Description
+During the installation process drush throws the issue:
+` [warning] Entity view display 'media.responsive_image.default': Component 'field_media_mobile_image' was disabled because its settings depend on removed dependencies.`
+
+[<img src="/docs/known-issues/responsive_image.png" width="100%"/>](/docs/known-issues/responsive_image.png)
+
+### Reason
+- The module contains dependency to it's own breakpoints. They should be changed after installation.
+
+### Solutions
+1. Install module one more time
+`drush -l https://ds3.otsk.docksal.site/ pm:enable otsk_ds_media_responsive_image`
+2. Go to `Configuration/Media/Responsive image styles` section `/admin/config/media/responsive-image-style`
+3. Switch settings from the module to the theme breakpoints
+[<img src="/docs/known-issues/responsive_image_list.png" width="600"/>](/docs/known-issues/responsive_image_list.png)
+
+[<img src="/docs/known-issues/responsive_image_breakpoints.png" width="300"/>](/docs/known-issues/responsive_image_breakpoints.png)
+
+4. Uninstall module
+`drush -l https://ds3.otsk.docksal.site/ pmu otsk_ds_media_responsive_image`
+
+### Proposals
+There is no solution due to unknown theme_name in the installation moment.

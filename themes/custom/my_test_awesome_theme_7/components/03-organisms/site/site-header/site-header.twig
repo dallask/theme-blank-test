@@ -1,0 +1,72 @@
+{% set header__base_class = 'header' %}
+{% set data_analytics_position = 'header' %}
+{# If `directory` is defined, set the path relative for Drupal.
+ # Otherwise, set the path relative to the Component Library. #}
+{% set header__logo_src = directory ? '/' ~ directory ~ '/images/logo.png' : 'logo.png' %}
+{% set header_attributes = {
+  class: bem(
+    header__base_class,
+    [],
+    '',
+    ['bg-secondary']
+  ),
+  'data-analytics-position': 'Header',
+} %}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<header {{ add_attributes(header_attributes) }}>
+  {% if site_header.header_top %}
+    <div {{ add_attributes({
+              'class': bem(
+                'header-top',
+                [],
+                '',
+                [
+                  'py-5',
+                  'text-center'
+                ]
+              ),
+              'data-test': 'header-top'
+            }) }}>
+      {% block header_top %}
+        {{ site_header.header_top }}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+  {% set navbar_logo %}
+    {% include "@molecules/logo/logo.twig" with {
+      link_url: site_header.logo.link.url,
+      image_src: site_header.logo.image.src,
+      element_modifiers: ['header'],
+    } %}
+  {% endset %}
+
+  {% set menu %}
+    {% include "@molecules/menus/main-menu/main-menu.twig" with {
+      menu_items: site_header.menu_items,
+    } %}
+  {% endset %}
+
+  {% if navbar_logo or menu %}
+    <div {{ bem('header-logo-menu', [], '') }}>
+      {% include "@molecules/navbar/navbar.twig" with {
+        navbar_content: {
+          navbar_logo: navbar_logo,
+          navbar_menu: menu,
+        }
+      } %}
+    </div>
+  {% endif %}
+
+  {% if site_header.breadcrumb %}
+    <div {{ bem('header-bottom', [], '', ['container', 'py-5']) }}>
+      {% block breadcrumb %}
+        {% include "@molecules/menus/breadcrumbs/breadcrumbs.twig" with {
+          breadcrumb: site_header.breadcrumb,
+        } %}
+      {% endblock %}
+    </div>
+  {% endif %}
+</header>

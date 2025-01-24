@@ -1,0 +1,43 @@
+element_modifiers:
+  - videos
+gallery:
+  config:
+    'data-switch-event': 'click'
+    'data-gallery-type': 'video'
+    gallery_head_extra_classes:
+      - col-60
+      - col-lg-20
+    gallery_items_extra_classes:
+      - col-60
+      - col-lg-40
+  cards:
+    - title: 'What is the risk-vs-benefit profile of JYNARQUE treatment in older patients?'
+      subtitle: 'KOL: German Hernandez, MD'
+      time: '18 min 02 sec'
+      body: |
+        <p>In this video, German Hernandez, MD, illustrates the risk-vs-benefit profile of JYNARQUE treatment in older 
+        patients by  presenting data from a retrospective analysis of patients ages 55-65 years old.</p>
+      video:
+        url: https://vimeo.com/226053498
+        thumbnail: https://picsum.photos/id/10/1213/682
+      attributes:
+        path: molecules/card/card-video/card-video
+        variant: card-video
+    - title: 'How do you manage aquaretic side effects from treatment with JYNARQUE?'
+      subtitle: 'KOL: Christopher Kwoh, MD'
+      time: '18 min 54 sec'
+      video:
+        url: https://vimeo.com/775604247
+        thumbnail: https://picsum.photos/id/11/1213/682
+      attributes:
+        path: molecules/card/card-video/card-video
+        variant: card-video
+    - title: 'How do I know JYNARQUE is "working" in my patients?'
+      subtitle: 'KOL: Gerard Tepedino, MD'
+      time: '21 min 58 sec'
+      video:
+        url: https://vimeo.com/226053498
+        thumbnail: https://picsum.photos/id/12/1213/682
+      attributes:
+        path: molecules/card/card-video/card-video
+        variant: card-video

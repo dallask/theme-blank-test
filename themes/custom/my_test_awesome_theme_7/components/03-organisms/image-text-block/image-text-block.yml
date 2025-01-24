@@ -1,0 +1,60 @@
+theme_styles: 'nuedexta'
+type: image-text-block
+top_divider: 'top-border'
+image_block:
+  image:
+    src: 'https://picsum.photos/320/180'
+    sizes: '320w 420w'
+    attributes:
+      alt: 'Alt text'
+      title: 'Title text'
+      loading: 'lazy'
+  reference:
+    text: 'Robert is a real patient living with PBA.'
+text_block:
+  text: 'Trying To Make Sense of Your Uncontrollable Crying and/or Laughing?'
+  text_long: |
+    <p>If you have a neurologic condition or brain injury, such as: 
+    <ul>
+      <li>Traumatic brain injury (TBI)</li> 
+      <li>Stroke </li>
+      <li>Multiple sclerosis (MS)</li>
+      <li>Alzheimer's disease or dementia</li>
+      <li>Amyotrophic lateral sclerosis (ALS)</li>
+      <li>Parkinson's disease</li>
+    </ul>
+    ...and you experience sudden. frequent, uncontrollable crying and/or laughing episodes that are exaggerated or don't match how you feel. it's time to learn more about PBA.</p>
+  link:
+    url: '/'
+    title: 'Learn More About PBA'
+    attributes: ''
+docs:
+  source:
+    code: |
+      {# Basic: #}
+      {% extends "@components/paragraph/content/content.twig" %}
+
+      {# Full: #}
+      {% set paragraph_base_class = 'content' %} {# optional #}
+      {% set paragraph_blockname = 'paragraph' %} {# optional #}
+      {% set paragraph_modifiers = [
+        'modifierOne',
+        'modifierTwo',
+      ] %} {# optional #}
+      {% set paragraph_container_class = 'container-full' %} {# optional #}
+      {% set paragraph_extra = [
+        'classOne',
+        'classTwo',
+      ] %} {# optional #}
+
+      {% extends "@components/paragraph/content/content.twig" %}
+      {% block content %}
+      {% include "@components/global/_twig_debug.twig" with { component_debug_path: _self} %}
+
+      {{ attach_library('[theme_name]/[library_name]') }}
+
+      {# Some HTML structure #}
+        {{ content }}
+        {# Some HTML structure #}
+
+      {% endblock %}

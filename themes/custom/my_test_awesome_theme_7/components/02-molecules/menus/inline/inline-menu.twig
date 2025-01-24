@@ -1,0 +1,14 @@
+{% include "@molecules/menus/_menu.twig" with {
+  menu_class: 'inline-menu',
+  list__addition_classes: [
+    'navbar',
+    'nav',
+  ],
+  link_extra: link_extra|default(['text-black']),
+  items: items|default(inline_menu_items),
+  list__attributes: list__attributes|default({
+    'data-test': 'inline-menu',
+  }),
+  data_analytics_position: data_analytics_position,
+  data_analytics_group: 'inline-menu',
+} %}

@@ -1,0 +1,113 @@
+{% set footer__base_class = 'footer' %}
+{% set data_analytics_position = 'footer' %}
+{% set footer_attributes = {
+  class: bem(footer__base_class,
+    [],
+    '',
+    ['bg-secondary', 'py-30']
+  ),
+  'data-analytics-position': 'Footer',
+} %}
+
+<footer {{ add_attributes(footer_attributes) }}>
+  <div {{ bem('container') }}>
+    <div {{ bem('row', [], '', ['row']) }}>
+      {% if site_footer.logo %}
+        <div {{ bem(
+          'region_logo',
+          [],
+          '',
+          [
+            'col-60',
+            'col-md-30',
+            'd-flex',
+            'justify-content-center',
+            'justify-content-md-start'
+          ]
+        ) }}>
+          {% block logo %}
+            {% include "@molecules/logo/logo.twig" with {
+              link_url: site_footer.logo.link.url,
+              image_src: site_footer.logo.image.src,
+              element_modifiers: ['footer'],
+              element_attributes: {'data-test': 'navbar-branding'}
+            } %}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+      {% if site_footer.inline_menu_items %}
+        <div {{ bem(
+          'region_menu',
+          [],
+          '',
+          [
+            'col-60',
+            'col-md-30',
+            'text-center',
+          ]
+        ) }}>
+          {% block footer_menu %}
+            {% include "@molecules/menus/inline/inline-menu.twig" with {
+              items: site_footer.inline_menu_items,
+              list__attributes: {
+                'data-test': 'footer-top-menu'
+              }
+            } %}
+          {% endblock %}
+          {% block footer_menu_social %}
+            {% include "@molecules/menus/social-menu/social-menu.twig" with {
+              social_menu_items: site_footer.social_menu_items,
+              list__addition_classes: [
+                'd-flex',
+                'flex-column',
+                'flex-sm-row',
+                'justify-content-between',
+              ],
+            } %}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+      {% if site_footer.copyright %}
+          <div {{ add_attributes({
+              'class': bem(
+                'region_copyright',
+                [],
+                '',
+                [
+                  'col-60',
+                  'text-md-end',
+                  'text-center'
+                ]
+              ),
+              'data-test': 'copyright'
+            }) }}>
+          {% block footer_copyright %}
+            {{ site_footer.copyright|raw }}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+      {% if site_footer.footer_prc %}
+        <div {{ bem(
+          'region_prc',
+          [],
+          '',
+          [
+            'col-60',
+            'text-md-end',
+            'text-center'
+          ]
+        ) }}>
+          {% block footer_prc %}
+            {% include "@atoms/prc/prc.twig" with {
+              content: site_footer.footer_prc,
+            } %}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</footer>

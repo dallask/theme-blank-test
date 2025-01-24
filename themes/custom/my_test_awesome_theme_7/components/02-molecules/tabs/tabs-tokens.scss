@@ -1,0 +1,23 @@
+@import '@bootstrap/styles/_variables.scss';
+
+.nav__tabs {
+  &--mod1 {
+    --#{$prefix}component-width: #{$tabs-tabs-title-mod1-width};
+    --#{$prefix}component-height: #{$tabs-tabs-title-mod1-height};
+    --#{$prefix}component-bg-color: #{$tabs-tabs-title-mod1-bg-color};
+    --#{$prefix}component-heading-width: #{$tabs-tabs-title-mod1-heading-width};
+    --#{$prefix}component-heading-height: #{$tabs-tabs-title-mod1-heading-height};
+    --#{$prefix}component-heading-bg-color: #{$tabs-tabs-title-mod1-heading-bg-color};
+    --#{$prefix}component-heading-spacing-t: #{$tabs-tabs-title-mod1-heading-spacing-t};
+    --#{$prefix}component-heading-spacing-b: #{$tabs-tabs-title-mod1-heading-spacing-b};
+    --#{$prefix}component-heading-spacing-l: #{$tabs-tabs-title-mod1-heading-spacing-l};
+    --#{$prefix}component-heading-spacing-r: #{$tabs-tabs-title-mod1-heading-spacing-r};
+    --#{$prefix}component-heading-font-family: #{$tabs-tabs-title-mod1-heading-font-family};
+    --#{$prefix}component-heading-font-color: #{$tabs-tabs-title-mod1-heading-font-color};
+    --#{$prefix}component-heading-font-weight: #{$tabs-tabs-title-mod1-heading-font-weight};
+    --#{$prefix}component-heading-font-size: #{$tabs-tabs-title-mod1-heading-font-size};
+    --#{$prefix}component-heading-font-text-align: #{$tabs-tabs-title-mod1-heading-font-text-align};
+    --#{$prefix}component-heading-font-letter-spacing: #{$tabs-tabs-title-mod1-heading-font-letter-spacing};
+    --#{$prefix}component-heading-font-line-height: #{$tabs-tabs-title-mod1-heading-font-line-height};
+  }
+}

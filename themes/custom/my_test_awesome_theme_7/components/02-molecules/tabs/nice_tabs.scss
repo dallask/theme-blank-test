@@ -1,0 +1,56 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+$border-color: #010b12;
+$colors-theme-blue: #2554c3;
+$colors-theme-dark-blue: #170b95;
+
+.nice_tabs {
+  --nav-height-m: 42px;
+  --nav-height-d: 48px;
+  overflow: hidden;
+
+  h2 {
+    color: $colors-theme-dark-blue;
+    text-align: center;
+
+    sup {
+      font-size: .65em;
+    }
+  }
+
+  .tabs {
+    text-align: center;
+    background: transparent !important;
+
+    .nav-tabs {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      border: 1px solid rgba($border-color, .2);
+      border-radius: calc((var(--nav-height-m) + 12px) / 2);
+      background: $colors-pure-white;
+      // Spacing
+      padding: 5px;
+      margin: 0 -32px 32px;
+
+      @include media-breakpoint-up(lg) {
+        border-radius: calc((var(--nav-height-d) + 12px) / 2);
+        margin-bottom: 40px;
+      }
+
+      .nav-link {
+        height: var(--nav-height-m);
+        border-radius: calc(var(--nav-height-m) / 2);
+        color: $colors-theme-blue;
+
+        &.active {
+          color: white;
+          background: $colors-theme-blue;
+        }
+      }
+    }
+  }
+}

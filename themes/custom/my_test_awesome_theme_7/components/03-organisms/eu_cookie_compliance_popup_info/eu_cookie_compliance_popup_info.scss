@@ -1,0 +1,28 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.block__ds-eu-cookie-compliance-popup-info {
+  .eu-cookie-compliance-secondary-button {
+    background-color: $blue;
+    border-color: $blue;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .eu-cookie-compliance-default-button {
+    font-family: unset;
+    font-weight: unset;
+  }
+
+  .ds-eu-cookie-compliance-message {
+    p {
+      display: inline-block;
+
+      & + .find-more-button {
+        display: inline-block;
+      }
+    }
+  }
+}

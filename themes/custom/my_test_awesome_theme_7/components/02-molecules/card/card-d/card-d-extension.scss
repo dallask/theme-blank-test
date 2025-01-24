@@ -1,0 +1,136 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+// @import '@molecules/card/card-d/card-d-tokens.scss';
+
+.card-d {
+  @include media-breakpoint-up(md) {
+    width: vars(component-width);
+    height: vars(component-height);
+    border-color: vars(component-border-color);
+    border-radius: vars(component-border-radius);
+    @include margin(vars(component-margin-y) vars(component-margin-x));
+  }
+
+  width: vars(component-mobile-width);
+  height: vars(component-mobile-height);
+  border-color: vars(component-mobile-border-color);
+  border-radius: vars(component-mobile-border-radius);
+
+  .card-d {
+    &__image {
+      img {
+        @include media-breakpoint-up(md) {
+          height: vars(component-image-height);
+          width: vars(component-image-width);
+          @include margin(vars(component-image-spacing-t) vars(component-image-spacing-r) vars(component-image-spacing-b) vars(component-image-spacing-l));
+        }
+  
+        height: vars(component-mobile-image-height);
+        width: vars(component-mobile-image-width);
+        @include margin(vars(component-mobile-image-spacing-t) vars(component-mobile-image-spacing-r) vars(component-mobile-image-spacing-b) vars(component-mobile-image-spacing-l));  
+      }
+    }
+
+    &__body {
+      @include media-breakpoint-up(md) {
+        width: vars(component-text-width);
+        height: vars(component-text-height);
+        @include margin(vars(component-text-spacing-t) vars(component-text-spacing-r) vars(component-text-spacing-b) vars(component-text-spacing-l));
+      }
+      width: vars(component-mobile-text-width);
+      height: vars(component-mobile-text-height);
+      @include margin(vars(component-mobile-text-spacing-t) vars(component-mobile-text-spacing-r) vars(component-mobile-text-spacing-b) vars(component-mobile-text-spacing-l));
+
+      @include media-breakpoint-up(md) {
+        @include font(
+          $font-size: vars(component-text-font-size),
+          $color: vars(component-text-font-color),
+          $font-family: vars(component-text-font-family),
+          $font-weight: vars(component-text-font-weight),
+          $line-height: vars(component-text-font-line-height),
+          $letter-spacing: vars(component-text-font-letter-spacing),
+        );
+        text-align: vars(component-text-font-text-align);
+      };
+
+      @include font(
+        $font-size: vars(component-mobile-text-font-size),
+        $color: vars(component-mobile-text-font-color),
+        $font-family: vars(component-mobile-text-font-family),
+        $font-weight: vars(component-mobile-text-font-weight),
+        $line-height: vars(component-mobile-text-font-line-height),
+        $letter-spacing: vars(component-mobile-text-font-letter-spacing),
+      );
+      text-align: vars(component-mobile-text-font-text-align);
+    }
+
+    &__heading {
+      @include media-breakpoint-up(md) {
+        width: vars(component-heading-width);
+        height: vars(component-heading-height);
+        @include margin(vars(component-heading-spacing-t) vars(component-heading-spacing-r) vars(component-heading-spacing-b) vars(component-heading-spacing-l));
+      }
+      width: vars(component-mobile-heading-width);
+      height: vars(component-mobile-heading-height);
+      @include margin(vars(component-mobile-heading-spacing-t) vars(component-mobile-heading-spacing-r) vars(component-mobile-heading-spacing-b) vars(component-mobile-heading-spacing-l));
+
+      @include media-breakpoint-up(md) {
+        @include font(
+          $font-size: vars(component-heading-font-size),
+          $color: vars(component-heading-font-color),
+          $font-family: vars(component-heading-font-family),
+          $font-weight: vars(component-heading-font-weight),
+          $line-height: vars(component-heading-font-line-height),
+          $letter-spacing: vars(component-heading-font-letter-spacing),
+        );
+        text-align: vars(component-heading-font-text-align);
+      };
+
+      @include font(
+        $font-size: vars(component-mobile-heading-font-size),
+        $color: vars(component-mobile-heading-font-color),
+        $font-family: vars(component-mobile-heading-font-family),
+        $font-weight: vars(component-mobile-heading-font-weight),
+        $line-height: vars(component-mobile-heading-font-line-height),
+        $letter-spacing: vars(component-mobile-heading-font-letter-spacing),
+      );
+      text-align: vars(component-mobile-heading-font-text-align);
+    }
+
+    &__cta {
+      @include media-breakpoint-up(md) {
+        width: vars(component-link-width);
+        height: vars(component-link-height);
+        @include margin(vars(component-link-spacing-t) vars(component-link-spacing-r) vars(component-link-spacing-b) vars(component-link-spacing-l));
+      }
+      width: vars(component-mobile-link-width);
+      height: vars(component-mobile-link-height);
+      @include margin(vars(component-mobile-link-spacing-t) vars(component-mobile-link-spacing-r) vars(component-mobile-link-spacing-b) vars(component-mobile-link-spacing-l));
+
+      @include media-breakpoint-up(md) {
+        @include font(
+          $font-size: vars(component-link-font-size),
+          $color: vars(component-link-font-color),
+          $font-family: vars(component-link-font-family),
+          $font-weight: vars(component-link-font-weight),
+          $line-height: vars(component-link-font-line-height),
+          $letter-spacing: vars(component-link-font-letter-spacing),
+        );
+        text-align: vars(component-link-font-text-align);
+      };
+
+      @include font(
+        $font-size: vars(component-mobile-link-font-size),
+        $color: vars(component-mobile-link-font-color),
+        $font-family: vars(component-mobile-link-font-family),
+        $font-weight: vars(component-mobile-link-font-weight),
+        $line-height: vars(component-mobile-link-font-line-height),
+        $letter-spacing: vars(component-mobile-link-font-letter-spacing),
+      );
+      text-align: vars(component-mobile-link-font-text-align);
+    }
+  }
+}

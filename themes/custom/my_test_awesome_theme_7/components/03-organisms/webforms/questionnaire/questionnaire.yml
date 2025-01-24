@@ -1,0 +1,62 @@
+element:
+  elements:
+    i_am:
+      '#type': radios
+      '#title': 'I am...'
+      '#options':
+        1: "<strong>On an oral antipsychotic</strong> but curious about a\Lonce every-2-months treatment option"
+        2: '<strong>On ABILIFY&nbsp;MAINTENA<sup>®</sup> (aripiprazole),</strong> and curious about a once every-2-months treatment option'
+        3: "<strong>Not on treatment</strong>\Lbut am curious about a once every-2-months treatment option"
+      '#wrapper_attributes':
+        class:
+          - form-check
+    select_the_questions:
+      '#type': checkboxes
+      '#title': 'Select the questions you would like to ask your healthcare provider:'
+      '#options':
+        1: 'Could once every-2-months ABILIFY ASIMTUFII® (aripiprazole) be an appropriate option for me?'
+        2: 'What are the possible side effects of ABILIFY ASIMTUFII?'
+        3: 'Can ABILIFY ASIMTUFII help give me more time without a mood episode?'
+        4: 'Do my bipolar I disorder symptoms need to be under control before starting ABILIFY ASIMTUFII?'
+        5: 'Do I need to stay on my current treatment after starting ABILIFY ASIMTUFII?'
+        6: 'Do I need to be on ABILIFY MAINTENA® (aripiprazole) before starting ABILIFY ASIMTUFII?'
+        7: 'How is ABILIFY ASIMTUFII given?'
+        8: 'What are the potential advantages and disadvantages of a once every-2-months long-acting injectable treatment?'
+        9: "How could a long-acting injectable treatment help keep my symptoms stable over the course of\L2 months?"
+        10: 'How does an LAI deliver medicine consistently over 2 months?'
+        11: 'How could ABILIFY ASIMTUFII help me work toward my treatment goals?'
+        12: 'Is financial assistance available?'
+      '#wrapper_attributes':
+        class:
+          - form-check
+    markup:
+      '#type': webform_markup
+      '#markup': 'Below are the questions you selected to ask your healthcare provider at your next appointment:'
+    botton_next:
+      '#type': processed_text
+      '#text': '<button type="button" class="btn btn-primary btn-sm slick-next-alt">Next</button>'
+      '#format': full_html
+    botton_prev:
+      '#type': processed_text
+      '#text': '<button type="button" class="btn btn-primary btn-sm slick-prev-alt d-none">Previous</button>'
+      '#format': full_html
+    botton_print:
+      '#type': processed_text
+      '#text': '<button type="button" class="btn btn-outline-success">Print</button>'
+      '#format': full_html
+    botton_download:
+      '#type': processed_text
+      '#text':  '<button type="button" class="btn btn-outline-warning">Download</button>'
+      '#format': full_html
+    actions:
+      '#type': 'webform_actions'
+      '#title': 'Submit button(s)'
+      '#submit__label': 'Send message'
+      '#wrapper_attributes':
+        class:
+          - form-actions
+      '#attributes':
+        class:
+          - btn
+          - btn-primary
+        value: 'Submit'

@@ -1,0 +1,108 @@
+{#
+ # Available variables:
+ # - config.base_class - base classname of the wrapper.
+ # - config.modifier - array of modifiers to add to the base classname of the wrapper.
+ # - config.blockname - blockname prepended to the base classname of the wrapper(s) and each component.
+ #
+ # - card__image.src - the actual image file location.
+ # - card__image.alt - (optional) the alt text for screen readers and when the image cannot load.
+ # - config.card__image__output_image_tag - whether to print the picture element or not.
+ #
+ # - config.card__content__base_class - base classname of the copy wrapper - defaults to 'heading'.
+ # - config.card__content__modifiers - array of modifiers to add to the base classname of the copy wrapper.
+ # - config.card__content__blockname - blockname prepended to the base classname of the copy wrapper.
+ #
+ # - card__heading - the content of the title component.
+ # - card__heading__link - (optional) the url the title should link to. Defaults to card__link__url.
+ # - config.card__heading__base_class - base classname of the title component. Defaults to "title".
+ # - config.card__heading__blockname - blockname to add to the base classname of the title - defaults to card__base_class.
+ # - config.card__heading__modifiers - array of modifiers to add to the base classname of the title.
+ #
+ # - card__subheading - the content of the subtitle component.
+ # - card__subheading__link - (optional) the url the subtitle should link to.
+ # - config.card__subheading__base_class - base classname of the subtitle component. Defaults to "subtitle".
+ # - config.card__subheading__modifiers - array of modifiers to add to the base classname of the subtitle.
+ #
+ # - card__body - the content of the body component.
+ # - config.card__body__base_class - base classname of the body component. Defaults to "body".
+ # - config.card__body__modifiers - array of modifiers to add to the base classname of the body.
+ #
+ # - card__cta.text - the content of the link component.
+ # - card__cta.url - the url the link should link to.
+ # - config.card__link__base_class - base classname of the link component. Defaults to "link".
+ # - config.card__link__blockname - override link blockname. Defaults to card__base_class.
+ # - config.card__link__attributes - array of attribute,value pairs for the link attribute.
+ # - config.card__link__modifiers - array of modifiers to add to the base classname of the link.
+ #}
+{% set card__base_class = config.base_class|default('card-b') %}
+{% set card__blockname = config.blockname|default() %}
+{% set card__modifiers = config.modifier|default([]) %}
+{% set card__data_analytics_group = config.data_analytics_group|default(card__heading) %}
+
+{% set card_attributes = {
+  class: bem(
+    card__base_class,
+    card__modifiers,
+    card__blockname
+  ),
+  href: card__cta.link.url|default('#'),
+  target: card__cta.link.attributes.target|default('_blank'),
+  'data-analytics-group': 'Card > ' ~ card__data_analytics_group|render is not empty ? card__data_analytics_group|striptags : 'Card B',
+  'data-test': (card__heading|render is not empty ? card__heading : 'card-heading')|trim|striptags|replace({' ':'-'})|lower ~ '-card'
+} %}
+
+<a {{ add_attributes(card_attributes) }}>
+  {% if card__icon %}
+    <div {{ bem('card-icon', [], card__base_class) }}>
+      {% include "@atoms/images/icons/_icon.twig" with {
+        icon__name: card__icon
+      } %}
+    </div>
+  {% endif %}
+  {# Content #}
+  {% block card__content %}
+    <div {{ bem('content', card__content__modifiers, card__base_class) }}>
+      {# Heading #}
+      {% if card__heading %}
+        {% include "@atoms/text/headings/_heading.twig" with {
+          heading__base_class: config.card__heading__base_class|default('heading'),
+          heading__modifiers: config.card__heading__modifiers,
+          heading__blockname: card__base_class,
+          heading_level: 3,
+          heading: card__heading,
+        } %}
+      {% endif %}
+      {# Body #}
+      {% if card__body %}
+        {% if card__body is iterable %}
+          {% for item in card__body %}
+            {% include "@atoms/text/text/08-section.twig" with {
+              section_base_class: config.card__body__base_class|default('body'),
+              section_modifiers: config.card__body__modifiers,
+              section_blockname: card__base_class,
+              section_content: item.text|default(item),
+            } %}
+          {% endfor %}
+        {% else %}
+          {% include "@atoms/text/text/08-section.twig" with {
+            section_base_class: config.card__body__base_class|default('body'),
+            section_modifiers: config.card__body__modifiers,
+            section_blockname: card__base_class,
+            section_content: card__body,
+          } %}
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endblock %}
+  {# Image #}
+  {% block card__img %}
+    {% if card__image.src %}
+      {% include "@atoms/images/image/responsive-image.twig" with {
+        responsive_image_blockname: card__base_class,
+        output_image_tag: config.card__image__output_image_tag|default('true'),
+        image_src: card__image.src,
+        image_attributes: card__image.attributes,
+      } %}
+    {% endif %}
+  {% endblock %}
+</a>

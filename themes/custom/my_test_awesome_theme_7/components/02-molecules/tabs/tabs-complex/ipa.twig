@@ -1,0 +1,170 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('ipa'),
+} %}
+  {% block element_content %}
+    <div {{ bem('nice_tabs', [], 'ipa', ['nice_tabs']) }}>
+
+      {% set customTabs = [] %}
+      {% for tab in tabs %}
+
+        {% set tabContent %}
+          {% if tab.content[0] %}
+            {% set content_items = tab.content %}
+          {% else %}
+            {% set content_items = [tab.content] %}
+          {% endif %}
+
+          {% for content in content_items %}
+            {% if content.attributes %}
+              {% if 'grid' in content.attributes.type %}
+                {% if content.attributes.type == 'grid_card_g' %}
+                  <div {{ bem('cards-g-wrapper', [], 'ipa', []) }}>
+                    {% if content.grid-header %}
+                      {% include "@atoms/text/headings/_heading.twig" with {
+                        heading_level: 3,
+                        heading: content.grid-header.title,
+                      } %}
+                    {% endif %}
+                    <div {{ bem('cards-g', [], 'ipa', ['row', 'card-counter-reset']) }}>
+                      {% for item in content.cards %}
+                        <div {{ bem('card', [], 'ipa', ['col-60', 'col-lg-30', 'col-xl-15']) }}>
+                          {% include "@molecules/card/card-g/card-g.twig" with {
+                            card__body: item.text.text|default(item.text),
+                          } %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if content.attributes.type == 'grid_card_b' %}
+                  <div {{ bem('cards-b-wrapper', [], 'ipa', []) }}>
+                    {% if content.grid-header %}
+                      {% include "@atoms/text/headings/_heading.twig" with {
+                        heading_level: 3,
+                        heading: content.grid-header.title,
+                      } %}
+                    {% endif %}
+                    <div {{ bem('cards-b', [], 'ipa', ['row']) }}>
+                      {% for item in content.cards %}
+                        <div {{ bem('card', [], 'ipa', ['col-60']) }}>
+                          {% include "@molecules/card/card-b/card-b.twig" with {
+                            card__heading: item.title|raw,
+                            card__body: item.text.text|default(item.text),
+                            config: {
+                              card__modifiers: [item.attributes.modifier],
+                            },
+                          } %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if content.attributes.type == 'grid_card_c_carousel' %}
+                  {% embed "@base/06-common/_wrapper.twig" with {
+                    element_base_class: content.attributes.element_base_class,
+                    element_extra: element_extra|default([])|merge(['row', 'mobile-slider']),
+                    element_attributes: {
+                      'data-carousel-options': content.attributes.carousel_options|json_encode()|escape,
+                      'data-test': 'slider',
+                    },
+                    paragraph_behavior_custom_id: null,
+                  } %}
+                    {% block element_content %}
+                      {% for item in content.cards %}
+                        <div {{ bem('card', [], 'ipa', ['col-60', 'col-lg-20']) }}>
+                          {% include "@molecules/card/card-c/card-c.twig" with {
+                            card__image: item.media|default(item.media.media),
+                            card__heading: item.title|default(item.title.title),
+                            card__body: item.text.text|default(item.text),
+                            config: {
+                              card__modifiers: [
+                                'expandable',
+                                'group',
+                              ],
+                            }
+                          } %}
+                        </div>
+                      {% endfor %}
+                    {% endblock %}
+                  {% endembed %}
+                {% endif %}
+              {% endif %}
+
+              {% if content.attributes.type == 'accordion' %}
+                {% include "@molecules/accordion/accordion.twig" with {
+                  accordion: content.accordion,
+                  paragraph_behavior_custom_id: 'ipaAccordion',
+                } %}
+              {% endif %}
+
+              {% if content.attributes.type == 'tile' %}
+                {% include "@molecules/tile/tile.twig" with {
+                  element_base_class: 'tile',
+                  tile: {
+                    body: content.text.text|default(content.text),
+                  },
+                  element_attributes: null,
+                  paragraph_behavior_custom_id: null,
+                } %}
+              {% endif %}
+            {% endif %}
+            {% if content.media %}
+              {% include "@atoms/images/image/responsive-image.twig" with {
+                output_image_tag: true,
+                image_src: content.media.media.src|default(content.media.src),
+                image_attributes: content.media.media.attributes|default(content.media.attributes),
+                image_alt: content.media.media.alt|default(content.media.alt),
+                image_srcset: content.media.media.srcset|default(content.media.srcset),
+                sources: content.media.media.sources|default(content.media.sources),
+                output_image_tag: content.media.media.sources.output_image_tag|default(''),
+              } %}
+            {% endif %}
+            {% if content.title %}
+              {% include "@atoms/text/headings/_heading.twig" with {
+                heading__base_class: config.card__heading__base_class|default('heading'),
+                heading__modifiers: config.card__heading__modifiers,
+                heading__blockname: card__base_class,
+                heading_level: 3,
+                heading: content.title.title|default(title),
+              } %}
+            {% endif %}
+            {% if content.text %}
+              {% include "@atoms/text/text/08-section.twig" with {
+                section_blockname: 'ipa',
+                section_base_class: 'footnote',
+                section_content: content.text.text|default(content.text),
+              } %}
+            {% endif %}
+            {% if content.link %}
+              {% include "@atoms/cta/cta.twig" with {
+                cta_base_class: 'cta',
+                cta_blockname: 'card-f',
+                cta_modifiers: ['primary'],
+                cta_attributes: content.link.attributes|default(content.link.link.attributes),
+                cta_content: content.link.title|default(content.link.link.title),
+                cta_url: content.link.url|default(content.link.link.url),
+                cta_icon: 'arrow-long-right',
+              } %}
+            {% endif %}
+          {% endfor %}
+        {% endset %}
+
+        {% set customTabs = customTabs|merge([{'title': tab.title, 'content': tabContent }]) %}
+      {% endfor %}
+
+      {% include "@molecules/tabs/tabs_sb.twig" with {
+        custom_attributes: {
+          id: 'customBSTabsIpa',
+        },
+        element_base_class: 'tabs',
+        tabs: customTabs,
+        paragraph_behavior_custom_id: 'niceTabsIpa',
+        tabs_pills: true,
+        tabs_fill: false,
+        tabs_justified: false,
+      } %}
+    </div>
+  {% endblock %}
+{% endembed %}

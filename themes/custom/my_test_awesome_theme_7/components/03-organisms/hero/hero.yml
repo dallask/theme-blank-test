@@ -1,0 +1,13 @@
+theme_styles: 'nuedexta'
+hero:
+  title: You Are Not Alone
+  subtitle: Hear from other patients living with PBA and taking NUDEXTA
+  image:
+    src: background.jpeg
+    attributes:
+      alt: background
+      loading: 'lazy'
+  video:
+    urls:
+      - chrome.webm
+

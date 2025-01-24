@@ -1,0 +1,20 @@
+@use 'sass:math';
+@import './01-variables';
+
+// OTSK
+@function rem($unit) {
+  @if unit($unit) == 'px' {
+    @return math.div($unit, $font-size-base-px) * 1rem;
+  } @else if unit($unit) == '' {
+    @return math.div($unit, $font-size-base) * 1rem;
+  }
+
+  @return $unit;
+
+  @warn "Expected argument $unit to be of type `% or px`, instead received: `#{unit($unit)}`";
+}
+
+@function vars($variable) {
+  @return var(--#{$prefix}#{$variable});
+}
+// end OTSK

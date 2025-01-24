@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for local actions (primary admin actions.)
+ */
+#}
+
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if content %}
+    {% set heading_id = block_id ~ '-menu'|clean_id %}
+    <nav role="navigation"
+         aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }}>
+      {{ content }}
+    </nav>
+  {% endif %}
+{% endblock %}

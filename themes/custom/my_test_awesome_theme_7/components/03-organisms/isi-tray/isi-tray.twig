@@ -1,0 +1,78 @@
+{% set block_base_class = block_base_class|default('isi') %}
+
+{% block content %}
+
+  {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+  {% set jump_link_content %}
+    {{ jump_link_text }}
+  {% endset %}
+
+  {% set drawer_title_markup %}
+    {{ drawer_title }}
+  {% endset %}
+
+  {% set block_title %}
+    {{ title }}
+  {% endset %}
+
+  {% set isi_content %}
+    {{ bodyContent }}
+  {% endset %}
+
+  {% if (drawerContent['#markup']|length > 0) %}
+    {% set isi_content %}
+      {{ drawerContent }}
+    {% endset %}
+  {% endif %}
+
+
+  {% if (drawer_enable) %}
+
+    <section id="drawer-isi "
+             class="isi-tray jsIsiContainer isi-drawer-collapsed"
+             data-analytics-position = 'ISI'>
+
+      <!--<div id="isi-drawer-wrapper" class="isi-drawer-collapsed">-->
+
+      <div class="isi-header">
+        <div class="isi-header-wrap">
+          <div class="drawer-title">{{ drawer_title_markup }}</div>
+          <button
+            class="isi-btn jsIsiMinimize{% if (fake_drawer_enable) %} isi-jump-link{% endif %}"
+            data-oapigtmcategory="Button Clicks" data-oapigtmaction="ISI"
+            data-oapigtmlabel="{{ drawer_expand_text }}">
+            <span
+              class="jsSwapText jsSwapTextExpand">{{ drawer_expand_text }}</span>
+            <span
+              class="jsSwapText jsSwapTextCollapse hide">{{ drawer_collapse_text }}</span>
+            <span class="isi-btn-icon"></span></button>
+        </div>
+      </div>
+
+      <div class="isi isi-block isi-drawer-content isi-content-wrap">
+        <div class="jcf-scrollable jcf-container mCustomScrollbar">
+          <div class="isi-drawer-content-heading">{{ block_title }}</div>
+          {{ isi_content }}
+        </div>
+      </div>
+
+      <!--</div>--><!--/#isi-drawer-wrapper-->
+
+    </section>
+
+  {% else %}
+
+    <div id="stickyfooter-isi"
+         class="jump-link-stickyfooter-wrapper sticky-footer-revealed jsIsiContainer isi-tray">
+      <div class="isi-header">
+        <div class="isi-header-wrap">
+          <div class="drawer-title">
+            <a class="isi-jump-link">{{ jump_link_content }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+{% endblock %}

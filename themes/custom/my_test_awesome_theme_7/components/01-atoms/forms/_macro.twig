@@ -1,0 +1,196 @@
+{% macro form_element(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% set label %}
+    {% include "@atoms/forms/_form-label.twig" with {
+      additional_attributes: element['#label_attributes']|default({})|merge(name ? {for: name} : {}),
+      title: element['#title'],
+    } %}
+  {% endset %}
+
+  {% embed "@atoms/forms/_form-element.twig" with {
+    additional_attributes: element['#wrapper_attributes'],
+    label_display: element['#wrapper_attributes']['label_display']|default('before'),
+    label: label,
+  } %}
+
+    {% block children %}
+      {% set element_attributes = element['#attributes']|default({})|merge(name ? {id: name, name: name} : {})|merge(element['#type'] ? {type: element['#type']} : {}) %}
+
+      {% if element['#type'] == 'select' %}
+        {% set options_final = {} %}
+        {% for key, item in element['#options'] %}
+          {% set options_final = options_final|merge({(key): {
+            type: 'option',
+            value: key,
+            label: item,
+            selected: element['#default_value'] == key ? 'selected' : null,
+          }}) %}
+        {% endfor %}
+        {% include "@atoms/forms/_select-element.twig" with {
+          additional_attributes: element_attributes,
+          options: options_final,
+        } %}
+      {% elseif element['#type'] == 'textarea' %}
+        {% include "@atoms/forms/_textarea.twig" with {
+          additional_attributes: element_attributes,
+        } %}
+      {% else %}
+        {% include "@atoms/forms/_input.twig" with {
+          additional_attributes: element_attributes,
+        } %}
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+{% endmacro %}
+
+{% macro form_fieldset(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% embed "@atoms/forms/_fieldset.twig" with {
+    legend: {
+      title: element['#title'],
+    },
+  } %}
+
+    {% block children %}
+      {% for key, item in element %}
+        {% if not (key starts with '#') %}
+          {{ _self.form_print_element({(key): item}) }}
+        {% endif %}
+      {% endfor %}
+    {% endblock %}
+  {% endembed %}
+{% endmacro %}
+
+{% macro form_radios(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% embed "@atoms/forms/_fieldset.twig" with {
+    legend: {
+      title: element['#title'],
+    },
+  } %}
+
+    {% block children %}
+      {% set children_radios %}
+        {% for key, option in element['#options'] %}
+          {% set input %}
+            {% include "@atoms/forms/_input.twig" with {
+              additional_attributes: element['#attributes']|default({})|merge(
+                name ? {
+                  id: name ~ '_' ~ key
+                } : {}
+              )|merge(
+                element['#type'] in ['checkboxes', 'checkbox'] ? {
+                  name: name ~ '[' ~ key ~ ']'
+                } : {name: name}
+              )|merge(
+                element['#type'] in ['checkboxes', 'checkbox'] ? {
+                  type: 'checkbox'
+                } : {type: 'radio'}
+              )|merge(
+                element['#default_value'] and key in element['#default_value'] ? {
+                  checked: 'checked'
+                } : {}
+              ),
+            } %}
+
+            {% include "@atoms/forms/_form-label.twig" with {
+              title: option,
+              title_display: 'after',
+              additional_attributes: element['#label_attributes']|default({})|merge(
+                name ? {
+                  for: name ~ '_' ~ key
+                } : {}
+              ),
+            } %}
+          {% endset %}
+
+          {% include "@atoms/forms/_form-element.twig" with {
+            children: input,
+            label_display: 'after',
+          } %}
+        {% endfor %}
+      {% endset %}
+
+      {% include "@atoms/forms/_radios.twig" with {
+        children: children_radios
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endmacro %}
+
+{% macro form_actions(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% embed "@atoms/forms/_form-element.twig" with {
+    additional_attributes: element['#wrapper_attributes'],
+  } %}
+    {% block children %}
+      {% include "@atoms/forms/_input.twig" with {
+        additional_attributes: element['#attributes']|merge({type: 'submit'}),
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endmacro %}
+
+{% macro form_captcha(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% set element %}
+    {% if element['#captcha_type'] == 'recaptcha/reCAPTCHA' %}
+      {% include "@atoms/forms/_recaptcha.twig" with {
+        url: 'https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Leq5UAnAAAAAOP5xAyhJ9y3r_2oHpAFUlgFvSd5&co=aHR0cDovL3Jlam95bmhjcDE4MDg1bWFpbi5kZXYtb3RzdWthLmFjc2l0ZWZhY3RvcnkuY29tOjgw&hl=en&type=image&v=EGbODne6buzpTnWrrBprcfAY&theme=light&size=normal&cb=mb1eu4w4ldyp'
+      } %}
+    {% else %}
+      Captcha element
+    {% endif %}
+  {% endset %}
+
+  {% include "@atoms/forms/_captcha.twig" with {
+    is_visible: true,
+    title: 'CAPTCHA',
+    description: 'This question is for testing whether or not you are a human visitor and to prevent automated spam submissions.',
+    element: element
+  } %}
+{% endmacro %}
+
+{% macro form_processed_text(element) %}
+  {% set name = element|keys|first %}
+  {% set element = element[name] %}
+
+  {% embed "@atoms/forms/_form-element.twig" with {
+    additional_attributes: element['#wrapper_attributes'],
+  } %}
+    {% block children %}
+      {{ element['#text'] }}
+      {{ element['#markup'] }}
+    {% endblock %}
+  {% endembed %}
+{% endmacro %}
+
+{% macro form_print_element(item) %}
+  {% set key = item|keys|first %}
+
+  {% if item[key]['#type'] in ['textfield', 'textarea', 'email', 'select', 'checkbox'] %}
+    {{ _self.form_element(item) }}
+  {% elseif item[key]['#type'] in ['fieldset'] %}
+    {{ _self.form_fieldset(item) }}
+  {% elseif item[key]['#type'] in ['radios', 'checkboxes'] %}
+    {{ _self.form_radios(item) }}
+  {% elseif item[key]['#type'] in ['webform_actions'] %}
+    {{ _self.form_actions(item) }}
+  {% elseif item[key]['#type'] in ['captcha'] %}
+    {{ _self.form_captcha(item) }}
+  {% elseif item[key]['#type'] in ['processed_text', 'webform_markup'] %}
+    {{ _self.form_processed_text(item) }}
+  {% else %}
+    <div class="text-danger">Element not recognized!<br />Try ro refresh the browser tab.</div>
+  {% endif %}
+{% endmacro %}

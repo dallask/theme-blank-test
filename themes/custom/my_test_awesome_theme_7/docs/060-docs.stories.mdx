@@ -1,0 +1,108 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Docs (mdx)"/>
+
+# Storybook Documentation
+
+There is a two ways to write documentation.
+
+## Writing much more complex docs with customizable mdx file.
+
+The functionality of the addon provides a feature of creating in-place
+documentation tab for each storybook component:
+
+[<img src="/docs/docs/docs-tab.png" width="100%"/>](/docs/docs/docs-tab.png)
+
+As an example may be used the implementation inside of bootstrap components:
+
+[<img src="/docs/docs/docs-example.png" width="100%"/>](/docs/docs/docs-example.png)
+
+Steps:
+
+1. Create `docs.mdx` file with the special markup near your `*.stories.jsx` file
+2. Add the information to the file
+3. Import your file and add a parameter to the parameters section
+
+[<img src="/docs/docs/docs-steps.png" width="100%"/>](/docs/docs/docs-steps.png)
+
+[<img src="/docs/docs/docs-code.png" width="100%"/>](/docs/docs/docs-code.png)
+
+## Using Doc Blocks, being simpler but it’s enough to demonstrate.
+
+In this way, we are using storybook-essential addon to accomplish that
+mission without installing docs addon externally.
+Also, You can find sample usage in my PR
+
+Steps to produce components with docs
+
+Create `README.md` file (We can directly write too but with this way we also
+able to easily read our doc in filesystem and would be much cleaner
+and understandable component structure)
+
+Import `README.md` file into your Storybook Component
+
+`import documentation from './README.md';`
+
+Use your imported variable within the Component’s parameters.
+
+```
+/**
+ * Storybook Definition.
+*/
+export default {
+  ...
+  parameters: {
+    docs: {
+      description: {
+        component: documentation
+      },
+    },
+  },
+  ...
+}
+```
+
+4. That’s IT. ENJOY!
+
+[<img src="/docs/docs/docs-final-view.png" width="100%"/>](/docs/docs/docs-final-view.png)
+
+## Putting sample usage code about Your Storybook Component
+You can directly write sample code in your Storybook Component.
+With this way anyone in team able to easily see your component usage and
+copy directly within Storybook Website
+
+```
+/**
+ * Storybook Definition.
+*/
+export default {
+  ...
+  parameters: {
+  ...,
+  source: {
+    code: `
+      {% extends "@organisms/hero/video-background/hero-video-background.twig" %}
+      {% set hero_video_source = file_url(paragraph.field_video.entity.field_media_video_file.entity.fileuri) %}
+      {% set hero_video_poster = file_url(paragraph.field_otsk_ds_image.entity.field_media_image.entity.fileuri) %}
+      {% set hero_sizing_modifier = 'full-width-300' %}
+      {% set hero_placement_modifier = 'center' %}
+      {% set hero_padding_modifier = 'all-16' %}
+      {% block content %}
+      {{ content.field_otsk_ds_paragraphs }}
+      {% endblock %}
+      `,
+      language: "twig"
+    },
+  },
+  ...
+}
+```
+
+[<img src="/docs/docs/docs-final-view-1.png" width="100%"/>](/docs/docs/docs-final-view-1.png)
+
+## References:
+- https://storybook.js.org/addons/@storybook/addon-docs/
+- https://storybook.js.org/docs/react/api/mdx
+- https://www.markdownguide.org/basic-syntax/
+- https://storybook.js.org/docs/react/writing-docs/doc-block-description

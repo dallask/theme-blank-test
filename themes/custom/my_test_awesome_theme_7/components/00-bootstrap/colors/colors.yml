@@ -1,0 +1,37 @@
+colors:
+  - background:
+      primary
+    text:
+      white
+  - background:
+      secondary
+    text:
+      white
+  - background:
+      success
+    text:
+      white
+  - background:
+      danger
+    text:
+      white
+  - background:
+      warning
+    text:
+      white
+  - background:
+      info
+    text:
+      white
+  - background:
+      light
+    text:
+      black
+  - background:
+      dark
+    text:
+      white
+  - background:
+      white
+    text:
+      black

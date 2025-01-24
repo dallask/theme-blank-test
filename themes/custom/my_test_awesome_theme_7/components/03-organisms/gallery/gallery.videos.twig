@@ -1,0 +1,28 @@
+{#
+ #  This template should only be used to render a component in storybook.
+ #  Please do NOT use it for production development.
+ #}
+{% extends "@organisms/gallery/gallery.twig" %}
+
+{% block included_head_card %}
+  {% include "@molecules/card/card-video/card-video.twig" with {
+    card__image: item.image,
+    card__video: item.video,
+    card__heading: item.title,
+    card__subheading: item.subtitle,
+    card__video_time: item.time,
+    card__body: item.body,
+    config: item.attributes.config,
+  } %}
+{% endblock %}
+
+{% block included_list_card %}
+  {% include "@molecules/card/card-video/card-video.twig" with {
+    card__image: item.image,
+    card__heading: item.title,
+    card__subheading: item.subtitle,
+    card__video_time: item.time,
+    card__body: item.body,
+    config: item.attributes.config,
+  } %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{#
+/**
+ * Available variables:
+ * - element_base_class - the base classname
+ * - element_modifiers - array of modifiers to add to the base classname
+ * - element_blockname - blockname prepended to the base classname
+ *
+ * - chart_svg - SVG chart to render
+ * - data_gsap_chart - JSON with chart's gsap configuration
+ */
+#}
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('chart')
+} %}
+  {% block element_content %}
+    <div {{ bem('chart-wrapper', [], element_base_class, ['js-gsap-chart']) }} data-gsap-chart='{{ data_gsap_chart }}'>
+      {{ chart_svg|raw }}
+    </div>
+  {% endblock %}
+{% endembed %}

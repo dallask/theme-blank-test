@@ -1,0 +1,11 @@
+config:
+  card__cta__modifiers:
+    - primary
+card__heading: 'Stay informed with the latest PTSD information and resources'
+card__body: 
+  - '<p>Receive email updates with the latest insights and news in PTSD.'
+  - 'Plus, you can access and download <a href="#">complimentary resources</a>.</p>'
+card__cta:
+  link:
+    title: "Sign up now"
+    url: '/'

@@ -1,0 +1,6 @@
+dist
+components/00-base
+components/00-bootstrap
+.out
+.coverage
+*.min.js

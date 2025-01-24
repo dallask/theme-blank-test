@@ -1,0 +1,10 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: element_base_class|default('font-switcher'),
+} %}
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {{ content }}
+  {% endblock %}
+{% endembed %}
+

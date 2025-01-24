@@ -1,0 +1,4 @@
+card__body: /text
+card__heading: /title
+card__cta: /link
+attributes: /attributes

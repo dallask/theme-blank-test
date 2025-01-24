@@ -1,0 +1,45 @@
+content:
+  branding:
+    - link:
+        url: 'https://www.otsuka-us.com/who-we-are'
+        title: ''
+      img:
+        src: 'http://abilifyasimhcc38835main.dev-otsuka.acsitefactory.com/sites/g/files/qhldwo8251/files/styles/large/public/2024-01/logo-otsuka.png?itok=Edln7yID'
+        attributes:
+          alt: 'Otsuka corp logo'
+          loading: 'lazy'
+    - link:
+        url: 'https://www.lundbeck.com/global'
+        title: ''
+      img:
+        src: 'http://abilifyasimhcc38835main.dev-otsuka.acsitefactory.com/sites/g/files/qhldwo8251/files/styles/large/public/2024-01/logo-lundbeck.png?itok=eimXOFgj'
+        attributes:
+          alt: 'Lundbeck Logo'
+          loading: 'lazy'
+  menus:
+    footer-top:
+      '#items':
+        - title: 'ABILIFY ASIMTUFII'
+          url: '#'
+        - title: 'ABILIFY MAINTENA'
+          url: '#'
+    footer-bottom:
+      '#items':
+        - title: 'ABILIFY ASIMTUFII'
+          url: '#'
+        - title: 'ABILIFY MAINTENA'
+          url: '#'
+    privacy-menu:
+      '#items':
+        - title: 'Important Safety Information'
+          url: '#'
+        - title: 'Privacy Policy'
+          url: '#'
+        - title: 'Site Map'
+          url: '#'
+        - title: 'Terms of Use'
+          url: '#'
+  copyright: '©2023 Otsuka America Pharmaceutical, Inc.<br class="d-block d-lg-none"> All rights reserved.'
+  prc_code: 
+    date: 'November 2023'
+    code: '23US23EXC0048'

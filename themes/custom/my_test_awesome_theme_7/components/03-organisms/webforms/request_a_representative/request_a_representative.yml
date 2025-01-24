@@ -1,0 +1,193 @@
+element:
+  elements:
+    processed_text:
+      '#type': processed_text
+      '#wrapper_attributes':
+        class:
+          - custom--processed-0
+      '#text': |
+        <h2 class="mb-20">ABILIFY&nbsp;MAINTENA<sup>®</sup> (aripiprazole) and ABILIFY&nbsp;ASIMTUFII<sup>®</sup> (aripiprazole) representatives serve as a comprehensive resource for:</h2>
+
+        <ul class="mb-30">
+        	<li>Product information</li>
+        	<li>Samples and patient support tools</li>
+        	<li>Savings and coverage details</li>
+        </ul>
+
+        <hr class="mt-0 mb-30" />
+        <p class="mt-0"><i>(*) Indicates required field</i></p>
+      '#format': full_html
+    first_name:
+      '#type': textfield
+      '#title': 'First name'
+      '#maxlength': 50
+      '#required': true
+      '#required_error': 'Please enter your first name.'
+      '#pattern': '^([^\d]+)$'
+      '#pattern_error': 'Please enter a valid first name.'
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    last_name:
+      '#type': textfield
+      '#title': 'Last name'
+      '#maxlength': 50
+      '#required': true
+      '#required_error': 'Please enter your last name.'
+      '#pattern': '^([^\d]+)$'
+      '#pattern_error': 'Please enter a valid last name.'
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    residence_address:
+      '#type': textfield
+      '#title': Address
+      '#maxlength': 255
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    city:
+      '#type': textfield
+      '#title': City
+      '#maxlength': 50
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    state:
+      '#type': textfield
+      '#title': State
+      '#attributes':
+        class:
+          - form-control
+        disabled: disabled
+      '#label_attributes':
+        class:
+          - form-label
+    zip_code:
+      '#type': textfield
+      '#title': 'ZIP Code'
+      '#maxlength': 5
+      '#input_mask': '99999[-9999]'
+      '#required': true
+      '#required_error': 'Please enter a valid ZIP code.'
+      '#pattern': '^[0-9]{5}$'
+      '#pattern_error': 'Please enter a valid ZIP code.'
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    email:
+      '#type': email
+      '#title': 'Email address'
+      '#maxlength': 100
+      '#required': true
+      '#required_error': 'Please enter a valid email address.'
+      '#pattern': '^([a-zA-Z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$'
+      '#pattern_error': 'Please enter a valid email address.'
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    phone_number:
+      '#type': textfield
+      '#title': 'Phone Number'
+      '#input_mask': '(999) 999-9999'
+      '#required': true
+      '#required_error': 'Please enter a valid phone number.'
+      '#pattern': '^\(?(\d{3})\)?[-\. ]?(\d{3})[-\. ]?(\d{4})$'
+      '#pattern_error': 'Please enter a valid phone number.'
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    processed_text_03:
+      '#type': processed_text
+      '#wrapper_attributes':
+        class:
+          - custom--processed-3
+      '#text': |
+        <hr />
+        <p class="h3">Must enter state license number OR NPI number field.</p>
+      '#format': full_html
+    state_license_number:
+      '#type': textfield
+      '#title': 'State License Number'
+      '#maxlength': 50
+      '#required_error': 'Please enter a valid state license number.'
+      '#states':
+        required:
+          ':input[name="npi_number"]':
+            empty: true
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    processed_text_02:
+      '#type': processed_text
+      '#wrapper_attributes':
+        class:
+          - custom--processed-2
+      '#text': |
+        <p class="or">OR</p>
+      '#format': full_html
+    npi_number:
+      '#type': textfield
+      '#title': 'NPI Number'
+      '#maxlength': 10
+      '#required_error': 'Please enter a valid NPI number.'
+      '#pattern': '^[0-9]{10}$'
+      '#pattern_error': 'Please enter a valid NPI number.'
+      '#states':
+        required:
+          ':input[name="state_license_number"]':
+            empty: true
+      '#attributes':
+        class:
+          - form-control
+      '#label_attributes':
+        class:
+          - form-label
+    processed_text_01:
+      '#type': processed_text
+      '#wrapper_attributes':
+        class:
+          - custom--processed-1
+      '#text': |
+        <p>By submitting this form, you are agreeing to our <a href="https://www.otsuka-us.com/privacy-policy" target="_blank">Privacy Policy</a>.</p>
+      '#format': full_html
+    captcha:
+      '#type': 'captcha'
+      '#captcha_type': 'recaptcha/reCAPTCHA'
+      '#captcha_admin_mode': 'true'
+    actions:
+      '#type': 'webform_actions'
+      '#title': 'Submit button(s)'
+      '#submit__label': 'Send message'
+      '#wrapper_attributes':
+        class:
+          - form-actions
+      '#attributes':
+        class:
+          - btn
+          - btn-primary
+        value: 'Submit'

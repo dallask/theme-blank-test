@@ -1,0 +1,113 @@
+data_gsap_chart: |
+  {
+    "elements": [
+      "#PTE_line_LG_01", "#PTE_line_LG_02", "#PTE_line_LG_03", "#PTE_line_LG_04", "#PTE_line_LG_05"
+    ],
+    "timeline": {
+      "scrollTrigger": {
+        "start": "top 80%",
+        "toggleActions": "play none none none"
+      }
+    },
+    "sizeTarget": {
+      "targetName": "rect",
+      "sizeAttrName": "height"
+    },
+    "animationTargets": {
+      "rect": {
+        "vars": {
+          "duration": 1,
+          "attr": {
+            "sizes": {
+              "height": 0
+            },
+            "dimensions": {
+              "y": "+="
+            }
+          },
+          "ease": "power1.inOut"
+        },
+        "position": 1
+      },
+      "line": {
+        "vars": {
+          "duration": 1,
+          "attr": {
+            "dimensions": {
+              "y1": "+=",
+              "y2": "+="
+            }
+          },
+          "ease": "power1.inOut"
+        },
+        "position": 1
+      },
+      "text": {
+        "vars": {
+          "duration": 1,
+          "autoAlpha": 0
+        },
+        "position": 2
+      }
+    }
+  }
+
+chart_svg: |
+  <?xml version="1.0" encoding="utf-8"?>
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 670 281" style="enable-background:new 0 0 670 281;" xml:space="preserve">
+  <style type="text/css">
+  .PTE_LG_st0{opacity:0.5;}
+  .PTE_LG_st1{opacity:0.5;fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+  .PTE_LG_st2{fill:#000;}
+  .PTE_LG_st3{font-family: 'Open Sans Condensed', 'open sans', sans-serif; font-weight: bold;}
+  .PTE_LG_st4{font-size:12px;}
+  .PTE_LG_st5{fill:#EAEAEA;}
+  .PTE_LG_st6{fill:none;stroke:#EF0024;stroke-width:6;stroke-miterlimit:10;}
+  .PTE_LG_st7{fill:#00090F;}
+  .PTE_LG_st8{font-family: 'Open Sans Condensed', 'open sans', sans-serif; font-weight: bold;}
+  .PTE_LG_st9{font-size:18px;}
+  .PTE_LG_st10{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
+  </style>
+  <g class="PTE_LG_st0">
+  <line class="PTE_LG_st1" x1="669.6" y1="167.9" x2="0.4" y2="167.9"/>
+  <line class="PTE_LG_st1" x1="669.6" y1="111.8" x2="0.4" y2="111.8"/>
+  <line class="PTE_LG_st1" x1="669.6" y1="55.7" x2="0.4" y2="55.7"/>
+  <line class="PTE_LG_st1" x1="669.6" y1="-0.5" x2="0.4" y2="-0.5"/>
+  <line class="PTE_LG_st1" x1="669.4" y1="196" x2="0.6" y2="196"/>
+  <line class="PTE_LG_st1" x1="669.4" y1="139.8" x2="0.6" y2="139.8"/>
+  <line class="PTE_LG_st1" x1="669.4" y1="83.7" x2="0.6" y2="83.7"/>
+  <line class="PTE_LG_st1" x1="669.4" y1="27.6" x2="0.6" y2="27.6"/>
+  </g>
+  <g id="PTE_line_LG_01">
+  <text transform="matrix(1 0 0 1 553.7588 245.7607)"><tspan x="0" y="0" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">Life-threatening</tspan><tspan x="19.1" y="15.7" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">illnesses</tspan></text>
+  <rect x="545.6" y="162.3" class="PTE_LG_st5" width="95.4" height="61.7"/>
+  <line class="PTE_LG_st6" x1="545.6" y1="162.3" x2="641" y2="162.3"/>
+  <text transform="matrix(1 0 0 1 571.4893 183.4472)" class="PTE_LG_st7 PTE_LG_st8 PTE_LG_st9">11.8%</text>
+  </g>
+  <g id="PTE_line_LG_02">
+  <text transform="matrix(1 0 0 1 423.1982 245.7607)"><tspan x="0" y="0" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">Life-threatening</tspan><tspan x="-12.8" y="15.7" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">automobile accidents</tspan></text>
+  <rect x="415.1" y="149.5" class="PTE_LG_st5" width="95.4" height="74.6"/>
+  <line class="PTE_LG_st6" x1="415.1" y1="150.5" x2="510.4" y2="150.5"/>
+  <text transform="matrix(1 0 0 1 440.9287 171.2714)" class="PTE_LG_st7 PTE_LG_st8 PTE_LG_st9">14.0%</text>
+  </g>
+  <g id="PTE_line_LG_03">
+  <text transform="matrix(1 0 0 1 308.8545 245.7607)" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">Muggings</text>
+  <rect x="285.2" y="144.3" class="PTE_LG_st5" width="95.4" height="79.7"/>
+  <line class="PTE_LG_st6" x1="285.2" y1="144.9" x2="380.6" y2="144.9"/>
+  <text transform="matrix(1 0 0 1 311.0459 165.6074)" class="PTE_LG_st7 PTE_LG_st8 PTE_LG_st9">14.5%</text>
+  </g>
+  <g id="PTE_line_LG_04">
+  <text transform="matrix(1 0 0 1 169.0811 245.7607)"><tspan x="0" y="0" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">Witnessing or</tspan><tspan x="-11.2" y="15.7" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">discovering death </tspan><tspan x="-6.1" y="31.4" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">or serious injury</tspan></text>
+  <rect x="154.6" y="98.4" class="PTE_LG_st5" width="95.4" height="125.7"/>
+  <line class="PTE_LG_st6" x1="154.6" y1="99.4" x2="250" y2="99.4"/>
+  <text transform="matrix(1 0 0 1 180.4844 120.5019)" class="PTE_LG_st7 PTE_LG_st8 PTE_LG_st9">23.7%</text>
+  </g>
+  <g id="PTE_line_LG_05">
+  <text transform="matrix(1 0 0 1 27.8467 245.7607)"><tspan x="0" y="0" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">Unexpected death</tspan><tspan x="10.7" y="15.7" class="PTE_LG_st2 PTE_LG_st3 PTE_LG_st4">of a loved one</tspan></text>
+  <rect x="24.6" y="48.1" class="PTE_LG_st5" width="95.4" height="175.9"/>
+  <line class="PTE_LG_st6" x1="24.6" y1="47.8" x2="120" y2="47.8"/>
+  <text transform="matrix(1 0 0 1 50.4854 68.5087)" class="PTE_LG_st7 PTE_LG_st8 PTE_LG_st9">31.4%</text>
+  </g>
+  <line class="PTE_LG_st10" x1="0" y1="224" x2="670" y2="224"/>
+  </svg>

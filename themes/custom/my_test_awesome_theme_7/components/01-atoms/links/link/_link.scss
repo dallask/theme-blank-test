@@ -1,0 +1,8 @@
+@mixin link {
+  color: vars(accent);
+
+  &:hover {
+    color: vars(accent-high);
+  }
+}
+

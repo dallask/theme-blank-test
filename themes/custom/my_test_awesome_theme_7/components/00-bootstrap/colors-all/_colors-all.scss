@@ -1,0 +1,76 @@
+// Configuration override
+@import "../styles/variables";
+
+// Configuration
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_variables-dark';
+@import '~bootstrap/scss/maps';
+@import '~bootstrap/scss/_mixins';
+
+@each $key, $value in $blues {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $purples {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $indigos {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $pinks {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $reds {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $oranges {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $yellows {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $greens {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+
+@each $key, $value in $teals {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $cyans {
+  .bd-#{$key}{
+    background-color: $value !important;
+  }
+}
+
+@each $key, $value in $grays {
+  .bd-gray-#{$key}{
+    background-color: $value !important;
+  }
+}

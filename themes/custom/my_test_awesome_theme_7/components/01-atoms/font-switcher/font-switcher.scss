@@ -1,0 +1,93 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.font-switcher {
+  color: $green;
+  width: 75px;
+  max-width: 65px;
+  height: 40px;
+  margin-bottom: 18px;
+  position: relative;
+  left: 5px;
+
+  @media (min-width: 375px) {
+    margin-bottom: 6px;
+    max-width: none;
+    left: 0;
+  }
+
+  a {
+    font-family: "Helvetica Neue LT W05_87 Hv Cn", sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.1px;
+    line-height: 6px;
+    color: $green;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .content--text {
+    line-height: 1.1;
+  }
+
+  .content--label {
+    display: block;
+    font-family: "Helvetica Neue LT W05_87 Hv Cn", sans-serif;
+    position: relative;
+    padding-bottom: 12px;
+    line-height: 19px;
+
+    .type {
+      &--sm {
+        font-size: 9.5px;
+      }
+
+      &--md {
+        font-size: 12.7px;
+      }
+
+      &--lg {
+        font-size: 14.6px;
+      }
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      background: $green;
+      position: absolute;
+      bottom: 0;
+    }
+
+    &:before {
+      left: 0;
+      height: 1px;
+      width: 100%;
+      bottom: 6px;
+    }
+
+    &:after {
+      left: calc(50% - 16.5px);
+      height: 13px;
+      width: 13px;
+      border-radius: 13px;
+
+      @at-root .font-type-bigger #{&} {
+        left: calc(50% + 2.5px);
+      }
+    }
+  }
+}

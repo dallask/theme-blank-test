@@ -1,0 +1,41 @@
+{% set element_base_class = element_base_class|default(paragraph_behavior_variant|default('')) %}
+{% set element_modifiers = element_modifiers|default(paragraph_behavior_modifier ? paragraph_behavior_modifier : []) %}
+{% set element_blockname = element_blockname|default('') %}
+{% set element_extra = element_extra|default([])|merge(custom_attributes.spacing ? ['spacer-ds'] : []) %}
+{% set spacing = '' %}
+{% for key, item in custom_attributes.spacing|default({}) %}
+  {% set spacing = spacing ~ '--element-' ~ key ~ ': ' ~ item ~ '; ' %}
+{% endfor %}
+{% set element_attributes = (element_attributes and element_attributes is iterable) ? element_attributes : element_attributes|default({})|merge(paragraph_behavior_custom_id ? {id: paragraph_behavior_custom_id} : {})|merge(spacing ? {style: spacing} : {}) %}
+{% set element_tag = element_tag|default('div') %}
+
+{% set element_attributes = element_attributes|merge({
+  class: bem(
+    element_base_class,
+    element_modifiers,
+    element_blockname,
+    [
+      element_extra|join(' '),
+      paragraph_behavior_custom_classes|default(''),
+    ]
+  ),
+}) %}
+
+{% set test_attr = {} %}
+{% if element_attributes.class.storage is not empty %}
+  {% for key, item in element_attributes.class.storage %}
+    {% if key != 'class' %}
+      {% set test_attr = test_attr|merge({(key): item|render}) %}
+    {% endif %}
+  {% endfor %}
+
+  {% set element_attributes = element_attributes|merge(test_attr) %}
+{% endif %}
+
+<{{ element_tag }} {{ add_attributes(element_attributes) }}>
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {{ element_content }}
+  {% endblock %}
+</{{ element_tag }}>

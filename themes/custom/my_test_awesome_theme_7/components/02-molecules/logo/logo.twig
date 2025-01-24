@@ -1,0 +1,29 @@
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: 'logo',
+  element_attributes: {
+    'data-test': 'navbar-logo'
+  },
+} %}
+  {% block element_content %}
+    {% embed "@atoms/links/link/link.twig" with {
+      link_base_class: 'logo__link',
+      link_url: ds_variables.link.link.url|default(default_language_id == current_language_id ? '/' : '/' ~ current_language_id),
+      link_attributes: link_attributes|default({}),
+      data_analytics_group: 'Logo',
+      data_analytics_name: 'Logo',
+    } %}
+      {% block link_content %}
+        {% include "@atoms/images/image/responsive-image.twig" with {
+          output_image_tag: true,
+          image_src: directory ? '/' ~ directory ~ '/images/logo.png' : 'logo.png',
+          image_attributes: {
+            alt: image_alt|default('Logo'),
+            'data-analytics-name': 'Logo',
+          },
+          responsive_image_blockname: 'logo',
+          image_extra: ['img-fluid'],
+        } %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

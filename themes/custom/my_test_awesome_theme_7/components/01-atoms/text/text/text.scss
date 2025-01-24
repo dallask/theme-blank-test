@@ -1,0 +1,199 @@
+@import '@base/00-defaults/_01-variables.scss';
+@import '@base/00-defaults/_04-functions.scss';
+@import '@base/00-defaults/_03-mixins.scss';
+@import '@bootstrap/styles/_variables.scss';
+@import '@bootstrap/styles/_mixins_functions.scss';
+
+
+:root {
+  --#{$prefix}blockquote-cite-margin-top: #{$blockquote-cite-margin-top};
+  --#{$prefix}blockquote-hr-height: #{$blockquote-hr-height};
+  --#{$prefix}blockquote-color: #{$blockquote-color};
+  --#{$prefix}blockquote-bg: #{$blockquote-bg};
+}
+
+
+/* Create a mixin for paragraph styles that can be implemented
+ * in components with other classnames.
+*/
+@mixin paragraph($margin: 0 0 1em) {
+  margin: $margin;
+}
+
+mark {
+  background-color: vars(primary);
+  color: vars(text-inverse);
+}
+
+blockquote, q {
+  position: relative;
+
+  &::before {
+    content: open-quote;
+    @include font-size(vars(blockquote-hr-height));
+    color: vars(orange);
+    width: vars(blockquote-hr-height);
+    height: vars(blockquote-hr-height);
+    position: absolute;
+    left: 0;
+    top: calc(0rem - vars(blockquote-hr-height) / 2);
+  }
+
+  &::after {
+    content: close-quote;
+    @include font-size(vars(blockquote-hr-height));
+    color: vars(orange);
+    width: calc(vars(blockquote-hr-height) / 2);
+    height: vars(blockquote-hr-height);
+    position: absolute;
+    right: 0;
+    bottom: calc(0rem - vars(blockquote-hr-height) / 2);
+  }
+
+  hr {
+    width: calc(100% - vars(blockquote-hr-height));
+
+    &:first-child {
+      margin: calc(vars(blockquote-hr-height) / 2) 0 calc(vars(blockquote-hr-height) / 2) auto;
+    }
+  
+    &:last-child {
+      margin: calc(vars(blockquote-hr-height) / 2) auto calc(vars(blockquote-hr-height) / 2) 0;
+    }
+  }
+
+}
+
+cite {
+  display: block;
+  margin-top: vars(blockquote-cite-margin-top);
+}
+
+[class*='--quote-center'] {
+  blockquote {
+    hr {
+      display: none;
+    }
+
+    &::before {
+      display: block;
+      position: relative;
+      margin: 0 auto;
+    }
+  
+    &::after {
+      display: block;
+      position: relative;
+      margin: 0 auto;
+    }
+  }
+
+  cite {
+    width: fit-content;
+    margin: vars(blockquote-cite-margin-top) auto 0 auto;
+  }
+}
+
+[class*='--highlighted'] {
+  position: relative;
+  background-color: vars(blockquote-bg);
+  border-radius: 8px;
+  padding: 29px 16px 31px 27px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 24px 23px 22px 60px;
+  }
+
+  blockquote {
+    hr {
+      display: none;
+    }
+
+    &::before {
+      content: '';
+      width: 4px;
+      height: calc(100% - 8px);
+      background-color: vars(blockquote-color);
+      border-radius: 4px;
+      display: block;
+      position: absolute;
+      left: -15px;
+      top: 4px;
+
+      @include media-breakpoint-up(lg) {
+        mask-image: url('../../../../images/icons/quote.svg');
+        background-color: vars(blockquote-color);
+        width: 12px;
+        height: 39px;
+        left: -23px;
+      }
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+p {
+  margin-bottom: $typography-body-mobile-font-size;
+
+  sup {
+    font-size: $typography-body-mobile-font-size * 0.5;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: $typography-body-desktop-font-size;
+
+    sup {
+      font-size: $typography-body-mobile-font-size * 0.6;
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.main {
+  p {
+    letter-spacing: $typography-body-mobile-letter-spacing;
+
+    @include media-breakpoint-up(lg) {
+      letter-spacing: $typography-body-desktop-letter-spacing;
+    }
+  }
+}
+
+.footnote,
+.footnote p,
+p.footnote {
+  position: relative;
+  font-family: $typography-footnote-font-family;
+  font-weight: $typography-footnote-font-weight;
+  line-height: $typography-footnote-line-height;
+  font-size: $typography-footnote-font-size;
+  margin-bottom: $typography-footnote-paragraph-spacing;
+
+  @include media-breakpoint-down(lg) {
+    letter-spacing: $letter-spacing-default;
+  }
+
+  sup {
+    font-size: .5rem;
+
+    &.external {
+      position: absolute;
+      left: -0.7em;
+      top: 0.3rem;
+    }
+  }
+
+  span {
+    &.external {
+      position: absolute;
+      left: -0.4em;
+      top: 0;
+    }
+  }
+}

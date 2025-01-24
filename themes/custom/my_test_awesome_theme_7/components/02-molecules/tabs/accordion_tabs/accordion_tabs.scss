@@ -1,0 +1,197 @@
+@import "@base/00-defaults/_01-variables.scss";
+@import "@base/00-defaults/_04-functions.scss";
+@import "@base/00-defaults/_03-mixins.scss";
+@import "@bootstrap/styles/_variables.scss";
+@import "@bootstrap/styles/_mixins_functions.scss";
+
+.accordion_tabs {
+  --#{$prefix}accordion-tabs-colors-bg: #{$accordion-tabs-colors-bg};
+  --#{$prefix}accordion-tabs-colors-button-text: #{$accordion-tabs-colors-button-text};
+  --#{$prefix}accordion-tabs-colors-tab-divider: #{$accordion-tabs-colors-tab-divider};
+  --#{$prefix}accordion-tabs-colors-accordion-bg: #{$accordion-tabs-colors-accordion-bg};
+  --#{$prefix}accordion-tabs-colors-accordion-divider: #{$accordion-tabs-colors-accordion-divider};
+  --#{$prefix}accordion-tabs-button-font-size: #{$accordion-tabs-font-button-size};
+  --#{$prefix}accordion-tabs-button-font-weight: #{$accordion-tabs-font-button-weight};
+  --#{$prefix}accordion-tabs-button-line-height: #{$accordion-tabs-font-button-line-height};
+  --#{$prefix}accordion-tabs-button-font-weight-active: #{$accordion-tabs-font-button-active-weight};
+  --#{$prefix}accordion-tabs-button-font-size-d: #{$accordion-tabs-font-desktop-button-size};
+
+  background-color: vars(accordion-tabs-colors-bg);
+
+  @include media-breakpoint-up(lg) {
+    padding: 40px 0 60px;
+  }
+
+  &__col-tabs {
+    .nav {
+      &-tabs {
+        justify-content: space-between;
+        margin-bottom: 56px;
+        padding-right: 44px;
+        padding-bottom: 18px;
+        padding-left: 52px;
+        position: relative;
+        flex-wrap: nowrap;
+        border: none;
+
+        &::before {
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: -2px;
+          left: 0;
+          height: 3px;
+          border-radius: 1px;
+          background: vars(accordion-tabs-colors-tab-divider);
+        }
+      }
+
+      &-item {
+        min-width: 140px;
+        height: 180px;
+      }
+
+      &-link {
+        position: relative;
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        font-size: vars(accordion-tabs-button-font-size-d);
+        font-weight: vars(accordion-tabs-button-font-weight);
+        line-height: vars(accordion-tabs-button-line-height);
+        color: vars(accordion-tabs-colors-button-text);
+        border: none;
+        background-color: transparent;
+        text-transform: uppercase;
+
+        @include media-breakpoint-up(lg) {
+          padding-bottom: 8px;
+        }
+
+        &:hover {
+          .tabs__image {
+            transform: scale(1.15);
+          }
+        }
+
+        .tabs__image {
+          position: absolute;
+          bottom: 63px;
+          max-width: max-content;
+          transition-duration: .3s;
+        }
+
+        &.active {
+          color: vars(accordion-tabs-colors-button-text);
+          font-weight: 700;
+          text-decoration: underline;
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: -31px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 16px;
+            background-color: vars(accordion-tabs-colors-bg);
+            z-index: 5;
+            pointer-events: none;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -33px;
+            transform: translateX(-50%);
+            width: 29px;
+            height: 16px;
+            mask-image: url('img/accordion-tabs-tab-pointer.svg');
+            background-color: vars(accordion-tabs-colors-tab-divider);
+            z-index: 6;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    .tab {
+      &-pane {
+        &__text {
+          &:not(:last-of-type) {
+            margin-bottom: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  &__col-accordion {
+    .accordion-item {
+      border: none;
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid vars(accordion-tabs-colors-accordion-divider);
+      }
+
+      .accordion-header {
+        .accordion-button {
+          height: 100px;
+          padding: 0 82px 0 6px;
+          background: vars(accordion-tabs-colors-bg);
+          color: vars(accordion-tabs-colors-button-text);
+          font-size: vars(accordion-tabs-button-font-size);
+          font-weight: vars(accordion-tabs-button-font-weight-active);
+          line-height: vars(accordion-tabs-button-line-height);
+          text-transform: uppercase;
+          text-decoration: underline;
+          border: none;
+          box-shadow: none;
+
+          &::after {
+            position: absolute;
+            right: 24px;
+            width: 26px;
+            height: 26px;
+            background-image: url('img/accordion-tabs-btn-icon-active.svg');
+            background-position: center;
+          }
+
+          &.collapsed {
+            font-weight: vars(accordion-tabs-button-font-weight);
+            text-decoration: none;
+
+            &::after {
+              background-image: url('img/accordion-tabs-btn-icon.svg');
+            }
+          }
+
+          .accordion__image {
+            width: 100%;
+            max-width: 70px;
+            margin-right: 16px;
+          }
+        }
+      }
+
+      .accordion-content {
+        background-color: vars(accordion-tabs-colors-bg);
+      }
+
+      .accordion-body {
+        padding: 0 18px 20px 8px;
+
+        &__text {
+          &:not(:last-of-type) {
+            margin-bottom: 24px;
+          }
+        }
+      }
+    }
+  }
+}

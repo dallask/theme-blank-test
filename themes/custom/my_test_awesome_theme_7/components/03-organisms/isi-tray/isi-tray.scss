@@ -1,0 +1,28 @@
+.isi-tray {
+  .drawer-title {
+    text-align: left;
+    padding-right: 125px;
+  }
+
+  .isi-block.isi-content-wrap {
+    padding-bottom: 0;
+
+    > div {
+      height: 100%;
+    }
+  }
+
+  &.isi-drawer-collapsed {
+    .isi-block.isi-content-wrap {
+      height: 162px;
+      min-height: 162px;
+    }
+  }
+
+  &.isi-drawer-expanded {
+    .isi-block.isi-content-wrap {
+      height: 50vh;
+      min-height: 196px;
+    }
+  }
+}

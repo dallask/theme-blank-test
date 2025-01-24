@@ -1,0 +1,112 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Docs/Features/Twig templates extension"/>
+
+## Introduction
+As far as system use twig as a template engine, you can utilize all twig template extension techniques:
+- extends
+- embed
+- include
+- use
+- macro
+
+## Common Wrapper
+To unify approach and reduce code for the root wrapper element with all that BEM/Attributes/Tag staff you can use
+common wrapper for extension or embedding inside your own components:
+```
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_tag: 'div', {# optional #}
+  element_base_class: 'some-class', {# optional #}
+  element_blockname: 'block-name', {# optional #}
+  element_modifiers: ['one', 'two', 'three'], {# optional #}
+  element_extra: ['class-one', 'class-two', 'class-three'], {# optional #}
+  element_attributes: {'id': 'some_id', 'data-attribute': 'some-value'}, {# optional #}
+} %}
+  {% block element_content %}
+    ... Your code here ...
+  {% endblock %}
+{% endembed %}
+```
+
+Just in case you need your own wrapper for some reason, you also can utilize a custom approach:
+```
+<div {{ bem(...) }}>
+  {% block content %}
+    ... Your code here ...
+  {% endblock %}
+</div>
+```
+
+## Drupal entities template extension
+
+### Paragraphs
+The main point for the paragraph templates on drupal side is `templates/paragraphs/paragraph.html.twig`.
+
+You do not need to create any other `paragraph--*.html.twig` templates.
+
+This logic utilizes `custom_attributes` Drupal paragraphs custom behavior plugin with the next
+variable:
+- `template_path`
+- `variant`
+- `modifier`
+
+This template build in the way that provides the ability to find appropriate component in Storybook components structure
+based on `paragraph_behavior_template_path` variable or combination of paragraph `variant` and `modifier` variables.
+
+[<img src="/docs/components/components-paragraph-behaviors-1.png" width="500px"/>](/docs/components/components-paragraph-behaviors-1.png)
+
+The logic is next for the top level component:
+1. If: `template_path` variable set, the template `@{template_path}.twig` will be included (if it exists)
+2. Else If: `variant` and `modifier` variables set, the template `@organisms/{variant}/{variant}.{modifier}.twig` will
+be included  (if it exists)
+3. Else If: only `variant` variable set, the template `@organisms/{variant}/{variant}.twig` will be included  (if it exists)
+4. Else: no one template will be included and paragraph content will be rendered as is (`{{ content }}`)
+
+Also, variables `variant` and `modifier` will be used as BEM base class and modifier accordingly.
+
+Lower level component should accept path variable and dynamically upload template from the path like in teh code below:
+
+```
+  {% include "@" ~ item.attributes.path ~ ".twig" with {
+    card__link: item.link,
+    card__image: item.image,
+    card__heading: item.title,
+    card__blockquote: item.blockquote,
+    card__cta: item.cta,
+    card__body: item.text,
+    card__modifiers: item.attributes.modifier,
+    config: item.attributes.config,
+  } %}
+```
+With this option for the lower level component all content could be wrapper into dynamically selected components structure.
+
+[<img src="/docs/components/components-paragraph-behaviors-2.png" width="100%"/>](/docs/components/components-paragraph-behaviors-2.png)
+[<img src="/docs/components/components-paragraph-behaviors-3.png" width="100%"/>](/docs/components/components-paragraph-behaviors-3.png)
+
+
+### Blocks
+All custom content blocks supposed to be build by mens of `Paragraphs` block type that contains paragraphs reference as a
+multiple field.
+
+The main point for the content block templates on drupal side is `templates/block/block--bundle--paragraphs.html.twig`.
+
+The logic in this case pretty same except the fact that blocks cannot use paragraphs behavior plugins. So, they use
+special `otsuka_ds_block_custom_attributes` module.
+This module provides the same fields to implement logic described above:
+- `template_path`
+- `variant`
+- `modifier`
+
+[<img src="/docs/components/components-block-configuration.png" width="100%"/>](/docs/components/components-block-configuration.png)
+
+[<img src="/docs/components/components-block-custom-attributes.png" width="100%"/>](/docs/components/components-block-custom-attributes.png)
+
+[<img src="/docs/components/components-block-custom-attributes-1.png" width="100%"/>](/docs/components/components-block-custom-attributes-1.png)
+
+Also, the module allows you to set attributes to the block, they will be passed inside block nesting paragraphs.
+
+## References
+- https://stackoverflow.com/questions/40526990/difference-between-include-extends-use-macro-embed-in-twig
+
+

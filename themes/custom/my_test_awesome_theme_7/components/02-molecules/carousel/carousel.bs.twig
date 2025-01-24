@@ -1,0 +1,127 @@
+{% set carousel_id = custom_attributes.id|default('customBSCarousel') %}
+{% set carousel_base_class = carousel_base_class|default('carousel') %}
+{% set carousel_modifiers = carousel_modifiers|default([]) %}
+{% set carousel_blockname = carousel_blockname|default('bs') %}
+{% set carousel_indicators = carousel_indicators|default(true) %}
+{% set carousel_arrows = carousel_arrows|default(true) %}
+
+{% set carousel_attributes = {
+  class: bem(
+    carousel_base_class,
+    carousel_modifiers,
+    carousel_blockname,
+    [
+      'container',
+      'carousel',
+      'slide',
+      carousel_dark ? 'carousel-dark' : '',
+      carousel_dark ? carousel_base_class ~ '--dark' : '',
+      carousel_classes|join(' '),
+    ]
+  ),
+}|merge(carousel_attributes|default({
+  id: carousel_id,
+  'data-analytics-group': 'Slideshow',
+})) %}
+
+{% embed "@base/06-common/_wrapper.twig" with {
+  element_base_class: 'carousel',
+  element_block_name: 'bs',
+  element_extra: [
+    'container',
+    'carousel',
+    'carousel-bs',
+    'slide',
+    carousel_dark ? 'carousel-dark' : '',
+    carousel_dark ? carousel_base_class ~ '--dark' : '',
+    carousel_classes|join(' '),
+  ],
+  element_attributes: {
+    id: carousel_id,
+    'data-test': 'slider',
+    'data-analytics-group': 'Slideshow',
+  }|merge(carousel.carousel_options|default(carousel_options_bs))
+} %}
+  {% block element_content %}
+    {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+    {% block carousel_content %}
+      {% if carousel_indicators %}
+        <div {{ bem('carousel-indicators') }}>
+          {% for item in carousel.slides|default(carousel) %}
+            {% include "@atoms/buttons/button.twig" with {
+              button__additional_classes: [
+                loop.first ? 'active' : '',
+              ],
+              button__attributes: {
+                'type': 'button',
+                'data-bs-target': '#' ~ carousel_attributes.id,
+                'data-bs-slide-to': loop.index0 ~ '',
+                'aria-current': loop.first ? 'true' : 'false',
+                'aria-label': ('Slide')|t ~ loop.index,
+              }
+            } %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div {{ bem('carousel-inner') }}>
+        {% for item in carousel.slides|default(carousel) %}
+          <div {{ bem('item', loop.first ? ['active'] : [], '', ['carousel-item', loop.first ? 'active' : '']) }}>
+            {% include "@atoms/images/image/responsive-image.twig" with {
+              output_image_tag: true,
+              image_src: item.media.media.src|default(item.image.src),
+              image_alt: item.media.media.alt|default(item.image.alt),
+              image_attributes: item.media.media.attributes|default(item.image.attributes),
+              image_extra: [
+                'm-auto',
+                'w-100',
+                'h-auto',
+              ],
+              responsive_image_blockname: 'slide',
+            } %}
+            <div class="carousel-caption d-none d-md-block">
+              {% include "@atoms/text/headings/_heading.twig" with {
+                "heading_level": 5,
+                "heading": item.title.title|default(item.title),
+              } %}
+              {{ item.text.text|default(item.caption)|raw }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if carousel_arrows %}
+        {% embed "@atoms/buttons/button.twig" with {
+          button__base_class: 'carousel-control-prev',
+          button__attributes: {
+            'type': 'button',
+            'data-bs-target': '#' ~ carousel_attributes.id,
+            'data-bs-slide': 'prev',
+            'data-test': 'slider-previous',
+          }
+        } %}
+          {% block button__content %}
+            <span {{ bem('carousel-control-prev-icon') }} aria-hidden="true"></span>
+            <span {{ bem('control-prev-text', [], '', ['visually-hidden']) }}>{{ ('Previous')|t }}</span>
+          {% endblock %}
+        {% endembed %}
+
+        {% embed "@atoms/buttons/button.twig" with {
+          button__base_class: 'carousel-control-next',
+          button__attributes: {
+            'type': 'button',
+            'data-bs-target': '#' ~ carousel_attributes.id,
+            'data-bs-slide': 'next',
+            'data-test': 'slider-next',
+          }
+        } %}
+          {% block button__content %}
+            <span {{ bem('carousel-control-next-icon') }} aria-hidden="true"></span>
+            <span {{ bem('control-next-text', [], '', ['visually-hidden']) }}>{{ ('Next')|t }}</span>
+          {% endblock %}
+        {% endembed %}
+      {% endif %}
+    {% endblock %}
+  {% endblock %}
+{% endembed %}

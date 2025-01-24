@@ -1,0 +1,116 @@
+elements:
+  - name:
+      '#type': 'textfield'
+      '#title': 'Your Name'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'John Doe'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+  - email:
+      '#type': 'textfield'
+      '#title': 'Your Email'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'test@test.test'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+  - subject:
+      '#type': 'textfield'
+      '#title': 'Subject'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        placeholder: 'Some subject'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+  - password:
+      '#type': 'password'
+      '#title': 'Password'
+      '#wrapper_attributes':
+        class:
+          - form-item
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        maxlength: '313'
+        size: '63'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'
+  - message:
+      '#type': 'textarea'
+      '#title': 'Message'
+      '#wrapper_attributes':
+        class:
+          - form-item
+          - mb-30
+        wrapper_test1: '1'
+        wrapper_test2: '2'
+      '#attributes':
+        class:
+          - form-control
+          - element_class
+        element_test1: '1'
+        element_test2: '2'
+        cols: '60'
+        rows: '5'
+        placeholder: 'Your message'
+        required: 'required'
+      '#label_attributes':
+        class:
+          - form-label
+        label_test1: '1'
+        label_test2: '2'

@@ -1,0 +1,68 @@
+accordion_tabs:
+  attributes:
+    tabs:
+      tabs_fill: true
+      tabs_justified: true
+    accordion:
+      accordion_flush: true
+  tabs:
+    - title:
+        title:
+          title: "Tab 1"
+        media:
+          src: 'https://picsum.photos/150/125'
+          alt: "This is the alt text"
+      content:
+        text:
+          text: |
+            <h3>Tab 1 Content</h3>
+            <p>1. Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>    - attributes:
+            variant: "tabs_block_item"
+    - title:
+        title:
+          title: "Tab 2"
+        media:
+          src: 'https://picsum.photos/150/125'
+          alt: "This is the alt text"
+      content:
+        text:
+          text: |
+            <h3>Tab 2 Content</h3>
+            <p>1. Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+    - title:
+        title:
+          title: "Tab 3"
+        media:
+          src: 'https://picsum.photos/150/125'
+          alt: "This is the alt text"
+      content:
+        text:
+          text: |
+            <h3>Tab 3 Content</h3>
+            <p>1. Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+    - title:
+        title:
+          title: "Tab 4"
+        media:
+          src: 'https://picsum.photos/150/125'
+          alt: "This is the alt text"
+      content:
+        text:
+          text: |
+            <h3>Tab 4 Content</h3>
+            <p>1. Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+            <p>2. Profile Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s</p>
+docs:
+  source:
+    code: |
+      {% extends "@organisms/accordion_tabs/accordion_tabs.twig" %}

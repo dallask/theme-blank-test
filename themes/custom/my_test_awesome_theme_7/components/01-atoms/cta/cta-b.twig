@@ -1,0 +1,55 @@
+{#
+/**
+ * Available variables:
+ * - cta_content - the content of the link (typically text)
+ * - cta_url - the url this link should poing to
+ * - cta_attributes - array of attribute,value pairs
+ * - cta_base_class - the base class name
+ * - cta_modifiers - array of modifiers to add to the base classname
+ * - cta_blockname - blockname prepended to the base classname
+ *
+ * Available blocks:
+ * - cta_content - used to replace the content of the link
+ *     Example: to insert the image component
+ */
+#}
+{% set cta_base_class = cta_base_class|default('cta') %}
+{% set cta_extra = ['btn']|merge(cta_extra is not empty ? cta_extra : [])%}
+
+{% set cta_wrapper_left_modifier = cta_wrapper_left_modifier|default([]) %}
+{% set cta_wrapper_right_modifier = cta_wrapper_right_modifier|default(['bg-light']) %}
+{% set cta_attributes = (cta_attributes is defined ? cta_attributes : {})|merge({'data-test': cta_content|striptags|lower|replace({' ':'-'}) ~ '-cta' })%}
+
+{% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
+
+<{{ cta_url is not empty ? 'a' : 'button' }}
+  {{ bem(cta_base_class, cta_modifiers, cta_blockname, cta_extra) }}
+  {% for attribute, value in cta_attributes %}
+    {{ attribute }}="{{ value }}"
+  {% endfor %}
+  {% if cta_url is not empty %}
+    href="{{ cta_url }}"
+  {% endif %}
+>
+  {% block cta_icon_left %}
+    {% if cta_icon_left %}
+      <div {{ bem('icon-wrapper', cta_wrapper_left_modifier, cta_base_class) }}>
+        {% include "@atoms/images/icons/_icon.twig" with {
+          icon__name: cta_icon_left,
+        } %}
+      </div>
+    {% endif %}
+  {% endblock %}  
+  {% block cta_content %}
+    <span class="text">{{ cta_content }}</span>
+  {% endblock %}
+  {% block cta_icon_right %}
+    {% if cta_icon_right %}
+      <div {{ bem('icon-wrapper', cta_wrapper_right_modifier, cta_base_class) }}>
+        {% include "@atoms/images/icons/_icon.twig" with {
+          icon__name: cta_icon_right,
+        } %}
+      </div>
+    {% endif %}
+  {% endblock %}
+</{{ cta_url ? 'a' : 'button' }}>

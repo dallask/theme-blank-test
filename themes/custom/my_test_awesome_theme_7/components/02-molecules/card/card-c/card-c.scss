@@ -1,0 +1,52 @@
+@import '@molecules/card/card-c/card-c-extension.scss';
+@import '@molecules/card/card-a/card-expandable';
+
+.card-c {
+  width: 21.4375rem;
+  height: 16.4375rem;
+  background-color: #6796BC;
+  position: relative;
+  display: flex;
+
+  .img-wrapper {
+    height: calc(5.3125rem + 3px);
+    width: calc(5.3125rem + 3px);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 50%;
+    border: solid 1px red;
+    opacity: 1;
+  }
+
+  img {
+    height: 5.3125rem;
+    width: 5.3125rem;
+    padding: 11px;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .card-c {
+    &__content {
+      @include margin(66px 29px 24px 29px);
+    }
+  
+    &__heading {
+      text-align: center;
+      @include font(
+        $font-size: 28,
+        $line-height: 1.4,
+        $color: #000000,
+      );
+    }
+  
+    &__cta {
+      margin: 0 auto;
+      border-radius: 20px;
+      color: black;
+      background-color: white;
+    }
+  }
+}

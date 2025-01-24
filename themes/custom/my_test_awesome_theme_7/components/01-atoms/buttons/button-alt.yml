@@ -1,0 +1,6 @@
+button__content: 'Alternative Button'
+button_url: '#'
+button_modifiers:
+  - 'alt'
+button__additional_classes:
+  - btn-success
