@@ -1,3 +1,6 @@
+{% set data_analytics = {
+  group: 'Tabs',
+}|mergeAlt(data_analytics) %}
 {% set customTabs = [] %}
 {% for tab in tabs.tabs_block_item %}
 
@@ -7,7 +10,7 @@
     {% else %}
       {% set content_items = [tab.content] %}
     {% endif %}
-    
+
     {% for content in content_items %}
       {% if content.attributes %}
         {% if 'grid' in content.attributes.type %}
@@ -24,7 +27,7 @@
             grid: grid,
           }%}
         {% endif %}
-        
+
         {% if 'card' in content.attributes.type %}
           {% include "@" ~ content.attributes.path ~ ".twig" with {
             card__image: content.media|default(content.media.media),
@@ -35,13 +38,13 @@
             config: content.attributes.config|default([]),
           } %}
         {% endif %}
-        
+
         {% if 'accordion' in content.attributes.type %}
           {% include "@molecules/accordion/accordion.twig" with {
             accordion: content.accordion,
           } %}
         {% endif %}
-        
+
         {% if content.attributes.type == 'tile' %}
           {% include "@molecules/tile/tile.twig" with {
             element_base_class: 'tile',
@@ -93,7 +96,7 @@
       {% endif %}
     {% endfor %}
   {% endset %}
-  
+
   {% set customTabs = customTabs|merge([{'title': tab.title, 'content': tabContent }]) %}
 {% endfor %}
 

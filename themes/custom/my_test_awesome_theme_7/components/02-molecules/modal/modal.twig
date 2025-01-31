@@ -11,6 +11,9 @@
   'aria-hidden': 'true',
   'data-test': 'modal',
 } %}
+{% set data_analytics = {
+  group: 'Modal',
+}|mergeAlt(data_analytics) %}
 
 {% block modal_trigger %}
   {% include "@atoms/buttons/button.twig" with {

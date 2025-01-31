@@ -38,6 +38,9 @@
 {% set card__blockname = config.blockname|default() %}
 {% set card__modifiers = config.modifier|default([]) %}
 {% set card__data_analytics_group = config.data_analytics_group|default(card__heading) %}
+{% set data_analytics = {
+  group: 'Card-a',
+}|mergeAlt(data_analytics) %}
 {% set card__expandable = false %}
 {% if card__modifiers is not empty and card__modifiers is iterable %}
   {% for modifier in card__modifiers %}

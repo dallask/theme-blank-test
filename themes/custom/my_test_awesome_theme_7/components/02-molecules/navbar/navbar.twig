@@ -43,13 +43,11 @@
           'aria-expanded': 'false',
           'aria-label': ('Toggle navigation')|t,
           'aria-controls': 'navbar_collapse-' ~ navbar_attributes.id,
-          'data-test': 'mobile-menu-toggle',
-          'data-analytics-link': {
-            name: "Navbar Toggler",
-            position: data_analytics_position,
-            group: "Navbar",
-          }|json_encode(constant('JSON_UNESCAPED_SLASHES'))
-        }
+        }|merge(analytics({
+          name: "Navbar Toggler",
+          position: data_analytics_position,
+          group: "Navbar",
+        }), test('mobile-menu-toggle'))
       } %}
         {% block button__content %}
           <span class="navbar-toggler-icon"></span>

@@ -24,6 +24,9 @@
 {% set card__heading = card__heading|default('') %}
 {% set card__body = card__body|default('') %}
 {% set card__data_analytics_group = config.data_analytics_group|default(card__heading) %}
+{% set data_analytics = {
+  group: 'Card-g',
+}|mergeAlt(data_analytics) %}
 
 {% set card_attributes = {
   class: bem(

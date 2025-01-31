@@ -1,3 +1,7 @@
+{% set data_analytics = {
+  group: 'External link popup',
+}|mergeAlt(data_analytics) %}
+
 {% block content %}
   {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
   {% embed "@molecules/modal/_modal.twig" with {

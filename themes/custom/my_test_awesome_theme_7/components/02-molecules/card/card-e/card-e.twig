@@ -30,6 +30,9 @@
 {% set card__blockname = config.blockname|default() %}
 {% set card__modifiers = config.modifier|default([]) %}
 {% set card__data_analytics_group = config.data_analytics_group|default(card__heading) %}
+{% set data_analytics = {
+  group: 'Card-e',
+}|mergeAlt(data_analytics) %}
 
 {% set card_attributes = {
   class: bem(

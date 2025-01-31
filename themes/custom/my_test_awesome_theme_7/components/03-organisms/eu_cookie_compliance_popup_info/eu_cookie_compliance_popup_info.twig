@@ -51,6 +51,10 @@
   'data-analytics-position': 'Cookie Banner',
 } %}
 
+{% set data_analytics = {
+  group: 'EU cookie compliance popup',
+}|mergeAlt(data_analytics) %}
+
 {% set block_container_class = block_container_class|default('container') %}
 
 {% block content %}

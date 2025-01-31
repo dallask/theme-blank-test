@@ -17,6 +17,17 @@
 {% set cta_extra = ['btn']|merge(cta_extra is not empty ? cta_extra : [])%}
 {% set cta_attributes = cta_attributes|default({})|merge({'data-test': cta_content|striptags|lower|replace({' ':'-'}) ~ '-cta' })|merge({'data-analytics-name': 'CTA ' ~ cta_content|striptags|trim}) %}
 
+{% if cta_attributes['data-analytics-link'] is not defined %}
+  {% set obj = {
+    name: cta_attributes.data_analytics.name|defaultAlt(data_analytics.name, cta_content),
+    position: cta_attributes.data_analytics.position|defaultAlt(data_analytics.position, 'body'),
+    group: cta_attributes.data_analytics.group|defaultAlt(data_analytics.group),
+    href: cta_attributes.data_analytics.href|defaultAlt(cta_url, 'n/a'),
+  }|mergeAlt(cta_attributes.data_analytics.exitmodal ? {exitmodal: cta_attributes.data_analytics.exitmodal} : {}, cta_attributes.data_analytics.filename ? {filename: cta_attributes.data_analytics.filename} : {}) %}
+
+  {% set cta_attributes = cta_attributes|mergeAlt(analytics(obj), test(obj.name)) %}
+{% endif %}
+
 {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
 
 <{{ cta_url is not empty ? 'a' : 'button' }}

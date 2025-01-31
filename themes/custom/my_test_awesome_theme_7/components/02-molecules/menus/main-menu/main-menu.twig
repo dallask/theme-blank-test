@@ -5,10 +5,9 @@
     'navbar-nav',
     'ms-auto',
   ],
-  list__attributes: list__attributes|default({
-    'data-test': 'main-menu',
+  list__attributes: list__attributes|default({})|merge(test('main-menu')),
+  data_analytics: data_analytics|default({})|merge({
+    group: 'main-menu',
   }),
-  data_analytics_position: data_analytics_position,
-  data_analytics_group: 'main-menu',
 } %}
 

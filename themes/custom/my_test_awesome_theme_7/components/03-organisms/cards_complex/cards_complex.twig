@@ -1,3 +1,7 @@
+{% set data_analytics = {
+  group: 'Card Complex',
+}|mergeAlt(data_analytics) %}
+
 {% embed "@base/06-common/_wrapper.twig" with {
   element_base_class: element_base_class|default('card-complex'),
 } %}

@@ -1,5 +1,7 @@
 {% set footer__base_class = 'footer' %}
-{% set data_analytics_position = 'footer' %}
+{% set data_analytics = data_analytics|mergeAlt({
+  position: 'footer',
+}) %}
 {% set footer_attributes = {
   class: bem(footer__base_class,
     [],

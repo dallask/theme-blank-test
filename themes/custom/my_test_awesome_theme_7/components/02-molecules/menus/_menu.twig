@@ -24,7 +24,7 @@
   @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
 {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
-{% macro menu_links(items, attributes, menu_level, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics_position, data_analytics_group) %}
+{% macro menu_links(items, attributes, menu_level, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics) %}
   {% import _self as menus %}
   {% if items %}
 
@@ -49,4 +49,4 @@
 
 {% import _self as menus %}
 
-{{ menus.menu_links(items, attributes, 0, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics_position, data_analytics_group) }}
+{{ menus.menu_links(items, attributes, 0, menu_class, menu_modifiers, menu_blockname, menu_extra, item_base_class, item_modifiers, item_blockname, list__addition_classes, list__attributes, list__item__extra, link_extra, directory, twig_debug_on, data_analytics) }}

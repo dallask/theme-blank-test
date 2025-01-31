@@ -5,6 +5,10 @@
   'data-analytics-group': 'Card > Card BS'
 })) %}
 
+{% set data_analytics = {
+  group: 'Card',
+}|mergeAlt(data_analytics) %}
+
 {% set card_attributes = {
   class: bem(
     card__base_class,

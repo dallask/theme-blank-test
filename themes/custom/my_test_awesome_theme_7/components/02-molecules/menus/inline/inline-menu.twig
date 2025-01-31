@@ -6,9 +6,8 @@
   ],
   link_extra: link_extra|default(['text-black']),
   items: items|default(inline_menu_items),
-  list__attributes: list__attributes|default({
-    'data-test': 'inline-menu',
+  list__attributes: list__attributes|default({})|merge(test('inline-menu')),
+  data_analytics: data_analytics|default({})|merge({
+    group: 'inline-menu',
   }),
-  data_analytics_position: data_analytics_position,
-  data_analytics_group: 'inline-menu',
 } %}

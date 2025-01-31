@@ -18,13 +18,13 @@
 {% include "@base/06-common/_twig_debug.twig" with { component_debug_path: _self} %}
 {% if link_attributes['data-analytics-link'] is not defined %}
   {% set obj = {
-    name: (link_attributes['data-analytics-name']|default(link_content|default(data_analytics_name))),
-    position: (link_attributes['data-analytics-position']|default(data_analytics_position|default('body'))),
-    group: (link_attributes['data-analytics-group']|default(data_analytics_group)),
-    href: link_attributes['data-analytics-href']|default(('http' not in link_url|render ? url('<front>')|render|trim('/', 'right') : '') ~ link_url|render),
-  }|merge(link_attributes['data-analytics-exitmodal'] ? {exitmodal: link_attributes['data-analytics-exitmodal']} : {})|merge(link_attributes['data-analytics-filename'] ? {filename: link_attributes['data-analytics-filename']} : {}) %}
+    name: link_attributes['data-analytics-name']|defaultAlt(data_analytics.name, link_content),
+    position: link_attributes['data-analytics-position']|defaultAlt(data_analytics.position, 'body'),
+    group: link_attributes['data-analytics-group']|defaultAlt(data_analytics.group),
+    href: link_attributes['data-analytics-href']|defaultAlt(('http' not in link_url|render ? url('<front>')|render|trim('/', 'right') : '') ~ link_url|render),
+  }|mergeAlt(link_attributes['data-analytics-exitmodal'] ? {exitmodal: link_attributes['data-analytics-exitmodal']} : {},link_attributes['data-analytics-filename'] ? {filename: link_attributes['data-analytics-filename']} : {}) %}
 
-  {% set link_attributes = link_attributes|merge(analytics(obj))|merge(test(obj.name)) %}
+  {% set link_attributes = link_attributes|mergeAlt(analytics(obj), test(obj.name)) %}
 {% endif %}
 <a
   {{ bem(link_base_class, link_modifiers, link_blockname, link_extra) }}

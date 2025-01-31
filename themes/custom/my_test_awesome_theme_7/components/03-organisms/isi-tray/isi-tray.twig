@@ -1,4 +1,7 @@
 {% set block_base_class = block_base_class|default('isi') %}
+{% set data_analytics = {
+  group: 'ISI',
+}|mergeAlt(data_analytics) %}
 
 {% block content %}
 
@@ -38,15 +41,26 @@
       <div class="isi-header">
         <div class="isi-header-wrap">
           <div class="drawer-title">{{ drawer_title_markup }}</div>
-          <button
-            class="isi-btn jsIsiMinimize{% if (fake_drawer_enable) %} isi-jump-link{% endif %}"
-            data-oapigtmcategory="Button Clicks" data-oapigtmaction="ISI"
-            data-oapigtmlabel="{{ drawer_expand_text }}">
+          {% set buttonContent %}
             <span
               class="jsSwapText jsSwapTextExpand">{{ drawer_expand_text }}</span>
             <span
               class="jsSwapText jsSwapTextCollapse hide">{{ drawer_collapse_text }}</span>
-            <span class="isi-btn-icon"></span></button>
+            <span class="isi-btn-icon"></span>
+          {% endset %}
+          {% include "@atoms/buttons/button.twig" with {
+            button__content: buttonContent,
+            button__attributes: {
+              'data-oapigtmcategory': 'Button Clicks',
+              'data-oapigtmaction': 'ISI',
+              'data-oapigtmlabel': drawer_expand_text,
+            },
+            button__base_class: 'isi-btn',
+            button__additional_classes: [
+              "jsIsiMinimize",
+              fake_drawer_enable ? 'isi-jump-link' : '',
+            ],
+          } %}
         </div>
       </div>
 
@@ -68,7 +82,10 @@
       <div class="isi-header">
         <div class="isi-header-wrap">
           <div class="drawer-title">
-            <a class="isi-jump-link">{{ jump_link_content }}</a>
+            {% include "@atoms/links/link/link.twig" with {
+              link_content: jump_link_content,
+              link_base_class: 'isi-jump-link',
+            } %}
           </div>
         </div>
       </div>

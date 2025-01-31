@@ -11,6 +11,18 @@
 
 {% set button__base_class = button__base_class|default('btn') %}
 {% set button__attributes = button__attributes|default([]) %}
+{% set button__additional_classes = button__additional_classes|mergeAlt(['data-analytics-link']) %}
+
+{% if button__attributes['data-analytics-link'] is not defined %}
+  {% set obj = {
+    name: button__attributes.data_analytics.name|defaultAlt(data_analytics.name, button__content),
+    position: button__attributes.data_analytics.position|defaultAlt(data_analytics.position, 'body'),
+    group: button__attributes.data_analytics.group|defaultAlt(data_analytics.group),
+    href: button__attributes.data_analytics.href|defaultAlt('n/a'),
+  }|merge(button__attributes.data_analytics.exitmodal ? {exitmodal: button__attributes.data_analytics.exitmodal} : {})|merge(button__attributes.data_analytics.filename ? {filename: button__attributes.data_analytics.filename} : {}) %}
+
+  {% set button__attributes = button__attributes|mergeAlt(analytics(obj), test(obj.name)) %}
+{% endif %}
 
 {#Fix for the issue with set 0 as a value of attrbute#}
 {% set zero_attributes %}
@@ -25,7 +37,13 @@
   'class': bem(button__base_class, button__modifiers, button__blockname, button__additional_classes),
 }) %}
 
-<button {{ add_attributes(button__attributes) }} {{ zero_attributes }}>
+<button {{ add_attributes(button__attributes) }} {{ zero_attributes }}
+{% for attribute, value in button__attributes %}
+    {% if attribute != 'class' %}
+    {{ attribute }}='{{ value|raw }}'
+    {% endif %}
+  {% endfor %}
+>
   {% block button__content %}
     {{ button__content }}
   {% endblock %}

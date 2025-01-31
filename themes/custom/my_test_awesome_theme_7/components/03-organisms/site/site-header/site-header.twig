@@ -1,5 +1,7 @@
 {% set header__base_class = 'header' %}
-{% set data_analytics_position = 'header' %}
+{% set data_analytics = data_analytics|mergeAlt({
+  position: 'header',
+}) %}
 {# If `directory` is defined, set the path relative for Drupal.
  # Otherwise, set the path relative to the Component Library. #}
 {% set header__logo_src = directory ? '/' ~ directory ~ '/images/logo.png' : 'logo.png' %}
